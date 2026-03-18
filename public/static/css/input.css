@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "../../../templates/**/*.latte";
+@source "../../*.php";
 
 /* ============================================================
    MKulgin Brand OS — Design tokens (shadcn/HSL format)

@@ -17,11 +17,7 @@ dist/
 .phpstan/
 .phpunit/
 
-public/index.html
-public/blog/
-public/about/
-public/projects/
-public/contact/
+/cache/
 templates/cache/
 
 .php/

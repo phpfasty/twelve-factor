@@ -1,24 +1,24 @@
 <section>
-  <p class="text-sm uppercase text-amber-300">{$contact.hero.eyebrow}</p>
-  <h1 class="text-4xl font-bold">{$contact.hero.title}</h1>
-  <p>{$contact.hero.description}</p>
+  <p class="text-sm uppercase text-amber-300">{$contact['hero']['eyebrow']}</p>
+  <h1 class="text-4xl font-bold">{$contact['hero']['title']}</h1>
+  <p>{$contact['hero']['description']}</p>
 
   <h2 class="text-2xl mt-8">Channels</h2>
   <ul class="mt-4 space-y-2">
-    {foreach $contact.channels as $channel}
+    {foreach $contact['channels'] as $channel}
       <li>
-        <a href="{$channel.url}" class="text-amber-300">{$channel.label}: {$channel.handle}</a>
-        <p>{$channel.desc}</p>
+        <a href="{$channel['url']}" class="text-amber-300">{$channel['label']}: {$channel['handle']}</a>
+        <p>{$channel['desc']}</p>
       </li>
     {/foreach}
   </ul>
 
   <h2 class="text-2xl mt-8">Availability</h2>
   <ul class="mt-4 list-disc list-inside space-y-1">
-    {foreach $contact.availability as $item}
+    {foreach $contact['availability'] as $item}
       <li>{$item}</li>
     {/foreach}
   </ul>
 
-  <p class="mt-8">{$contact.note}</p>
+  <p class="mt-8">{$contact['note']}</p>
 </section>

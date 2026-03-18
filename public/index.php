@@ -2,6 +2,24 @@
 
 declare(strict_types=1);
 
+if (PHP_SAPI === 'cli-server') {
+    $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+    $requestPath = parse_url($requestUri, PHP_URL_PATH);
+    $requestedFile = is_string($requestPath) ? __DIR__ . $requestPath : null;
+
+    if ($requestedFile !== null && is_file($requestedFile)) {
+        return false;
+    }
+
+    if (is_string($requestPath) && str_starts_with($requestPath, '/index.php/')) {
+        $normalizedPath = substr($requestPath, strlen('/index.php'));
+        $_SERVER['REQUEST_URI'] = $normalizedPath === '' ? '/' : $normalizedPath;
+    }
+
+    $_SERVER['SCRIPT_NAME'] = '/index.php';
+    $_SERVER['PHP_SELF'] = '/index.php';
+}
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Core\Application;
@@ -12,12 +30,9 @@ if (is_readable($dotenvPath . '/.env')) {
     Dotenv::createImmutable($dotenvPath)->load();
 }
 
-Application::create();
-
-if (class_exists(Application::class)) {
-    $container = Application::getInstance()->getContainer();
-    Flight::set('appContainer', $container);
-}
+$application = Application::getInstance();
+$container = $application->getContainer();
+Flight::set('appContainer', $container);
 
 $debug = filter_var(
     getenv('APP_DEBUG') ?: 'false',
