@@ -1,0 +1,29 @@
+<section>
+  <p class="text-sm uppercase text-amber-300">{$about.hero.eyebrow}</p>
+  <h1 class="text-4xl font-bold">{$about.hero.title}</h1>
+  <p>{$about.hero.subtitle}</p>
+
+  <p class="mt-4 max-w-3xl">{$about.bio.short}</p>
+  <div class="mt-6 space-y-3">
+    {foreach $about.bio.long as $paragraph}
+      <p>{$paragraph}</p>
+    {/foreach}
+  </div>
+
+  <h2 class="text-2xl mt-10">Experience</h2>
+  <ul class="mt-4 space-y-2">
+    {foreach $about.timeline as $item}
+      <li><strong>{$item.period}</strong> — {$item.label}: {$item.detail}</li>
+    {/foreach}
+  </ul>
+
+  <h2 class="text-2xl mt-10">Values</h2>
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    {foreach $about.values as $value}
+      <article class="border border-white/20 p-4 rounded">
+        <h3>{$value.title}</h3>
+        <p>{$value.desc}</p>
+      </article>
+    {/foreach}
+  </div>
+</section>

@@ -1,0 +1,70 @@
+{
+  "hero": {
+    "eyebrow": "Ecosystem",
+    "title": "Products & Projects",
+    "description": "Five bootstrapped internet products built over 20 years. Each is a working business, not a startup pitch."
+  },
+  "projects": [
+    {
+      "id": "clickfraud",
+      "name": "clickfraud.ru",
+      "url": "https://clickfraud.ru",
+      "category": "Traffic Defense",
+      "status": "Active",
+      "tagline": "Click fraud protection for Russian advertisers",
+      "description": "Detects and blocks invalid clicks on contextual ads. Protects advertising budgets from competitor bots, click farms, and automated fraud. Uses machine learning + behavioral signals.",
+      "metrics": ["8M RUB state grant", "Neural network detection"],
+      "tech": ["Machine Learning", "Behavioral Analysis", "API"]
+    },
+    {
+      "id": "xmldatafeed",
+      "name": "xmldatafeed.com",
+      "url": "https://xmldatafeed.com",
+      "category": "Data & Parsing",
+      "status": "Active",
+      "tagline": "Web scraping and price monitoring at scale",
+      "description": "Automated collection of pricing data, product catalogs, and competitor information. Built for e-commerce operators who need clean, structured data without building their own infrastructure.",
+      "metrics": ["20M+ RUB/year revenue", "Multiple enterprise clients"],
+      "tech": ["Web Scraping", "Data Pipelines", "XML/JSON APIs"]
+    },
+    {
+      "id": "offlinecrm",
+      "name": "offlinecrm.ru",
+      "url": "https://offlinecrm.ru",
+      "category": "Business Tools",
+      "status": "Active",
+      "tagline": "Simple free CRM for small teams",
+      "description": "A no-frills CRM designed for small businesses that don't need enterprise complexity. Free to use. Focused on contact management, deals, and basic workflow tracking.",
+      "metrics": ["Free product", "Bootstrapped growth"],
+      "tech": ["SaaS", "CRM", "API"]
+    },
+    {
+      "id": "tapki",
+      "name": "tapki.com",
+      "url": "https://tapki.com",
+      "category": "Search & Catalogs",
+      "status": "Active",
+      "tagline": "Product search engine with Elasticsearch",
+      "description": "A search and discovery engine for products and catalogs. Built on Elasticsearch, optimized for large-scale product databases with fast full-text search and filtering.",
+      "metrics": ["Elasticsearch-powered", "Large catalog support"],
+      "tech": ["Elasticsearch", "Search", "Catalog"]
+    },
+    {
+      "id": "notissimus",
+      "name": "notissimus.com",
+      "url": "https://notissimus.com",
+      "category": "Development",
+      "status": "Active",
+      "tagline": "Mobile app development studio",
+      "description": "A small development studio focused on mobile applications. Builds and maintains apps for B2B clients across various industries.",
+      "metrics": ["Client projects", "iOS + Android"],
+      "tech": ["Mobile", "iOS", "Android"]
+    }
+  ],
+  "metrics": [
+    { "value": "37–40M", "label": "Peak RUB revenue / year", "note": "Combined products" },
+    { "value": "618K", "label": "Max RUB / month", "note": "Single SaaS product" },
+    { "value": "8M", "label": "State grant", "note": "Foundation for Innovation" },
+    { "value": "20+", "label": "Years operating", "note": "Bootstrapped" }
+  ]
+}

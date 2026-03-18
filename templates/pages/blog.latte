@@ -1,0 +1,24 @@
+<section>
+  <p class="text-sm uppercase text-amber-300">{$blog.hero.eyebrow}</p>
+  <h1 class="text-4xl font-bold">{$blog.hero.title}</h1>
+  <p>{$blog.hero.description}</p>
+
+  <div class="mt-8">
+    <h2>Categories</h2>
+    <ul class="flex gap-3 mt-2 flex-wrap">
+      {foreach $blog.categories as $category}
+        <li class="px-3 py-1 rounded border border-white/20">{$category.label}</li>
+      {/foreach}
+    </ul>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-6">
+    {foreach $blog.posts as $post}
+      <article class="border border-white/20 p-4 rounded">
+        <p class="text-sm text-white/70">{$post.date} · {$post.reading_time}</p>
+        <h3><a href="/blog/{$post.slug}/">{$post.title}</a></h3>
+        <p class="text-sm">{$post.tag} · {$post.excerpt}</p>
+      </article>
+    {/foreach}
+  </div>
+</section>

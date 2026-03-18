@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "eyebrow": "IT Entrepreneur · Saint Petersburg",
+    "title": "Maksim Kulgin",
+    "subtitle": "Systems. Data. Defense.",
+    "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of engineering books on network infrastructure. Building real technology products without hype.",
+    "cta_primary": { "label": "Read the Journal", "url": "/blog/" },
+    "cta_secondary": { "label": "Projects & Cases", "url": "/projects/" }
+  },
+  "path": [
+    { "year": "1990s", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
+    { "year": "1998–2003", "label": "Author", "note": "3 engineering books on network infrastructure published" },
+    { "year": "2000s", "label": "E-commerce Operator", "note": "Built and managed large online retail operations" },
+    { "year": "2010s", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
+    { "year": "2020s", "label": "Ecosystem Builder", "note": "40M+ RUB/year revenue, state grants, data & defense products" }
+  ],
+  "pillars": [
+    { "id": "data", "icon": "database", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
+    { "id": "defense", "icon": "shield", "label": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems for advertisers" },
+    { "id": "systems", "icon": "network", "label": "Internet Systems", "desc": "Infrastructure thinking applied to modern products" },
+    { "id": "business", "icon": "trending-up", "label": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue/year without venture capital" }
+  ],
+  "metrics": [
+    { "value": "30+", "label": "Years in IT" },
+    { "value": "3", "label": "Engineering books" },
+    { "value": "40M+", "label": "RUB revenue / year" },
+    { "value": "5", "label": "Active products" }
+  ],
+  "quote": {
+    "text": "No success theater. No marketing fluff. Real revenue, real mistakes, real outcomes.",
+    "source": "bezsmuzi channel principle"
+  }
+}

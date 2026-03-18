@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "eyebrow": "About",
+    "title": "Maksim Kulgin",
+    "subtitle": "Systems engineer, entrepreneur, author."
+  },
+  "bio": {
+    "short": "I've been in IT since the early 1990s — starting with network engineering, IP/IPX protocols, and corporate infrastructure. Over the following decades I built e-commerce operations, wrote three engineering books on network architecture, and launched a portfolio of bootstrapped internet products.",
+    "long": [
+      "My work today centers on data collection infrastructure, click fraud defense, and building durable internet businesses without venture capital. The products I've built — clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com — each solve a specific, unglamorous problem at the intersection of internet operations and data.",
+      "I write and speak in public because I find most conversation about IT entrepreneurship in Russia to be full of marketing noise and success theater. The channel bezsmuzi ('without smoothie') exists to provide a counterpoint: real revenue figures, real mistakes, real operating decisions."
+    ]
+  },
+  "values": [
+    { "title": "Evidence over theory", "desc": "Revenue numbers, traffic data, and failure post-mortems are more useful than frameworks and methodology names." },
+    { "title": "Long game", "desc": "Building in Russia since the 1990s means you've seen markets, regulations, and technologies change completely. Durability matters more than growth hacks." },
+    { "title": "Technical clarity", "desc": "Engineering thinking applied to business problems: understand the system, find the bottleneck, fix it. Repeat." },
+    { "title": "No pretense", "desc": "The channel isn't called 'without smoothie' for decoration. Honest reporting on what works and what doesn't is rare, and valuable." }
+  ],
+  "books": [
+    {
+      "title": "IP/IPX Traffic Switching and Routing",
+      "publisher": "KomputerPress, Moscow",
+      "year": "1998",
+      "pages": 319,
+      "series": "Information Technologies for Engineers",
+      "desc": "Professional engineering reference on routing and switching. Written for network administrators, not marketers."
+    },
+    {
+      "title": "Corporate Network Technologies",
+      "publisher": "Peter, St. Petersburg",
+      "year": "1999",
+      "pages": 699,
+      "series": "Encyclopedia",
+      "desc": "Comprehensive reference on building and operating corporate networks in Russian infrastructure contexts."
+    },
+    {
+      "title": "Building Computer Networks. For Professionals",
+      "publisher": "Peter, St. Petersburg",
+      "year": "2001 (2nd ed. 2003)",
+      "pages": 461,
+      "series": "For Professionals",
+      "desc": "Practical guide to designing, deploying, and maintaining computer networks. Reviewed by Kompyuterra as an essential resource for Russian network engineers."
+    }
+  ],
+  "timeline": [
+    { "period": "1990–1998", "label": "Network Engineering", "detail": "Corporate networks, IP/IPX, sysadmin" },
+    { "period": "1998–2003", "label": "Author", "detail": "3 books on network infrastructure (KomputerPress, Piter)" },
+    { "period": "2000s", "label": "E-commerce Operator", "detail": "Large-scale online retail" },
+    { "period": "2010", "label": "Founded clickfraud.ru", "detail": "Click fraud protection for advertisers" },
+    { "period": "2012", "label": "Founded xmldatafeed.com", "detail": "Price monitoring and web scraping" },
+    { "period": "2014", "label": "Founded offlinecrm.ru", "detail": "Free CRM for small businesses" },
+    { "period": "2019", "label": "State grant", "detail": "8M RUB from Foundation for Innovation Assistance" },
+    { "period": "2021", "label": "Revenue milestone", "detail": "40M+ RUB combined annual revenue" },
+    { "period": "2023+", "label": "Community & Media", "detail": "bezsmuzi channel, journal, ecosystem" }
+  ]
+}

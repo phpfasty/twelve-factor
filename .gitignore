@@ -1,0 +1,45 @@
+.manual/
+.project/
+.vscode/
+.cursor/
+node_modules/
+vendor/
+~cache/
+bun.lockb
+bun.lock
+package-lock.json
+composer.lock
+.cursorignore
+.env
+dist/
+.workspaces/
+.phpcs/
+.phpstan/
+.phpunit/
+
+public/index.html
+public/blog/
+public/about/
+public/projects/
+public/contact/
+templates/cache/
+
+.php/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Cache and coverage artifacts
+.phpunit.result.cache
+.php-cs-fixer.cache
+.phpcs-cache
+coverage/
+
+# Editor/IDE settings
+.idea/

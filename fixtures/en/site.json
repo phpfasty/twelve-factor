@@ -1,0 +1,24 @@
+{
+  "name": "Maksim Kulgin",
+  "tagline": "Systems. Data. Defense.",
+  "description": "A systematic journal on internet products, data infrastructure, traffic defense, and mature technology entrepreneurship.",
+  "slogan": "No hype. Real practice.",
+  "copyright": "© 2025 Maksim Kulgin",
+  "channels": {
+    "youtube": "https://www.youtube.com/@MaximKulgin",
+    "vk": "https://vk.com/mkulgin",
+    "telegram": "https://t.me/bezsmuzi",
+    "dzen": "https://dzen.ru/mkulgin"
+  },
+  "socials_display": {
+    "vk": { "label": "VK", "url": "https://vk.com/mkulgin" },
+    "telegram": { "label": "Telegram", "url": "https://t.me/bezsmuzi" },
+    "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
+  },
+  "platforms": [
+    { "id": "habr", "label": "Habr", "url": "https://habr.com/ru/users/makasin4ik/" },
+    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452" },
+    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin" },
+    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi" }
+  ]
+}

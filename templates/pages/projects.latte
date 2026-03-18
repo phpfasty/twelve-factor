@@ -1,0 +1,28 @@
+<section>
+  <p class="text-sm uppercase text-amber-300">{$projects.hero.eyebrow}</p>
+  <h1 class="text-4xl font-bold">{$projects.hero.title}</h1>
+  <p>{$projects.hero.description}</p>
+
+  <div class="mt-6 grid md:grid-cols-2 gap-4">
+    {foreach $projects.projects as $project}
+      <article class="border border-white/20 p-4 rounded">
+        <h2>{$project.name}</h2>
+        <p>{$project.tagline}</p>
+        <p>{$project.description}</p>
+        <p class="text-sm mt-2">{$project.category} · {$project.status}</p>
+        <a class="text-amber-300" href="{$project.url}">{$project.url}</a>
+      </article>
+    {/foreach}
+  </div>
+
+  <h2 class="text-2xl mt-10">Metrics</h2>
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    {foreach $projects.metrics as $metric}
+      <article class="border border-white/20 p-4 rounded">
+        <p class="text-xl font-bold">{$metric.value}</p>
+        <p>{$metric.label}</p>
+        <p class="text-sm">{$metric.note}</p>
+      </article>
+    {/foreach}
+  </div>
+</section>

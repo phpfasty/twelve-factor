@@ -1,0 +1,41 @@
+{
+  "hero": {
+    "eyebrow": "Contact",
+    "title": "Get in Touch",
+    "description": "Available for expert consultation on web data infrastructure, click fraud defense, and IT entrepreneurship in Russia. Business inquiries and media requests welcome."
+  },
+  "channels": [
+    {
+      "id": "telegram",
+      "label": "Telegram",
+      "handle": "@bezsmuzi",
+      "url": "https://t.me/bezsmuzi",
+      "desc": "Primary channel. Fastest response. Daily notes on IT business.",
+      "type": "russian"
+    },
+    {
+      "id": "vk",
+      "label": "VK",
+      "handle": "mkulgin",
+      "url": "https://vk.com/mkulgin",
+      "desc": "Personal profile. Business and community posts.",
+      "type": "russian"
+    },
+    {
+      "id": "dzen",
+      "label": "Дзен",
+      "handle": "mkulgin",
+      "url": "https://dzen.ru/mkulgin",
+      "desc": "Long-read articles and case studies.",
+      "type": "russian"
+    }
+  ],
+  "availability": [
+    "Expert consultation on web scraping and data infrastructure",
+    "Click fraud protection and ad traffic analysis",
+    "IT business development in Russia",
+    "Speaking at industry events",
+    "Media interviews and editorial contributions"
+  ],
+  "note": "Response within 1–2 business days. I don't offer mentorship programs or paid courses — this isn't that kind of channel."
+}

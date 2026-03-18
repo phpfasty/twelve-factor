@@ -1,0 +1,83 @@
+{
+  "hero": {
+    "eyebrow": "Journal",
+    "title": "Operator Notes",
+    "description": "Essays, case studies, and field notes from running data products and internet businesses in Russia for 30+ years."
+  },
+  "categories": [
+    { "id": "all", "label": "All" },
+    { "id": "data", "label": "Data & Parsing" },
+    { "id": "defense", "label": "Traffic Defense" },
+    { "id": "business", "label": "Business Practice" },
+    { "id": "systems", "label": "Systems & Infra" },
+    { "id": "grants", "label": "Grants" }
+  ],
+  "posts": [
+    {
+      "id": "parsing-20m",
+      "slug": "parsing-20m-per-year",
+      "category": "data",
+      "tag": "Data",
+      "title": "20M Rubles a Year on Web Scraping",
+      "excerpt": "How an engineering team turned a parsing infrastructure into a sustainable B2B business collecting only public data. Real revenue breakdown, client structure, and legal framework.",
+      "date": "2023-08-14",
+      "reading_time": "12 min",
+      "url": "#"
+    },
+    {
+      "id": "saas-430k",
+      "slug": "saas-from-zero-to-430k",
+      "category": "business",
+      "tag": "Business",
+      "title": "From 0 to 430,000 RUB/Month. SaaS in Russia, Slowly",
+      "excerpt": "A month-by-month account of growing a SaaS product in Russia without venture capital or paid advertising. Including the failures, the plateaus, and what actually moved the needle.",
+      "date": "2023-03-07",
+      "reading_time": "18 min",
+      "url": "#"
+    },
+    {
+      "id": "clickfraud-grant",
+      "slug": "clickfraud-grant-8m",
+      "category": "grants",
+      "tag": "Grants",
+      "title": "How clickfraud.ru Won an 8M Ruble State Grant",
+      "excerpt": "We applied to the Foundation for Innovation Assistance and won. Here is how we evaluated the market, structured the application, and defended the project before technical experts.",
+      "date": "2022-11-20",
+      "reading_time": "10 min",
+      "url": "#"
+    },
+    {
+      "id": "antibot-architecture",
+      "slug": "antibot-architecture",
+      "category": "defense",
+      "tag": "Traffic Defense",
+      "title": "Inside a Click Fraud Detection System",
+      "excerpt": "How clickfraud.ru uses machine learning and behavioral analysis to separate real clicks from bot traffic. Architecture, signals, and the ongoing arms race against fraudsters.",
+      "date": "2022-06-15",
+      "reading_time": "14 min",
+      "url": "#"
+    },
+    {
+      "id": "redesign-traffic",
+      "slug": "why-redesign-kills-traffic",
+      "category": "systems",
+      "tag": "Systems",
+      "title": "Why a Site Redesign Can Destroy Your SEO Traffic",
+      "excerpt": "We redesigned a site and lost 40% of organic traffic. A technical post-mortem on what went wrong and what to check before any major design overhaul.",
+      "date": "2024-01-10",
+      "reading_time": "9 min",
+      "url": "#"
+    },
+    {
+      "id": "40m-2021",
+      "slug": "40m-revenue-2021",
+      "category": "business",
+      "tag": "Business",
+      "title": "Zero to 40M: Building a Software and Parsing Business",
+      "excerpt": "The full story of how we built a portfolio of internet products — from early sysadmin days to running a company with 40M+ RUB annual revenue. Every real number included.",
+      "date": "2022-01-28",
+      "reading_time": "22 min",
+      "url": "#"
+    }
+  ]
+}
