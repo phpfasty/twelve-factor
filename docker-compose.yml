@@ -3,6 +3,7 @@ services:
     image: webdevops/php:8.4-alpine
     volumes:
       - .:/var/www/html
+      - defense-cache:/var/www/html/cache
       - ./${PHP_INI_FILE:-php.ini}:/opt/docker/etc/php/php.ini
       - ./${APCU_INI_FILE:-apcu.ini}:/opt/docker/etc/php/conf.d/apcu.ini
     healthcheck:
@@ -23,3 +24,6 @@ services:
       php:
         condition: service_healthy
     restart: unless-stopped
+
+volumes:
+  defense-cache:
