@@ -1,9 +1,6 @@
 services:
   php:
     image: webdevops/php:8.4-alpine
-    env_file:
-      - path: .env
-        required: false
     volumes:
       - .:/var/www/html
       - ./${PHP_INI_FILE:-php.ini}:/opt/docker/etc/php/php.ini
