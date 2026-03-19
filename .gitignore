@@ -2,14 +2,13 @@
 .project/
 .cursor/
 node_modules/
-vendor/
 ~cache/
 bun.lockb
 bun.lock
 package-lock.json
-composer.lock
 .cursorignore
 dist/
+.env
 .workspaces/
 .phpcs/
 .phpstan/
