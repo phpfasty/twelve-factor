@@ -1,6 +1,7 @@
 services:
   php:
     image: webdevops/php:8.4-alpine
+    command: ["sh", "-c", "composer install --no-dev --no-interaction && exec php-fpm"]
     volumes:
       - .:/var/www/html
       - ./${PHP_INI_FILE:-php.ini}:/opt/docker/etc/php/php.ini
