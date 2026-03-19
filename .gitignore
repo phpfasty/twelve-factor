@@ -1,6 +1,5 @@
 .manual/
 .project/
-.vscode/
 .cursor/
 node_modules/
 vendor/
