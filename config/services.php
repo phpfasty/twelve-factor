@@ -6,6 +6,7 @@ use App\Cache\CacheStore;
 use App\Core\Container;
 use App\Data\DataProviderInterface;
 use App\Data\FixtureDataProvider;
+use App\Defense\RequestDefenseService;
 use App\Middleware\SecurityHeaders;
 use App\Service\PageRenderer;
 use App\View\LatteRenderer;
@@ -40,6 +41,7 @@ return function (Container $container): void {
     $cacheDir = $resolvePath((string) (getenv('CACHE_DIR') ?: './cache'));
     $templatesDir = $rootDir . DIRECTORY_SEPARATOR . 'templates';
     $templateCacheDir = $templatesDir . DIRECTORY_SEPARATOR . 'cache';
+    $defenseConfigPath = $resolvePath((string) (getenv('DEFENSE_CONFIG_PATH') ?: './config/defense.php'));
     $cacheTtl = (int) (getenv('CACHE_TTL') ?: 3600);
     $dataSource = (string) (getenv('DATA_SOURCE') ?: 'fixtures');
 
@@ -49,6 +51,7 @@ return function (Container $container): void {
     $container->bind('app.cache_dir', $cacheDir);
     $container->bind('fixtures_path', $fixturesPath);
     $container->bind('pages_config', require $rootDir . '/config/pages.php');
+    $container->bind('defense_config', require $defenseConfigPath);
 
     $container->singleton(SecurityHeaders::class, static fn (): SecurityHeaders => new SecurityHeaders());
 
@@ -84,4 +87,12 @@ return function (Container $container): void {
             $container->get(CacheStore::class)
         )
     );
+
+$container->singleton(
+    RequestDefenseService::class,
+    static fn (Container $container): RequestDefenseService => new RequestDefenseService(
+        (string) $container->get('app.cache_dir'),
+        (array) $container->get('defense_config')
+    )
+);
 };

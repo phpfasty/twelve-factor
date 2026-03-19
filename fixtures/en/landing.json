@@ -4,91 +4,30 @@
     "title": "Maksim Kulgin",
     "subtitle": "Systems. Data. Defense.",
     "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of three engineering books on network infrastructure. Building real technology products without hype.",
-    "cta_primary": "Read the Journal",
-    "cta_secondary": "Projects & Cases"
+    "cta_primary": { "label": "Read the Journal", "url": "/blog/" },
+    "cta_secondary": { "label": "Projects & Cases", "url": "/projects/" }
   },
-  "path": {
-    "eyebrow": "Career Path",
-    "title": "From Networks to Ecosystem",
-    "steps": [
-      { "year": "1990s", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin" },
-      { "year": "1998–2003", "label": "Author", "note": "3 engineering books published" },
-      { "year": "2000s", "label": "E-commerce", "note": "Large online retail operations" },
-      { "year": "2010s", "label": "SaaS Founder", "note": "clickfraud, xmldatafeed, offlinecrm" },
-      { "year": "2020s", "label": "Ecosystem", "note": "40M+ RUB/year, grants, community" }
-    ]
-  },
+  "path": [
+    { "year": "1990s", "icon": "server", "icon_color": "primary", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
+    { "year": "1998–2003", "icon": "book", "icon_color": "accent", "label": "Author", "note": "3 engineering books on network infrastructure published" },
+    { "year": "2000s", "icon": "shopping-cart", "icon_color": "primary", "label": "Manager", "note": "Built and managed large online retail operations" },
+    { "year": "2010s", "icon": "monitor", "icon_color": "accent", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
+    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Ecosystem Builder", "note": "40M+ RUB/year revenue, state grants, data & defense products" }
+  ],
+  "pillars": [
+    { "id": "data", "icon": "database", "icon_color": "accent", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
+    { "id": "defense", "icon": "shield", "icon_color": "primary", "label": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems for advertisers" },
+    { "id": "systems", "icon": "network", "icon_color": "primary", "label": "Internet Systems", "desc": "Infrastructure thinking applied to modern products" },
+    { "id": "business", "icon": "trending-up", "icon_color": "accent", "label": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue/year without venture capital" }
+  ],
   "metrics": [
     { "value": "30+", "label": "Years in IT" },
     { "value": "3", "label": "Engineering books" },
     { "value": "40M+", "label": "RUB revenue / year" },
     { "value": "5", "label": "Active products" }
   ],
-  "pillars": {
-    "eyebrow": "Areas of Practice",
-    "title": "What This Journal Covers",
-    "items": [
-      { "title": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale for real B2B clients." },
-      { "title": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems that protect advertising budgets." },
-      { "title": "Internet Systems", "desc": "Infrastructure thinking applied to modern products — from IP/IPX to distributed data pipelines." },
-      { "title": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue per year without venture capital. Real numbers, real mistakes." }
-    ]
-  },
-  "journal": {
-    "eyebrow": "Journal",
-    "title": "Recent Posts",
-    "all_link": "All posts →",
-    "posts": [
-      {
-        "tag": "Data",
-        "date": "Aug 14, 2023",
-        "read": "12 min read",
-        "title": "20M Rubles a Year on Web Scraping",
-        "excerpt": "How an engineering team turned a parsing infrastructure into a sustainable B2B business collecting only public data. Real revenue breakdown and legal framework."
-      },
-      {
-        "tag": "Business",
-        "date": "Mar 7, 2023",
-        "read": "18 min read",
-        "title": "From 0 to 430,000 RUB/Month. SaaS in Russia, Slowly",
-        "excerpt": "Month-by-month account of growing a SaaS product without venture capital. Including the failures, the plateaus, and what actually moved the needle."
-      },
-      {
-        "tag": "Grants",
-        "date": "Nov 20, 2022",
-        "read": "10 min read",
-        "title": "How clickfraud.ru Won an 8M Ruble State Grant",
-        "excerpt": "We applied to the Foundation for Innovation Assistance and won. How we evaluated the market, structured the application, and defended the project before experts."
-      }
-    ]
-  },
-  "products": {
-    "eyebrow": "Ecosystem",
-    "title": "Active Products",
-    "all_link": "All projects →",
-    "items": [
-      { "name": "clickfraud.ru", "desc": "Click fraud protection for Russian advertisers. Machine learning + behavioral analysis.", "tag": "Traffic Defense" },
-      { "name": "xmldatafeed.com", "desc": "Web scraping and price monitoring at scale. 20M+ RUB/year revenue.", "tag": "Data & Parsing" },
-      { "name": "offlinecrm.ru", "desc": "Simple free CRM for small businesses. No enterprise complexity required.", "tag": "Business Tools" }
-    ],
-    "status_label": "Active"
-  },
   "quote": {
     "text": "No success theater. No marketing fluff. Real revenue, real mistakes, real outcomes.",
     "source": "bezsmuzi channel principle"
-  },
-  "platforms": {
-    "eyebrow": "Where to Follow",
-    "title": "Public Platforms"
-  },
-  "nav": {
-    "home": "Home",
-    "blog": "Journal",
-    "projects": "Projects",
-    "about": "About",
-    "contact": "Contact"
-  },
-  "footer": {
-    "copy": "© 2025 Maksim Kulgin. No hype. Real practice."
   }
 }

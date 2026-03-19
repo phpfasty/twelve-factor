@@ -1,28 +1,65 @@
-<section>
-  <p class="text-sm uppercase text-amber-300">{$projects['hero']['eyebrow']}</p>
-  <h1 class="text-4xl font-bold">{$projects['hero']['title']}</h1>
-  <p>{$projects['hero']['description']}</p>
-
-  <div class="mt-6 grid md:grid-cols-2 gap-4">
-    {foreach $projects['projects'] as $project}
-      <article class="border border-white/20 p-4 rounded">
-        <h2>{$project['name']}</h2>
-        <p>{$project['tagline']}</p>
-        <p>{$project['description']}</p>
-        <p class="text-sm mt-2">{$project['category']} · {$project['status']}</p>
-        <a class="text-amber-300" href="{$project['url']}">{$project['url']}</a>
-      </article>
-    {/foreach}
+<section class="mk-section-lg mk-bg-paper" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="projects-title">
+  <div class="mk-shell">
+    <p class="mk-eyebrow" style="margin-bottom:1rem;">{$projects['hero']['eyebrow']}</p>
+    <h1 id="projects-title" style="font-size:clamp(2rem,4vw,3rem);font-weight:700;max-width:18ch;line-height:1.1;margin:0 0 0.75rem;">{$projects['hero']['title']}</h1>
+    <p style="font-size:1.04rem;color:hsl(var(--muted-foreground));line-height:1.65;max-width:58ch;margin:0 0 2rem 0;">
+      {$projects['hero']['description']}
+    </p>
+    <div class="mk-grid-2">
+      <div>
+        <div class="mk-hero-prompt" style="margin:0 0 0.75rem;">Systems and products, intentionally built.</div>
+        <p style="margin:0;font-size:0.9rem;line-height:1.65;color:hsl(var(--foreground));">
+          Open-source software and commercial tooling from practical engineering constraints: reliable, observable, and maintainable.
+        </p>
+      </div>
+      <div>
+        {foreach $projects['metrics'] as $metric}
+          <article class="mk-metric-card" style="margin-bottom:0.75rem;padding:1rem;border:1px solid hsl(var(--border));border-radius:0.875rem;">
+            <p class="mk-metric-value" style="font-size:1.6rem;margin:0 0 0.25rem;">{$metric['value']}</p>
+            <p class="mk-metric-label" style="margin:0 0 0.35rem;">{$metric['label']}</p>
+            <p style="font-size:0.8125rem;color:hsl(var(--muted-foreground));margin:0;line-height:1.5;">{$metric['note']}</p>
+          </article>
+        {/foreach}
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2 class="text-2xl mt-10">Metrics</h2>
-  <div class="grid md:grid-cols-2 gap-4 mt-4">
-    {foreach $projects['metrics'] as $metric}
-      <article class="border border-white/20 p-4 rounded">
-        <p class="text-xl font-bold">{$metric['value']}</p>
-        <p>{$metric['label']}</p>
-        <p class="text-sm">{$metric['note']}</p>
-      </article>
-    {/foreach}
+<section class="mk-section">
+  <div class="mk-content">
+    <p class="mk-eyebrow" style="margin-bottom:0.5rem;">Ecosystem</p>
+    <h2 style="font-size:1.8rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">Product portfolio</h2>
+    <div class="mk-project-list">
+      {foreach $projects['projects'] as $project}
+        <article class="mk-card mk-project-card">
+          {var $iconId = $project['icon'] ?? null}
+          {var $iconColor = $project['icon_color'] ?? 'primary'}
+          <div class="mk-project-icon" style="background:hsl(var(--{$iconColor})/0.12);" aria-hidden="true">
+            {if $iconId}
+            {include '../partials/lucide-icon.latte', icon: $iconId, color: $iconColor, size: 22}
+            {else}
+            <span style="display:block;width:1rem;height:1rem;border-radius:50%;background:hsl(var(--accent));"></span>
+            {/if}
+          </div>
+          <div>
+            <div class="mk-project-header">
+              <h3 class="mk-project-title">{$project['name']}</h3>
+              <span class="mk-tag mk-tag-primary">{$project['category']}</span>
+              <span class="mk-status" style="color:{$project['status'] === 'Active' ? 'hsl(var(--success))' : 'hsl(var(--muted-foreground))'};">{$project['status']}</span>
+            </div>
+            <p style="font-weight:600;font-size:1rem;margin:0 0 0.5rem;">{$project['tagline']}</p>
+            <p style="font-size:0.9rem;line-height:1.6;color:hsl(var(--muted-foreground));margin:0 0 1rem;">{$project['description']}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              {foreach $project['tech'] as $tech}
+                <span class="mk-chip">{$tech}</span>
+              {/foreach}
+            </div>
+          </div>
+          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="Open {$project['name']}">
+            Open project
+          </a>
+        </article>
+      {/foreach}
+    </div>
   </div>
 </section>

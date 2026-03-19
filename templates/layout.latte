@@ -1,30 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{$lang ?? 'en'}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{$title}</title>
-  <meta name="description" content="{$site['description']}">
+  <meta name="description" content="{$description ?? ($site['description'] ?? '')}">
+  <meta property="og:title" content="{$title}">
+  <meta property="og:description" content="{$description ?? ($site['description'] ?? '')}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{$site['name'] ?? 'Maksim Kulgin'}">
+  <meta property="og:locale" content="{$lang === 'ru' ? 'ru_RU' : 'en_US'}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="{$site['images']['og'] ?? '/static/img/mkulgin-2.png'}">
+  <meta property="og:image:alt" content="{$site['name'] ?? 'Maksim Kulgin'} portrait">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/styles.css">
+  {if isset($extra_stylesheets) && is_array($extra_stylesheets)}
+    {foreach $extra_stylesheets as $extraStylesheet}
+      <link rel="stylesheet" href="{$extraStylesheet}">
+    {/foreach}
+  {/if}
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1Yzg1YTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZSBoYW5kc2hha2UgaWNvbiBsdWNpZGUtaGFuZHNoYWtlIj48cGF0aCBkPSJtMTEgMTcgMiAyYTEgMSAwIDEgMCAzLTMiLz48cGF0aCBkPSJtMTQgMTQgMi41IDIuNWExIDEgMCAxIDAgMy0zbC0zLjg4LTMuODhhMyAzIDAgMCAwLTQuMjQgMGwtLjg4Ljg4YTEgMSAwIDEgMS0zLTNsMi44MS0yLjgxYTUuNzkgNS43OSAwIDAgMSA3LjA2LS44N2wuNDcuMjhhMiAyIDAgMCAwIDEuNDIuMjVMMjEgNCIvPjxwYXRoIGQ9Im0yMSAzIDEgMTFoLTIiLz48cGF0aCBkPSJNMyAzIDIgMTRsNi41IDYuNWExIDEgMCAxIDAgMy0zIi8+PHBhdGggZD0iTTMgNGg4Ii8+PC9zdmc+" type="image/svg+xml">
+  <style>
+    .mk-lang-toggle {
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid hsl(var(--border));
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: hsl(var(--muted-foreground));
+      transition: all 150ms ease;
+      flex-shrink: 0;
+    }
+    .mk-lang-toggle:hover {
+      background-color: hsl(var(--secondary));
+      color: hsl(var(--foreground));
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-white">
-  <header class="border-b border-white/10">
-    <nav class="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
-      <a href="/" class="font-bold">{$site['name']}</a>
-      <ul class="flex flex-wrap gap-4 text-sm">
-        {foreach $navigation['main'] as $item}
-          <li>
-            <a href="{$item['url']}" class="hover:text-amber-300">{$item['label']}</a>
-          </li>
-        {/foreach}
-      </ul>
-    </nav>
-  </header>
+<body>
+  {if !($hide_layout ?? false)}
+    <header class="mk-nav" role="banner">
+      <div class="mk-shell">
+        <nav class="mk-nav-inner" aria-label="Main navigation">
+          <a href="/" class="mk-logo" aria-label="Maksim Kulgin — Home">
+            <span class="mk-logo-dot" aria-hidden="true"></span>
+            <span>{$site['name'] ?? 'Maksim Kulgin'}</span>
+          </a>
+          <ul class="mk-nav-links" role="list">
+            {foreach $navigation['main'] as $item}
+              <li>
+                <a
+                  href="{$item['url']}"
+                  class="mk-nav-link"
+                  data-nav-id="{$item['id']}"
+                >{$item['label']}</a>
+              </li>
+            {/foreach}
+          </ul>
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <a
+              href="{$lang_switch_url ?? ('?lang=' . (($lang ?? 'en') === 'ru' ? 'en' : 'ru'))}"
+              class="mk-lang-toggle"
+              id="lang-toggle"
+              aria-label="Switch language"
+              aria-pressed="{$lang === 'ru' ? 'true' : 'false'}"
+              role="button"
+            >{$lang_toggle_label ?? (($lang ?? 'en') === 'ru' ? 'Ru' : 'En')}</a>
+            <button class="mk-theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+              <svg class="mk-icon" id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+              </svg>
+              <svg class="mk-icon" id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+            <button class="mk-mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </nav>
+        <nav id="mobile-nav" class="mk-mobile-nav" aria-label="Mobile navigation">
+          {foreach $navigation['main'] as $item}
+            <a href="{$item['url']}" class="mk-mobile-nav-link" data-nav-id="{$item['id']}">{$item['label']}</a>
+          {/foreach}
+        </nav>
+      </div>
+    </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-10">{$content|noescape}</main>
+    <main id="main-content">{$content|noescape}</main>
 
-  <footer class="max-w-6xl mx-auto px-4 py-6 border-t border-white/10 text-sm text-white/60">
-    <p>{$site['copyright'] ?? ''}</p>
-  </footer>
+    <footer class="mk-footer" role="contentinfo">
+      <div class="mk-shell">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+          <div style="display:flex;align-items:center;gap:0.625rem;">
+            <span class="mk-logo-dot" aria-hidden="true"></span>
+            <p class="mk-footer-copy">{$site['copyright'] ?? '© 2025 Maksim Kulgin'}</p>
+          </div>
+          <nav aria-label="Footer navigation">
+            <ul style="list-style:none;margin:0;padding:0;display:flex;gap:1.25rem;flex-wrap:wrap;">
+              {foreach $navigation['main'] as $item}
+                {if $item['id'] !== 'home'}
+                  <li>
+                    <a href="{$item['url']}" style="font-size:0.8125rem;color:hsl(var(--muted-foreground));">{$item['label']}</a>
+                  </li>
+                {/if}
+              {/foreach}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  {else}
+    {$content|noescape}
+  {/if}
+
+  {if !($hide_layout ?? false)}
+    <script>
+      (function () {
+        'use strict';
+
+        function applyTheme(dark) {
+          var html = document.documentElement;
+          var iconSun = document.getElementById('icon-sun');
+          var iconMoon = document.getElementById('icon-moon');
+
+          if (dark) {
+            html.classList.add('dark');
+            if (iconSun) {
+              iconSun.style.display = 'none';
+            }
+            if (iconMoon) {
+              iconMoon.style.display = '';
+            }
+            return;
+          }
+
+          html.classList.remove('dark');
+          if (iconSun) {
+            iconSun.style.display = '';
+          }
+          if (iconMoon) {
+            iconMoon.style.display = 'none';
+          }
+        }
+
+        var themeToggle = document.getElementById('theme-toggle');
+        var storedTheme = localStorage.getItem('mk-theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(storedTheme ? storedTheme === 'dark' : prefersDark);
+
+        if (themeToggle) {
+          themeToggle.addEventListener('click', function () {
+            var isDark = document.documentElement.classList.contains('dark');
+            applyTheme(!isDark);
+            localStorage.setItem('mk-theme', isDark ? 'light' : 'dark');
+          });
+        }
+
+        var mobileBtn = document.getElementById('mobile-menu-btn');
+        var mobileNav = document.getElementById('mobile-nav');
+        if (mobileBtn && mobileNav) {
+          mobileBtn.addEventListener('click', function () {
+            var isOpen = mobileNav.classList.toggle('open');
+            mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          });
+
+          mobileNav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+              mobileNav.classList.remove('open');
+              mobileBtn.setAttribute('aria-expanded', 'false');
+            });
+          });
+        }
+
+        var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        var navLinks = document.querySelectorAll('[data-nav-id]');
+        navLinks.forEach(function (link) {
+          var href = link.getAttribute('href') || '';
+          var linkPath = href.replace(/\/$/, '') || '/';
+
+          if (linkPath === currentPath) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+            return;
+          }
+
+          if (currentPath.startsWith(linkPath) && linkPath !== '/' && linkPath.length > 1) {
+            link.classList.add('active');
+          }
+        });
+      })();
+    </script>
+  {/if}
 </body>
 </html>

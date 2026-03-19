@@ -7,6 +7,8 @@
   "projects": [
     {
       "id": "clickfraud",
+      "icon": "shield",
+      "icon_color": "primary",
       "name": "clickfraud.ru",
       "url": "https://clickfraud.ru",
       "category": "Traffic Defense",
@@ -18,6 +20,8 @@
     },
     {
       "id": "xmldatafeed",
+      "icon": "database",
+      "icon_color": "accent",
       "name": "xmldatafeed.com",
       "url": "https://xmldatafeed.com",
       "category": "Data & Parsing",
@@ -29,6 +33,8 @@
     },
     {
       "id": "offlinecrm",
+      "icon": "users",
+      "icon_color": "primary",
       "name": "offlinecrm.ru",
       "url": "https://offlinecrm.ru",
       "category": "Business Tools",
@@ -40,6 +46,8 @@
     },
     {
       "id": "tapki",
+      "icon": "search",
+      "icon_color": "accent",
       "name": "tapki.com",
       "url": "https://tapki.com",
       "category": "Search & Catalogs",
@@ -51,6 +59,8 @@
     },
     {
       "id": "notissimus",
+      "icon": "smartphone",
+      "icon_color": "primary",
       "name": "notissimus.com",
       "url": "https://notissimus.com",
       "category": "Development",

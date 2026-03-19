@@ -1,0 +1,38 @@
+{
+  "titles": {
+    "home": "Главная",
+    "blog": "Блог",
+    "about": "Обо мне",
+    "projects": "Проекты",
+    "contact": "Контакты",
+    "goodbye": "Превышен лимит запросов"
+  },
+  "goodbye_description": "Запросы с этого IP временно заблокированы из-за слишком частых обновлений страницы.",
+  "name": "Максим Кульгин",
+  "tagline": "Системы. Данные. Защита.",
+  "images": {
+    "portrait_home": "/static/img/mkulgin-1.png",
+    "portrait_about": "/static/img/mkulgin-2.png",
+    "og": "/static/img/mkulgin-2.png"
+  },
+  "description": "Систематический журнал об интернет-продуктах, инфраструктуре данных, защите трафика и зрелом технологическом предпринимательстве.",
+  "slogan": "Без хайпа. Реальная практика.",
+  "copyright": "© 2025 Максим Кульгин",
+  "channels": {
+    "youtube": "https://www.youtube.com/@MaximKulgin",
+    "vk": "https://vk.com/mkulgin",
+    "telegram": "https://t.me/bezsmuzi",
+    "dzen": "https://dzen.ru/mkulgin"
+  },
+  "socials_display": {
+    "vk": { "label": "ВКонтакте", "url": "https://vk.com/mkulgin" },
+    "telegram": { "label": "Telegram", "url": "https://t.me/bezsmuzi" },
+    "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
+  },
+  "platforms": [
+    { "id": "habr", "label": "Хабр", "url": "https://habr.com/ru/users/makasin4ik/" },
+    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452" },
+    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin" },
+    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi" }
+  ]
+}

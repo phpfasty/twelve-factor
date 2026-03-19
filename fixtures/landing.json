@@ -8,17 +8,17 @@
     "cta_secondary": { "label": "Projects & Cases", "url": "/projects/" }
   },
   "path": [
-    { "year": "1990s", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
-    { "year": "1998–2003", "label": "Author", "note": "3 engineering books on network infrastructure published" },
-    { "year": "2000s", "label": "E-commerce Operator", "note": "Built and managed large online retail operations" },
-    { "year": "2010s", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
-    { "year": "2020s", "label": "Ecosystem Builder", "note": "40M+ RUB/year revenue, state grants, data & defense products" }
+    { "year": "1990s", "icon": "server", "icon_color": "primary", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
+    { "year": "1998–2003", "icon": "book", "icon_color": "accent", "label": "Author", "note": "3 engineering books on network infrastructure published" },
+    { "year": "2000s", "icon": "shopping-cart", "icon_color": "primary", "label": "Manager", "note": "Built and managed large online retail operations" },
+    { "year": "2010s", "icon": "monitor", "icon_color": "accent", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
+    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Ecosystem Builder", "note": "40M+ RUB/year revenue, state grants, data & defense products" }
   ],
   "pillars": [
-    { "id": "data", "icon": "database", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
-    { "id": "defense", "icon": "shield", "label": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems for advertisers" },
-    { "id": "systems", "icon": "network", "label": "Internet Systems", "desc": "Infrastructure thinking applied to modern products" },
-    { "id": "business", "icon": "trending-up", "label": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue/year without venture capital" }
+    { "id": "data", "icon": "database", "icon_color": "accent", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
+    { "id": "defense", "icon": "shield", "icon_color": "primary", "label": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems for advertisers" },
+    { "id": "systems", "icon": "network", "icon_color": "primary", "label": "Internet Systems", "desc": "Infrastructure thinking applied to modern products" },
+    { "id": "business", "icon": "trending-up", "icon_color": "accent", "label": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue/year without venture capital" }
   ],
   "metrics": [
     { "value": "30+", "label": "Years in IT" },

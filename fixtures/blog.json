@@ -1,11 +1,10 @@
 {
   "hero": {
     "eyebrow": "Journal",
-    "title": "Operator Notes",
+    "title": "Practitioner Notes",
     "description": "Essays, case studies, and field notes from running data products and internet businesses in Russia for 30+ years."
   },
   "categories": [
-    { "id": "all", "label": "All" },
     { "id": "data", "label": "Data & Parsing" },
     { "id": "defense", "label": "Traffic Defense" },
     { "id": "business", "label": "Business Practice" },

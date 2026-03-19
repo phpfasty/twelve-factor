@@ -1,6 +1,20 @@
 {
+  "titles": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "goodbye": "Bot limit exceeded"
+  },
+  "goodbye_description": "Requests from this IP are temporarily blocked because of too many refreshes.",
   "name": "Maksim Kulgin",
   "tagline": "Systems. Data. Defense.",
+  "images": {
+    "portrait_home": "/static/img/mkulgin-1.png",
+    "portrait_about": "/static/img/mkulgin-2.png",
+    "og": "/static/img/mkulgin-2.png"
+  },
   "description": "A systematic journal on internet products, data infrastructure, traffic defense, and mature technology entrepreneurship.",
   "slogan": "No hype. Real practice.",
   "copyright": "© 2025 Maksim Kulgin",

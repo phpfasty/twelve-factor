@@ -10,6 +10,8 @@ use App\View\LatteRenderer;
 
 final class PageRenderer
 {
+    private string $locale = 'en';
+
     public function __construct(
         private readonly DataProviderInterface $dataProvider,
         private readonly LatteRenderer $latteRenderer,
@@ -17,18 +19,35 @@ final class PageRenderer
     ) {
     }
 
+    public function setLocale(string $locale): void
+    {
+        $normalized = strtolower(trim($locale));
+        $this->locale = $normalized === 'ru' ? 'ru' : 'en';
+
+        if (method_exists($this->dataProvider, 'setLocale')) {
+            /** @phpstan-ignore-next-line */
+            $this->dataProvider->setLocale($this->locale);
+        }
+    }
+
     /**
      * @param array<int, string> $dataKeys
      * @param array<string, mixed> $extra
      */
-    public function render(string $template, array $dataKeys, array $extra = []): string
+    public function render(string $template, array $dataKeys, array $extra = [], ?string $locale = null): string
     {
+        if ($locale !== null) {
+            $this->setLocale($locale);
+        }
+
         $templateData = array_replace($this->dataProvider->getMany($dataKeys), $extra);
         $pageHtml = $this->latteRenderer->render('pages/' . $template, $templateData);
 
         return $this->latteRenderer->render('layout.latte', array_merge($templateData, [
             'content' => $pageHtml,
             'title' => is_string($templateData['title'] ?? null) ? $templateData['title'] : 'Landing page',
+            'description' => is_string($templateData['description'] ?? null) ? $templateData['description'] : null,
+            'lang' => $this->locale,
         ]));
     }
 
@@ -57,16 +76,26 @@ final class PageRenderer
         string $routePath,
         array $pageConfig,
         array $routeParameters = [],
-        bool $forceRefresh = false
+        bool $forceRefresh = false,
+        ?string $locale = null,
+        array $extraData = []
     ): string {
+        if ($locale !== null) {
+            $this->setLocale($locale);
+        }
+
         $requestPath = $this->buildRequestPath($routePath, $routeParameters);
-        $cacheKey = 'page:' . $requestPath;
+        $cacheKey = 'page:' . $requestPath . ':lang=' . $this->locale;
+        $cacheKeySuffix = $extraData['cache_key_suffix'] ?? '';
+        if (is_string($cacheKeySuffix) && $cacheKeySuffix !== '') {
+            $cacheKey .= $cacheKeySuffix;
+        }
 
         if ($forceRefresh) {
             $this->cacheStore->invalidate($cacheKey);
         }
 
-        $pageData = $this->buildPageData($pageConfig, $routeParameters);
+        $pageData = $this->buildPageData($pageConfig, $routeParameters, $extraData);
 
         return $this->renderAndCache(
             $cacheKey,
@@ -139,15 +168,21 @@ final class PageRenderer
     /**
      * @param array<string, mixed> $pageConfig
      * @param array<string, string> $routeParameters
+     * @param array<string, mixed> $extraData
      * @return array<string, mixed>
      */
-    private function buildPageData(array $pageConfig, array $routeParameters): array
+    private function buildPageData(array $pageConfig, array $routeParameters, array $extraData): array
     {
         $dataKeys = (array) ($pageConfig['data'] ?? []);
         $datasets = $this->dataProvider->getMany($dataKeys);
         $dynamicData = $this->resolveDynamicData($pageConfig, $datasets, $routeParameters);
-        $pageData = array_replace($datasets, $dynamicData, $routeParameters);
-        $pageData['title'] = $this->resolveTitle((string) ($pageConfig['title'] ?? 'Landing page'), $pageData);
+        $pageData = array_replace($datasets, $dynamicData, $routeParameters, $extraData);
+        $pageData['lang'] = $this->locale;
+        $pageData['title'] = $this->resolveTemplate((string) ($pageConfig['title'] ?? 'Landing page'), $pageData);
+        $pageData['description'] = $this->resolveDescription(
+            (string) ($pageConfig['description'] ?? ''),
+            $pageData
+        );
 
         return $pageData;
     }
@@ -209,13 +244,37 @@ final class PageRenderer
             return 'Landing page';
         }
 
+        $resolved = $this->resolveTemplate($pattern, $context);
+
+        return $resolved === '' ? 'Landing page' : $resolved;
+    }
+
+    private function resolveDescription(string $pattern, array $context): string
+    {
+        if ($pattern !== '') {
+            $resolved = $this->resolveTemplate($pattern, $context);
+            if ($resolved !== '') {
+                return $resolved;
+            }
+        }
+
+        $fallback = $this->extractValue($context, 'site.description');
+        return is_scalar($fallback) ? (string) $fallback : '';
+    }
+
+    private function resolveTemplate(string $pattern, array $context): string
+    {
+        if ($pattern === '') {
+            return '';
+        }
+
         $resolved = preg_replace_callback('/\{([a-zA-Z0-9_.]+)\}/', function (array $matches) use ($context): string {
             $value = $this->extractValue($context, $matches[1]);
 
             return is_scalar($value) ? (string) $value : '';
         }, $pattern);
 
-        return is_string($resolved) && $resolved !== '' ? $resolved : 'Landing page';
+        return is_string($resolved) ? $resolved : '';
     }
 
     /**

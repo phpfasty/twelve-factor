@@ -1,57 +1,193 @@
-<section>
-  <p class="text-sm uppercase text-amber-300">{$landing['hero']['eyebrow']}</p>
-  <h1 class="text-4xl font-bold mt-2">{$landing['hero']['title']}</h1>
-  <p class="text-xl mt-3">{$landing['hero']['subtitle']}</p>
-  <p class="mt-2 max-w-3xl">{$landing['hero']['description']}</p>
-  <div class="mt-6 flex gap-4">
-    <a class="inline-block px-4 py-2 border rounded" href="{$landing['hero']['cta_primary']['url']}">{$landing['hero']['cta_primary']['label']}</a>
-    <a class="inline-block px-4 py-2 border rounded" href="{$landing['hero']['cta_secondary']['url']}">{$landing['hero']['cta_secondary']['label']}</a>
+<section class="mk-section-lg mk-hero-bg" aria-labelledby="hero-title">
+  <div class="mk-shell">
+    <div class="mk-hero-grid">
+      <div>
+        <p class="mk-eyebrow" style="margin-bottom:1.25rem;">{$landing['hero']['eyebrow']}</p>
+        <h1 id="hero-title" style="font-size:clamp(2.25rem,5vw,3.25rem);font-weight:700;margin:0 0 0.625rem;line-height:1.08;">{$landing['hero']['title']}</h1>
+        <p class="mk-hero-prompt">
+          <span class="mk-hero-prompt-chevron" aria-hidden="true">&gt;</span>
+          {$landing['hero']['subtitle']}
+          <span class="mk-hero-prompt-cursor" aria-hidden="true"></span>
+        </p>
+
+        <div class="mk-hero-evidence" aria-label="Key facts">
+          <span class="mk-hero-evidence-item">
+            <span class="mk-hero-evidence-value">30+</span>
+            <span>yrs</span>
+          </span>
+          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
+          <span class="mk-hero-evidence-item">
+            <span class="mk-hero-evidence-value">7</span>
+            <span>products</span>
+          </span>
+          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
+          <span class="mk-hero-evidence-item">
+            <span class="mk-hero-evidence-value">3</span>
+            <span>books</span>
+          </span>
+          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
+          <span class="mk-hero-evidence-item">
+            <span class="mk-hero-evidence-value">20M+</span>
+            <span>parsed</span>
+          </span>
+        </div>
+
+        <blockquote class="mk-hero-quote">
+          <p style="margin:0;">{$landing['quote']['text']}</p>
+        </blockquote>
+
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <a href="/blog/" class="mk-btn mk-btn-primary">{$landing['hero']['cta_primary']['label']}</a>
+          <a href="/projects/" class="mk-btn mk-btn-outline">{$landing['hero']['cta_secondary']['label']}</a>
+        </div>
+      </div>
+      <div class="mk-portrait" style="height:340px;width:280px;" aria-label="Maksim Kulgin portrait">
+        <img src="{$site['images']['portrait_home'] ?? '/static/img/mkulgin-1.png'}" alt="{$site['name'] ?? 'Maksim Kulgin'}" width="280" height="340" loading="eager">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="mt-12">
-  <h2 class="text-2xl font-semibold">Career path</h2>
-  <ul class="mt-4 space-y-2">
-    {foreach $landing['path'] as $step}
-      <li><strong>{$step['year']}</strong> — {$step['label']}: {$step['note']}</li>
-    {/foreach}
-  </ul>
-</section>
-
-<section class="mt-12">
-  <h2 class="text-2xl font-semibold">{$landing['pillars'][0]['label']}</h2>
-  <div class="grid md:grid-cols-2 gap-4 mt-4">
-    {foreach $landing['pillars'] as $pillar}
-      <article class="border border-white/20 p-4 rounded">
-        <h3 class="font-semibold">{$pillar['label']}</h3>
-        <p>{$pillar['desc']}</p>
-      </article>
-    {/foreach}
+<section class="mk-section" style="background-color:hsl(var(--surface-subtle));">
+  <div class="mk-shell">
+    <p class="mk-eyebrow" style="margin-bottom:1rem;">Career Path</p>
+    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 2.5rem;">From Networks to Ecosystem</h2>
+    <div class="mk-timeline-grid">
+      <div class="mk-timeline-line" aria-hidden="true"></div>
+      {foreach $landing['path'] as $step}
+        {var $stepIcon = $step['icon'] ?? null}
+        {var $stepColor = $step['icon_color'] ?? 'primary'}
+        <div style="text-align:center;position:relative;">
+          <div style="width:2.5rem;height:2.5rem;border-radius:50%;background:hsl(var(--{$stepColor}));border:3px solid hsl(var(--background));margin:0 auto 0.875rem;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+            {if $stepIcon}
+            {include '../partials/lucide-icon.latte', icon: $stepIcon, color: $stepColor, size: 14, stroke: 'white'}
+            {else}
+            <span style="width:0.5rem;height:0.5rem;background:hsl(var(--background));border-radius:50%;display:block;"></span>
+            {/if}
+          </div>
+          <p style="font-family:var(--font-mono);font-size:0.6875rem;color:hsl(var(--accent));font-weight:700;letter-spacing:0.06em;margin:0 0 0.25rem;">{$step['year']}</p>
+          <p style="font-weight:700;font-size:0.875rem;font-family:var(--font-display);margin:0 0 0.25rem;color:hsl(var(--foreground));">{$step['label']}</p>
+          <p style="font-size:0.8rem;color:hsl(var(--muted-foreground));line-height:1.4;margin:0;">{$step['note']}</p>
+        </div>
+      {/foreach}
+    </div>
   </div>
 </section>
 
-<section class="mt-12">
-  <h2 class="text-2xl font-semibold">Latest notes</h2>
-  <div class="grid md:grid-cols-2 gap-4 mt-4">
-    {foreach $blog['posts'] as $post}
-      <article class="border border-white/20 p-4 rounded">
-        <h3><a href="/blog/{$post['slug']}/">{$post['title']}</a></h3>
-        <p class="text-sm text-white/70">{$post['tag']} · {$post['date']} · {$post['reading_time']}</p>
-        <p>{$post['excerpt']}</p>
-      </article>
-    {/foreach}
+<section class="mk-section" aria-label="Proof metrics">
+  <div class="mk-shell">
+    <div class="mk-grid-4">
+      {foreach $landing['metrics'] as $metric}
+        <article class="mk-card">
+          <p class="mk-metric-value">{$metric['value']}</p>
+          <p class="mk-metric-label">{$metric['label']}</p>
+        </article>
+      {/foreach}
+    </div>
   </div>
 </section>
 
-<section class="mt-12">
-  <h2 class="text-2xl font-semibold">Products</h2>
-  <div class="grid md:grid-cols-2 gap-4 mt-4">
-    {foreach $projects['projects'] as $project}
-      <article class="border border-white/20 p-4 rounded">
-        <h3>{$project['name']}</h3>
-        <p>{$project['tagline']}</p>
-        <a href="{$project['url']}" class="text-amber-300">{$project['url']}</a>
-      </article>
-    {/foreach}
+<section class="mk-section" style="background-color:hsl(var(--paper-warm));">
+  <div class="mk-shell">
+    <div style="margin-bottom:2.5rem;">
+      <p class="mk-eyebrow" style="margin-bottom:0.75rem;">Areas of Practice</p>
+      <h2 style="font-size:1.75rem;font-weight:700;margin:0;">What This Journal Covers</h2>
+    </div>
+    <div class="mk-grid-4">
+      {foreach $landing['pillars'] as $pillar}
+        <article class="mk-card">
+          {var $pillarIcon = $pillar['icon'] ?? null}
+          {var $pillarIconColor = $pillar['icon_color'] ?? 'primary'}
+          {if $pillarIcon}
+          <div class="mk-project-icon" style="background:hsl(var(--{$pillarIconColor})/0.1);width:2.5rem;height:2.5rem;margin-bottom:0.75rem;" aria-hidden="true">
+            {include '../partials/lucide-icon.latte', icon: $pillarIcon, color: $pillarIconColor, size: 20}
+          </div>
+          {/if}
+          <h3 style="font-size:1rem;font-weight:700;margin:0 0 0.5rem;font-family:var(--font-display);">{$pillar['label']}</h3>
+          <p style="font-size:0.875rem;color:hsl(var(--muted-foreground));line-height:1.6;margin:0;">{$pillar['desc']}</p>
+        </article>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+<section class="mk-section" aria-label="Latest notes">
+  <div class="mk-content">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$blog['hero']['eyebrow']}</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">Recent notes</h2>
+      </div>
+      <a href="/blog/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">{$blog['hero']['title']}</a>
+    </div>
+
+    <div style="display:grid;gap:1.25rem;">
+      {foreach array_slice($blog['posts'], 0, 4) as $post}
+        <article>
+          <a href="/blog/{$post['slug']}/" class="mk-post-item" style="display:block;text-decoration:none;color:inherit;">
+            <div class="mk-post-meta">
+              <span class="mk-tag mk-tag-primary">{$post['tag'] ?? ''}</span>
+              <time class="mk-post-date" datetime="{$post['date'] ?? ''}">{$post['date']}</time>
+              <span class="mk-post-read">{$post['reading_time'] ?? ''}</span>
+            </div>
+            <h3 class="mk-post-title">{$post['title']}</h3>
+            <p class="mk-post-excerpt">{$post['excerpt']}</p>
+          </a>
+        </article>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+<section class="mk-section" aria-label="Projects preview">
+  <div class="mk-content">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <p class="mk-eyebrow" style="margin-bottom:0.5rem;">Ecosystem</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">Active products</h2>
+      </div>
+      <a href="/projects/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">All projects</a>
+    </div>
+    <div class="mk-project-list">
+      {foreach array_slice($projects['projects'], 0, 2) as $project}
+        <article class="mk-card mk-project-card" aria-label="{$project['name']}">
+          {var $iconId = $project['icon'] ?? null}
+          {var $iconColor = $project['icon_color'] ?? 'primary'}
+          <div class="mk-project-icon" style="background:hsl(var(--{$iconColor})/0.1);" aria-hidden="true">
+            {if $iconId}
+            {include '../partials/lucide-icon.latte', icon: $iconId, color: $iconColor, size: 22}
+            {else}
+            <span style="display:block;width:1rem;height:1rem;border-radius:50%;background:hsl(var(--accent));"></span>
+            {/if}
+          </div>
+          <div>
+            <div class="mk-project-header">
+              <h3 class="mk-project-title">{$project['name']}</h3>
+              <span class="mk-tag mk-tag-primary">{$project['category'] ?? ''}</span>
+              <span class="mk-status" style="color:hsl(var(--success));">{$project['status'] ?? 'Active'}</span>
+            </div>
+            <p style="font-size:1rem;font-weight:600;color:hsl(var(--foreground));margin:0 0 0.5rem;">{$project['tagline']}</p>
+            <p style="font-size:0.9375rem;color:hsl(var(--muted-foreground));line-height:1.65;margin:0 0 1rem;">{$project['description']}</p>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              {foreach $project['tech'] as $tech}
+                <span class="mk-chip">{$tech}</span>
+              {/foreach}
+            </div>
+          </div>
+          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="Visit {$project['name']}">
+            Visit ↗
+          </a>
+        </article>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+<section class="mk-section-sm">
+  <div class="mk-prose">
+    <blockquote class="mk-quote">
+      <p>{$landing['quote']['text']}</p>
+      <cite>— {$landing['quote']['source'] ?? 'bezsmuzi'}</cite>
+    </blockquote>
   </div>
 </section>

@@ -1,7 +1,30 @@
-<section>
-  <p class="text-sm text-amber-300">{$post['tag']}</p>
-  <h1 class="text-4xl font-bold">{$post['title']}</h1>
-  <p class="text-sm text-white/70 mt-2">{$post['date']} · {$post['reading_time']}</p>
-  <p class="mt-6">{$post['excerpt']}</p>
-  <p class="mt-6 text-white/70">This is a static article placeholder generated from fixture content.</p>
+<section class="mk-section" style="background-color:hsl(var(--surface-subtle));">
+  <div class="mk-shell">
+    <a href="/blog/" style="display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:1.25rem;color:hsl(var(--muted-foreground));text-decoration:none;">
+      ← Back to all posts
+    </a>
+    <p class="mk-tag mk-tag-primary" style="margin:0 0 0.75rem;">{$post['tag']}</p>
+    <h1 style="font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.08;margin:0 0 0.85rem;font-family:var(--font-display);">{$post['title']}</h1>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;margin:0 0 1.5rem;">
+      <time datetime="{$post['date'] ?? ''}" style="color:hsl(var(--muted-foreground));font-size:0.875rem;">{$post['date']}</time>
+      <span style="width:4px;height:4px;border-radius:50%;background:hsl(var(--border));display:inline-block;" aria-hidden="true"></span>
+      <span style="color:hsl(var(--muted-foreground));font-size:0.875rem;">{$post['reading_time'] ?? ''}</span>
+    </div>
+
+    <div class="mk-prose">
+      <p>{$post['excerpt']}</p>
+      <p>
+        This article is rendered from fixture-based content and follows the same structure as the prototype.
+        Additional sections, callouts, and references can be added into fixtures if needed.
+      </p>
+      <blockquote>
+        <p>Ideas in distributed teams scale better when systems are explicit, measurable, and observable.</p>
+      </blockquote>
+      <p>
+        The core principle remains the same: design reliable architecture, keep interfaces simple, and preserve
+        communication loops between people and systems.
+      </p>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,20 @@
+<section class="bot-limit-screen" aria-label="Request limit page">
+  <div class="bot-limit-lang-bar">
+    <a href="{$lang_switch_url ?? ('?lang=' . (($lang ?? 'en') === 'ru' ? 'en' : 'ru'))}" class="mk-lang-toggle" id="lang-toggle" aria-label="Switch language" aria-pressed="{$lang === 'ru' ? 'true' : 'false'}" role="button">{$lang_toggle_label ?? (($lang ?? 'en') === 'ru' ? 'Ru' : 'En')}</a>
+  </div>
+  <div class="bot-limit-exceeded {if $show_video ?? false}bot-limit-show-video{/if}" role="status" aria-live="polite">
+    {if $show_video ?? false}
+      <video class="bot-limit-video" autoplay muted loop playsinline preload="auto" aria-label="Goodbye video">
+        <source src="/static/video/goodbye.mp4" type="video/mp4">
+      </video>
+    {/if}
+
+    <div>
+      {if ($lang ?? 'en') === 'ru'}
+        Слишком много запросов с этого IP. Подождите немного, затем обновите страницу.
+      {else}
+        Too many requests from this IP. Please wait a moment and refresh again.
+      {/if}
+    </div>
+  </div>
+</section>

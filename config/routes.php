@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Core\ContainerInterface;
 use App\Data\DataProviderInterface;
+use App\Defense\RequestDefenseService;
 use App\Middleware\SecurityHeaders;
 use App\Service\PageRenderer;
 
@@ -18,6 +19,8 @@ $securityHeaders = $container->get(SecurityHeaders::class);
 $dataProvider = $container->get(DataProviderInterface::class);
 /** @var PageRenderer $pageRenderer */
 $pageRenderer = $container->get(PageRenderer::class);
+/** @var RequestDefenseService $defenseService */
+$defenseService = $container->get(RequestDefenseService::class);
 /** @var array<string, array<string, mixed>> $pages */
 $pages = $container->get('pages_config');
 
@@ -35,6 +38,63 @@ $extractRouteParameters = static function (string $routePath, array $arguments):
     }
 
     return $parameters;
+};
+
+$resolveLocale = static function (): string {
+    $requestedLang = strtolower(trim((string) ($_GET['lang'] ?? '')));
+    if ($requestedLang === 'ru' || $requestedLang === 'en') {
+        $resolvedLocale = $requestedLang;
+    } else {
+        $cookieLang = strtolower(trim((string) ($_COOKIE['mk-lang'] ?? '')));
+        if ($cookieLang === 'ru' || $cookieLang === 'en') {
+            $resolvedLocale = $cookieLang;
+        } else {
+            $browserLang = strtolower((string) ($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? ''));
+            $resolvedLocale = str_starts_with($browserLang, 'ru') ? 'ru' : 'en';
+        }
+    }
+
+    setcookie('mk-lang', $resolvedLocale, [
+        'expires' => time() + 60 * 60 * 24 * 365,
+        'path' => '/',
+        'samesite' => 'Lax',
+    ]);
+
+    return $resolvedLocale;
+};
+
+$buildLanguageSwitchUrl = static function (string $locale): string {
+    $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+    $path = (string) (parse_url($requestUri, PHP_URL_PATH) ?: '/');
+    if ($path === '') {
+        $path = '/';
+    }
+
+    $query = $_GET;
+    unset($query['lang']);
+    $query['lang'] = $locale;
+
+    return $path . '?' . http_build_query($query);
+};
+
+$resolveRequestPath = static function (): string {
+    $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+    $path = (string) (parse_url($requestUri, PHP_URL_PATH) ?: '/');
+
+    if ($path === '') {
+        return '/';
+    }
+
+    if ($path !== '/' && str_ends_with($path, '/')) {
+        return rtrim($path, '/');
+    }
+
+    return $path;
+};
+
+$resolveRequestMethod = static function (): string {
+    $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+    return $method === '' ? 'GET' : $method;
 };
 
 Flight::route('GET /api/health', static function () use ($securityHeaders): void {
@@ -56,12 +116,52 @@ foreach ($pages as $routePath => $pageConfig) {
         $pageConfig,
         $pageRenderer,
         $routePath,
-        $securityHeaders
+        $securityHeaders,
+        $defenseService,
+        $resolveLocale,
+        $buildLanguageSwitchUrl,
+        $resolveRequestPath,
+        $resolveRequestMethod
     ): void {
         $routeParameters = $extractRouteParameters($routePath, $arguments);
+        $requestPath = $resolveRequestPath();
+        $requestMethod = $resolveRequestMethod();
+        if ($requestPath !== '/goodbye') {
+            $clientIp = $defenseService->getClientIp($_SERVER);
+            if ($defenseService->isLimitExceeded($clientIp, $requestPath, $requestMethod, $_SERVER)) {
+                Flight::redirect('/goodbye');
+
+                return;
+            }
+        }
+        $locale = $resolveLocale();
+        $nextLocale = $locale === 'ru' ? 'en' : 'ru';
+        $pageRenderer->setLocale($locale);
+        $languageSwitchUrl = $buildLanguageSwitchUrl($nextLocale);
+        $extraStylesheets = is_array($pageConfig['stylesheets'] ?? null) ? $pageConfig['stylesheets'] : [];
+        $extraData = [
+            'lang_switch_url' => $languageSwitchUrl,
+            'lang_toggle_label' => $locale === 'ru' ? 'Ru' : 'En',
+            'extra_stylesheets' => $extraStylesheets,
+            'hide_layout' => $pageConfig['hide_layout'] ?? false,
+        ];
+
+        if ($requestPath === '/goodbye') {
+            $clientIp = $defenseService->getClientIp($_SERVER);
+            $goodbyeVisitCount = $defenseService->recordGoodbyeVisit($clientIp);
+            $extraData['show_video'] = $goodbyeVisitCount > 2;
+            $extraData['cache_key_suffix'] = ':video=' . ($extraData['show_video'] ? '1' : '0');
+        }
 
         try {
-            $html = $pageRenderer->renderPage($routePath, $pageConfig, $routeParameters);
+            $html = $pageRenderer->renderPage(
+                $routePath,
+                $pageConfig,
+                $routeParameters,
+                false,
+                $locale,
+                $extraData
+            );
         } catch (RuntimeException) {
             Flight::notFound();
 

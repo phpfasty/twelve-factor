@@ -29,10 +29,24 @@ $cacheStore->flush();
 
 $warmedPaths = [];
 
-foreach ($pages as $routePath => $pageConfig) {
-    foreach ($pageRenderer->getRouteParameterSets($pageConfig) as $routeParameters) {
-        $pageRenderer->renderPage($routePath, $pageConfig, $routeParameters, true);
-        $warmedPaths[] = $pageRenderer->buildRequestPath($routePath, $routeParameters);
+foreach (['en', 'ru'] as $locale) {
+    $pageRenderer->setLocale($locale);
+    $nextLocale = $locale === 'ru' ? 'en' : 'ru';
+    foreach ($pages as $routePath => $pageConfig) {
+        foreach ($pageRenderer->getRouteParameterSets($pageConfig) as $routeParameters) {
+            $path = $pageRenderer->buildRequestPath($routePath, $routeParameters);
+            $langSwitchUrl = $path . '?lang=' . $nextLocale;
+            $extraData = [
+                'lang_switch_url' => $langSwitchUrl,
+                'lang_toggle_label' => $locale === 'ru' ? 'Ru' : 'En',
+            ];
+            if (($pageConfig['hide_layout'] ?? false) && str_contains($path, 'goodbye')) {
+                $extraData['show_video'] = false;
+                $extraData['cache_key_suffix'] = ':video=0';
+            }
+            $pageRenderer->renderPage($routePath, $pageConfig, $routeParameters, true, $locale, $extraData);
+            $warmedPaths[] = $path . ' [' . $locale . ']';
+        }
     }
 }
 
