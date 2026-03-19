@@ -9,7 +9,6 @@ bun.lock
 package-lock.json
 composer.lock
 .cursorignore
-.env
 dist/
 .workspaces/
 .phpcs/
