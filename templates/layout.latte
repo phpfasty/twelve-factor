@@ -1,3 +1,4 @@
+{var $mainNavigation = is_array($navigation['main'] ?? null) ? $navigation['main'] : []}
 <!DOCTYPE html>
 <html lang="{$html_lang ?? ($lang ?? 'en')}">
 <head>
@@ -58,7 +59,7 @@
             <span>{$site['name'] ?? 'Maksim Kulgin'}</span>
           </a>
           <ul class="mk-nav-links" role="list">
-            {foreach $navigation['main'] as $item}
+            {foreach $mainNavigation as $item}
               <li>
                 <a
                   href="{$item['url']}"
@@ -93,7 +94,7 @@
           </div>
         </nav>
         <nav id="mobile-nav" class="mk-mobile-nav" aria-label="Mobile navigation">
-          {foreach $navigation['main'] as $item}
+          {foreach $mainNavigation as $item}
             <a href="{$item['url']}" class="mk-mobile-nav-link" data-nav-id="{$item['id']}">{$item['label']}</a>
           {/foreach}
         </nav>
@@ -111,7 +112,7 @@
           </div>
           <nav aria-label="Footer navigation">
             <ul style="list-style:none;margin:0;padding:0;display:flex;gap:1.25rem;flex-wrap:wrap;">
-              {foreach $navigation['main'] as $item}
+              {foreach $mainNavigation as $item}
                 {if $item['id'] !== 'home'}
                   <li>
                     <a href="{$item['url']}" style="font-size:0.8125rem;color:hsl(var(--muted-foreground));">{$item['label']}</a>

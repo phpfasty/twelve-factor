@@ -178,7 +178,13 @@ final class PageRenderer
         $dataKeys = (array) ($pageConfig['data'] ?? []);
         $datasets = $this->dataProvider->getMany($dataKeys);
         $dynamicData = $this->resolveDynamicData($pageConfig, $datasets, $routeParameters);
-        $pageData = array_replace($datasets, $dynamicData, $routeParameters, $extraData);
+        $pageMeta = [
+            'hide_layout' => (bool) ($pageConfig['hide_layout'] ?? false),
+            'extra_stylesheets' => is_array($pageConfig['stylesheets'] ?? null)
+                ? $pageConfig['stylesheets']
+                : [],
+        ];
+        $pageData = array_replace($datasets, $dynamicData, $pageMeta, $routeParameters, $extraData);
         $pageData['lang'] = $this->locale;
         $pageData['title'] = $this->resolveTemplate((string) ($pageConfig['title'] ?? 'Landing page'), $pageData);
         $pageData['description'] = $this->resolveDescription(
