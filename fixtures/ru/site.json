@@ -8,6 +8,7 @@
     "goodbye": "Превышен лимит запросов"
   },
   "goodbye_description": "Запросы с этого IP временно заблокированы из-за слишком частых обновлений страницы.",
+  "goodbye_message": "Слишком много запросов с этого IP. Подождите немного, затем обновите страницу.",
   "name": "Максим Кульгин",
   "tagline": "Системы. Данные. Защита.",
   "images": {
@@ -23,6 +24,12 @@
     "vk": "https://vk.com/mkulgin",
     "telegram": "https://t.me/bezsmuzi",
     "dzen": "https://dzen.ru/mkulgin"
+  },
+  "ui": {
+    "switch_language_label": "Сменить язык",
+    "language_toggle_fallback": "Яз",
+    "goodbye_page_label": "Страница ограничения запросов",
+    "goodbye_video_label": "Видео прощания"
   },
   "socials_display": {
     "vk": { "label": "ВКонтакте", "url": "https://vk.com/mkulgin" },

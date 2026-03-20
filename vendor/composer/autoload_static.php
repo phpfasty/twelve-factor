@@ -14,10 +14,6 @@ class ComposerStaticInite8b8c8ae7d04592af3e520c5384a164e
     );
 
     public static $prefixLengthsPsr4 = array (
-        'f' =>
-        array (
-            'flight\\' => 7,
-        ),
         'S' =>
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -27,8 +23,8 @@ class ComposerStaticInite8b8c8ae7d04592af3e520c5384a164e
         ),
         'P' =>
         array (
-            'Psr\\Container\\' => 14,
             'PhpOption\\' => 10,
+            'PhpFasty\\Core\\' => 14,
             'PHPStan\\PhpDocParser\\' => 21,
             'PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 57,
         ),
@@ -51,10 +47,6 @@ class ComposerStaticInite8b8c8ae7d04592af3e520c5384a164e
     );
 
     public static $prefixDirsPsr4 = array (
-        'flight\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/flightphp/container/src',
-        ),
         'Symfony\\Polyfill\\Php80\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -71,13 +63,13 @@ class ComposerStaticInite8b8c8ae7d04592af3e520c5384a164e
         array (
             0 => __DIR__ . '/..' . '/slevomat/coding-standard/SlevomatCodingStandard',
         ),
-        'Psr\\Container\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
         'PhpOption\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PhpFasty\\Core\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/phpfasty/core/src',
         ),
         'PHPStan\\PhpDocParser\\' =>
         array (

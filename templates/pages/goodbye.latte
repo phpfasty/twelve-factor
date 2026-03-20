@@ -1,20 +1,16 @@
-<section class="bot-limit-screen" aria-label="Request limit page">
+<section class="bot-limit-screen" aria-label="{$site['ui']['goodbye_page_label'] ?? 'Request limit page'}">
   <div class="bot-limit-lang-bar">
-    <a href="{$lang_switch_url ?? ('?lang=' . (($lang ?? 'en') === 'ru' ? 'en' : 'ru'))}" class="mk-lang-toggle" id="lang-toggle" aria-label="Switch language" aria-pressed="{$lang === 'ru' ? 'true' : 'false'}" role="button">{$lang_toggle_label ?? (($lang ?? 'en') === 'ru' ? 'Ru' : 'En')}</a>
+    <a href="{$lang_switch_url ?? '#'}" class="mk-lang-toggle" id="lang-toggle" aria-label="{$site['ui']['switch_language_label'] ?? 'Switch language'}" aria-pressed="false" role="button">{$lang_toggle_label ?? ($site['ui']['language_toggle_fallback'] ?? 'Lang')}</a>
   </div>
   <div class="bot-limit-exceeded {if $show_video ?? false}bot-limit-show-video{/if}" role="status" aria-live="polite">
     {if $show_video ?? false}
-      <video class="bot-limit-video" autoplay muted loop playsinline preload="auto" aria-label="Goodbye video">
+      <video class="bot-limit-video" autoplay muted loop playsinline preload="auto" aria-label="{$site['ui']['goodbye_video_label'] ?? 'Goodbye video'}">
         <source src="/static/video/goodbye.mp4" type="video/mp4">
       </video>
     {/if}
 
     <div>
-      {if ($lang ?? 'en') === 'ru'}
-        Слишком много запросов с этого IP. Подождите немного, затем обновите страницу.
-      {else}
-        Too many requests from this IP. Please wait a moment and refresh again.
-      {/if}
+      {$site['goodbye_message'] ?? ($site['goodbye_description'] ?? '')}
     </div>
   </div>
 </section>

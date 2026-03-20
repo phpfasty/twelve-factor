@@ -22,7 +22,7 @@ if (PHP_SAPI === 'cli-server') {
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Core\Application;
+use PhpFasty\Core\Application;
 use Dotenv\Dotenv;
 
 $dotenvPath = dirname(__DIR__);
@@ -30,7 +30,8 @@ if (is_readable($dotenvPath . '/.env')) {
     Dotenv::createImmutable($dotenvPath)->load();
 }
 
-$application = Application::getInstance();
+$baseDir = dirname(__DIR__);
+$application = Application::getInstance($baseDir, $baseDir . '/config/services.php');
 $container = $application->getContainer();
 Flight::set('appContainer', $container);
 

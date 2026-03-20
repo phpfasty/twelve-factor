@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Core\ContainerInterface;
-use App\Data\DataProviderInterface;
 use App\Defense\RequestDefenseService;
-use App\Middleware\SecurityHeaders;
+use App\Localization\SiteLocaleManager;
+use PhpFasty\Core\ContainerInterface;
+use PhpFasty\Core\Data\DataProviderInterface;
+use PhpFasty\Core\Middleware\SecurityHeaders;
 use App\Service\PageRenderer;
 
 $container = Flight::get('appContainer');
@@ -21,6 +22,8 @@ $dataProvider = $container->get(DataProviderInterface::class);
 $pageRenderer = $container->get(PageRenderer::class);
 /** @var RequestDefenseService $defenseService */
 $defenseService = $container->get(RequestDefenseService::class);
+/** @var SiteLocaleManager $localeManager */
+$localeManager = $container->get(SiteLocaleManager::class);
 /** @var array<string, array<string, mixed>> $pages */
 $pages = $container->get('pages_config');
 
@@ -40,19 +43,12 @@ $extractRouteParameters = static function (string $routePath, array $arguments):
     return $parameters;
 };
 
-$resolveLocale = static function (): string {
-    $requestedLang = strtolower(trim((string) ($_GET['lang'] ?? '')));
-    if ($requestedLang === 'ru' || $requestedLang === 'en') {
-        $resolvedLocale = $requestedLang;
-    } else {
-        $cookieLang = strtolower(trim((string) ($_COOKIE['mk-lang'] ?? '')));
-        if ($cookieLang === 'ru' || $cookieLang === 'en') {
-            $resolvedLocale = $cookieLang;
-        } else {
-            $browserLang = strtolower((string) ($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? ''));
-            $resolvedLocale = str_starts_with($browserLang, 'ru') ? 'ru' : 'en';
-        }
-    }
+$resolveLocale = static function () use ($localeManager): string {
+    $resolvedLocale = $localeManager->resolveRequestLocale(
+        (string) ($_GET['lang'] ?? ''),
+        (string) ($_COOKIE['mk-lang'] ?? ''),
+        (string) ($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '')
+    );
 
     setcookie('mk-lang', $resolvedLocale, [
         'expires' => time() + 60 * 60 * 24 * 365,
@@ -118,6 +114,7 @@ foreach ($pages as $routePath => $pageConfig) {
         $routePath,
         $securityHeaders,
         $defenseService,
+        $localeManager,
         $resolveLocale,
         $buildLanguageSwitchUrl,
         $resolveRequestPath,
@@ -135,13 +132,15 @@ foreach ($pages as $routePath => $pageConfig) {
             }
         }
         $locale = $resolveLocale();
-        $nextLocale = $locale === 'ru' ? 'en' : 'ru';
+        $nextLocale = $localeManager->getNextLocale($locale);
         $pageRenderer->setLocale($locale);
         $languageSwitchUrl = $buildLanguageSwitchUrl($nextLocale);
         $extraStylesheets = is_array($pageConfig['stylesheets'] ?? null) ? $pageConfig['stylesheets'] : [];
         $extraData = [
             'lang_switch_url' => $languageSwitchUrl,
-            'lang_toggle_label' => $locale === 'ru' ? 'Ru' : 'En',
+            'lang_toggle_label' => $localeManager->getLabel($nextLocale),
+            'html_lang' => $localeManager->getHtmlLang($locale),
+            'og_locale' => $localeManager->getOpenGraphLocale($locale),
             'extra_stylesheets' => $extraStylesheets,
             'hide_layout' => $pageConfig['hide_layout'] ?? false,
         ];

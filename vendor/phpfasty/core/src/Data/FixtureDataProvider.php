@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Data;
+namespace PhpFasty\Core\Data;
 
-final class FixtureDataProvider implements DataProviderInterface
+use PhpFasty\Core\Locale\LocaleAwareInterface;
+use PhpFasty\Core\Locale\LocaleResolverInterface;
+
+final class FixtureDataProvider implements DataProviderInterface, LocaleAwareInterface
 {
-    private string $locale = 'en';
+    private string $locale;
 
     public function __construct(
-        private readonly string $basePath
+        private readonly string $basePath,
+        private readonly LocaleResolverInterface $localeResolver
     ) {
+        $this->locale = $this->localeResolver->getDefaultLocale();
     }
 
     public function setLocale(string $locale): void
     {
-        $normalized = strtolower(trim($locale));
-        if ($normalized === 'ru') {
-            $this->locale = 'ru';
-            return;
-        }
-
-        $this->locale = 'en';
+        $this->locale = $this->localeResolver->normalize($locale);
     }
 
     public function get(string $key): array

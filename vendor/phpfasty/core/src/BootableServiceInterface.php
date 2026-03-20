@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core;
+namespace PhpFasty\Core;
 
 /**
  * Interface for services that need initialization during application boot.

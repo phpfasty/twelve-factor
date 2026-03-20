@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Cache;
+namespace PhpFasty\Core\Cache;
 
 final class CacheStore
 {
@@ -104,7 +104,7 @@ final class CacheStore
             return;
         }
 
-        if (!mkdir($concurrentDirectory = $this->cacheDir, 0777, true) && !is_dir($concurrentDirectory)) {
+        if (!mkdir($this->cacheDir, 0777, true) && !is_dir($this->cacheDir)) {
             throw new \RuntimeException('Failed to create cache directory: ' . $this->cacheDir);
         }
     }

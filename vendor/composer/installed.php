@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'app/twelve-factor',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'cd92a5da35ef9575fb1f61ee5fa2cfd6cf9c6c70',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'app/twelve-factor' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'cd92a5da35ef9575fb1f61ee5fa2cfd6cf9c6c70',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -27,15 +27,6 @@
             'install_path' => __DIR__ . '/../dealerdirect/phpcodesniffer-composer-installer',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'flightphp/container' => array(
-            'pretty_version' => 'v1.3.0',
-            'version' => '1.3.0.0',
-            'reference' => 'ebaf18426b289217b49c0a0067668a9f2082edd5',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../flightphp/container',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'flightphp/core' => array(
             'pretty_version' => 'v3.18.0',
@@ -70,6 +61,15 @@
                 0 => '2.0.2',
             ),
         ),
+        'phpfasty/core' => array(
+            'pretty_version' => 'v1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => 'afd5771ae36ab3bf5238a7116d7b3bb48791c573',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpfasty/core',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'phpoption/phpoption' => array(
             'pretty_version' => '1.9.5',
             'version' => '1.9.5.0',
@@ -87,15 +87,6 @@
             'install_path' => __DIR__ . '/../phpstan/phpdoc-parser',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'psr/container' => array(
-            'pretty_version' => '2.0.2',
-            'version' => '2.0.2.0',
-            'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/container',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'slevomat/coding-standard' => array(
             'pretty_version' => '8.22.1',

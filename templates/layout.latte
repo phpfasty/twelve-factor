@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{$lang ?? 'en'}">
+<html lang="{$html_lang ?? ($lang ?? 'en')}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
   <meta property="og:description" content="{$description ?? ($site['description'] ?? '')}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{$site['name'] ?? 'Maksim Kulgin'}">
-  <meta property="og:locale" content="{$lang === 'ru' ? 'ru_RU' : 'en_US'}">
+  <meta property="og:locale" content="{$og_locale ?? str_replace('-', '_', ($html_lang ?? ($lang ?? 'en')))}">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="{$site['images']['og'] ?? '/static/img/mkulgin-2.png'}">
   <meta property="og:image:alt" content="{$site['name'] ?? 'Maksim Kulgin'} portrait">
@@ -70,13 +70,13 @@
           </ul>
           <div style="display:flex;align-items:center;gap:0.5rem;">
             <a
-              href="{$lang_switch_url ?? ('?lang=' . (($lang ?? 'en') === 'ru' ? 'en' : 'ru'))}"
+              href="{$lang_switch_url ?? '#'}"
               class="mk-lang-toggle"
               id="lang-toggle"
-              aria-label="Switch language"
-              aria-pressed="{$lang === 'ru' ? 'true' : 'false'}"
+              aria-label="{$site['ui']['switch_language_label'] ?? 'Switch language'}"
+              aria-pressed="false"
               role="button"
-            >{$lang_toggle_label ?? (($lang ?? 'en') === 'ru' ? 'Ru' : 'En')}</a>
+            >{$lang_toggle_label ?? ($site['ui']['language_toggle_fallback'] ?? 'Lang')}</a>
             <button class="mk-theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
               <svg class="mk-icon" id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>

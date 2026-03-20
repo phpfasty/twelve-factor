@@ -5,7 +5,7 @@ This repository is a lightweight FlightPHP application built as a live PHP site 
 ## What is included
 
 - **FlightPHP** for routing and request handling
-- **Latte** for server-side page rendering
+- **Template rendering** with a pluggable renderer contract in core (`TemplateRendererInterface`) and app-level Latte adapter
 - **DataProviderInterface** so content can come from JSON fixtures now and API/blob sources later
 - **PHP page cache** for WP-style cached responses stored as PHP files
 - **Docker compose skeleton** for PHP-FPM + Nginx deployment (`webdevops/php:8.4-alpine`)
@@ -72,8 +72,11 @@ php scripts/build-static.php
 - `public/router.php` is the local PHP built-in server router for clean URLs
 - `config/pages.php` defines the public page map
 - `config/routes.php` registers API and page routes
-- `App\\Data\\DataProviderInterface` abstracts the content source
-- `App\\Service\\PageRenderer` loads data, renders Latte templates, and stores/retrieves cached pages
+- `PhpFasty\Core\\Data\\DataProviderInterface` abstracts the content source
+- `App\\Service\\PageRenderer` loads data, renders templates through the renderer contract, and stores/retrieves cached pages
+
+Runtime classes such as `Application`, `Container`, `CacheStore`, and `SecurityHeaders` are now extracted into `phpfasty/core` and consumed as a Composer library from this app.  
+App-level template rendering is bound in `config/services.php` as `TemplateRendererInterface` → `App\View\LatteRenderer`, so future sites can swap in Twig (or another engine) without touching core.
 
 ## Docker setup (optional)
 
@@ -127,7 +130,7 @@ Common values:
 
 ## Notes
 
-- Page content is rendered through Latte on demand and cached as PHP files in `cache/`
+- Page content is rendered through the current app-level renderer (default `App\View\LatteRenderer`) on demand and cached as PHP files in `cache/`
 - Current content comes from JSON fixtures through the adapter layer, but the application is prepared for API and blob-backed providers
 - If you upgrade PHP locally (for example to 8.4), run the local runtime checks:
 

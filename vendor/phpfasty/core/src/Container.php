@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Core;
+namespace PhpFasty\Core;
 
 /**
  * Container for dependency injection
  *
  * Provides bindings, lazy resolution, singletons, and tagged bootable services.
- * Uses Closure::bind for singleton factories to access private state without reflection.
  */
 class Container implements ContainerInterface
 {
+    public const TAG_BOOTABLE = 'bootable';
+
     /** @var array<string, mixed> */
     private array $bindings = [];
 
@@ -40,10 +41,6 @@ class Container implements ContainerInterface
         }
     }
 
-    /**
-     * Register a singleton. Uses Closure::bind so the factory can access
-     * private $instances when invoked, without exposing the container.
-     */
     public function singleton(string $abstract, mixed $concrete, ?string $className = null): void
     {
         $this->factories[$abstract] = $concrete;
@@ -54,6 +51,7 @@ class Container implements ContainerInterface
                     ? $concrete($container)
                     : $concrete;
             }
+
             return $this->instances[$abstract];
         };
 
@@ -137,9 +135,6 @@ class Container implements ContainerInterface
         return isset($this->bindings[$abstract]);
     }
 
-    /**
-     * Create a new instance (bypass singleton cache).
-     */
     public function make(string $abstract, array $parameters = []): mixed
     {
         if (!isset($this->bindings[$abstract])) {
@@ -161,21 +156,14 @@ class Container implements ContainerInterface
             throw new \RuntimeException("No binding found for {$abstract}");
         }
 
-        $originalFactory = $this->factories[$abstract] ?? fn () => $this->get($abstract);
+        $factory = $this->factories[$abstract] ?? null;
+        if (!$factory instanceof \Closure) {
+            throw new \RuntimeException("Cannot extend non-closure binding for {$abstract}");
+        }
 
-        $this->bind($abstract, function (ContainerInterface $container) use ($closure, $originalFactory): mixed {
-            $instance = $originalFactory instanceof \Closure
-                ? $originalFactory($container)
-                : $originalFactory;
-            return $closure($instance, $container);
-        });
-    }
-
-    /**
-     * Return a factory closure for creating new instances.
-     */
-    public function factory(string $abstract): \Closure
-    {
-        return fn () => $this->make($abstract);
+        $this->factories[$abstract] = static function (Container $container) use ($factory, $closure): mixed {
+            $service = $factory($container);
+            return $closure($service, $container);
+        };
     }
 }

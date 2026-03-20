@@ -6,8 +6,9 @@ namespace App\View;
 
 use Latte\Engine;
 use Latte\Loaders\FileLoader;
+use PhpFasty\Core\View\TemplateRendererInterface;
 
-final class LatteRenderer
+final class LatteRenderer implements TemplateRendererInterface
 {
     private Engine $latte;
 

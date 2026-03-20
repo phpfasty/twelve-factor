@@ -4,28 +4,30 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Cache\CacheStore;
-use App\Data\DataProviderInterface;
-use App\View\LatteRenderer;
+use PhpFasty\Core\Cache\CacheStore;
+use PhpFasty\Core\Data\DataProviderInterface;
+use PhpFasty\Core\Locale\LocaleAwareInterface;
+use PhpFasty\Core\Locale\LocaleResolverInterface;
+use PhpFasty\Core\View\TemplateRendererInterface;
 
 final class PageRenderer
 {
-    private string $locale = 'en';
+    private string $locale;
 
     public function __construct(
         private readonly DataProviderInterface $dataProvider,
-        private readonly LatteRenderer $latteRenderer,
-        private readonly CacheStore $cacheStore
+        private readonly TemplateRendererInterface $renderer,
+        private readonly CacheStore $cacheStore,
+        private readonly LocaleResolverInterface $localeResolver
     ) {
+        $this->locale = $this->localeResolver->getDefaultLocale();
     }
 
     public function setLocale(string $locale): void
     {
-        $normalized = strtolower(trim($locale));
-        $this->locale = $normalized === 'ru' ? 'ru' : 'en';
+        $this->locale = $this->localeResolver->normalize($locale);
 
-        if (method_exists($this->dataProvider, 'setLocale')) {
-            /** @phpstan-ignore-next-line */
+        if ($this->dataProvider instanceof LocaleAwareInterface) {
             $this->dataProvider->setLocale($this->locale);
         }
     }
@@ -41,9 +43,9 @@ final class PageRenderer
         }
 
         $templateData = array_replace($this->dataProvider->getMany($dataKeys), $extra);
-        $pageHtml = $this->latteRenderer->render('pages/' . $template, $templateData);
+        $pageHtml = $this->renderer->render('pages/' . $template, $templateData);
 
-        return $this->latteRenderer->render('layout.latte', array_merge($templateData, [
+        return $this->renderer->render('layout.latte', array_merge($templateData, [
             'content' => $pageHtml,
             'title' => is_string($templateData['title'] ?? null) ? $templateData['title'] : 'Landing page',
             'description' => is_string($templateData['description'] ?? null) ? $templateData['description'] : null,
