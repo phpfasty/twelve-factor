@@ -1,4 +1,8 @@
 {
+  "sections": {
+    "channels_title": "Contact channels",
+    "availability_title": "Availability"
+  },
   "hero": {
     "eyebrow": "Contact",
     "title": "Get in Touch",

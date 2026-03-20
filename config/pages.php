@@ -50,13 +50,13 @@ return [
     '/about' => [
         'template' => 'about.latte',
         'title' => '{site.name} — {site.titles.about}',
-        'description' => '{about.hero.short} — {about.hero.title}',
+        'description' => '{about.bio.short} — {about.hero.title}',
         'data' => ['site', 'navigation', 'about'],
     ],
     '/about/' => [
         'template' => 'about.latte',
         'title' => '{site.name} — {site.titles.about}',
-        'description' => '{about.hero.short} — {about.hero.title}',
+        'description' => '{about.bio.short} — {about.hero.title}',
         'data' => ['site', 'navigation', 'about'],
     ],
     '/projects' => [

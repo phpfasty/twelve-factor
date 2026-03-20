@@ -1,3 +1,4 @@
+{var $statusActiveLabel = $projects['ui']['status_active_label'] ?? ''}
 <section class="mk-section-lg mk-bg-paper" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="projects-title">
   <div class="mk-shell">
     <p class="mk-eyebrow" style="margin-bottom:1rem;">{$projects['hero']['eyebrow']}</p>
@@ -7,9 +8,9 @@
     </p>
     <div class="mk-grid-2">
       <div>
-        <div class="mk-hero-prompt" style="margin:0 0 0.75rem;">Systems and products, intentionally built.</div>
+        <div class="mk-hero-prompt" style="margin:0 0 0.75rem;">{$projects['intro']['prompt'] ?? ''}</div>
         <p style="margin:0;font-size:0.9rem;line-height:1.65;color:hsl(var(--foreground));">
-          Open-source software and commercial tooling from practical engineering constraints: reliable, observable, and maintainable.
+          {$projects['intro']['description'] ?? ''}
         </p>
       </div>
       <div>
@@ -27,8 +28,8 @@
 
 <section class="mk-section">
   <div class="mk-content">
-    <p class="mk-eyebrow" style="margin-bottom:0.5rem;">Ecosystem</p>
-    <h2 style="font-size:1.8rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">Product portfolio</h2>
+    <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$projects['sections']['portfolio_eyebrow'] ?? ''}</p>
+    <h2 style="font-size:1.8rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">{$projects['sections']['portfolio_title'] ?? ''}</h2>
     <div class="mk-project-list">
       {foreach $projects['projects'] as $project}
         <article class="mk-card mk-project-card">
@@ -45,7 +46,11 @@
             <div class="mk-project-header">
               <h3 class="mk-project-title">{$project['name']}</h3>
               <span class="mk-tag mk-tag-primary">{$project['category']}</span>
-              <span class="mk-status" style="color:{$project['status'] === 'Active' ? 'hsl(var(--success))' : 'hsl(var(--muted-foreground))'};">{$project['status']}</span>
+              {if ($project['status'] ?? '') === $statusActiveLabel}
+              <span class="mk-status" style="color:hsl(var(--success));">{$project['status']}</span>
+              {else}
+              <span class="mk-status" style="color:hsl(var(--muted-foreground));">{$project['status']}</span>
+              {/if}
             </div>
             <p style="font-weight:600;font-size:1rem;margin:0 0 0.5rem;">{$project['tagline']}</p>
             <p style="font-size:0.9rem;line-height:1.6;color:hsl(var(--muted-foreground));margin:0 0 1rem;">{$project['description']}</p>
@@ -55,8 +60,8 @@
               {/foreach}
             </div>
           </div>
-          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="Open {$project['name']}">
-            Open project
+          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['open_project_aria_prefix'] ?? ''} {$project['name']}">
+            {$projects['ui']['open_project_label'] ?? ''}
           </a>
         </article>
       {/foreach}

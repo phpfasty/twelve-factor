@@ -5,7 +5,7 @@ How content is sourced, bound to pages, and how much you can change without touc
 ## DataProviderInterface
 
 - **Contract**: `get(string $key): array`, `has(string $key): bool`, `getMany(array $keys): array`. Keys are logical names (e.g. `site`, `navigation`, `landing`, `blog`).
-- **Current implementation**: `FixtureDataProvider` reads JSON files from a base path (from `FIXTURES_PATH`). Key `landing` → `{basePath}/landing.json`. Returns decoded array or empty array on missing/invalid file.
+- **Current implementation**: `FixtureDataProvider` reads JSON from `FIXTURES_PATH`. Key `landing` for locale `en` → `{basePath}/en/landing.json`, falling back to `{basePath}/landing.json` if the localized file is absent. Returns decoded array or empty array on missing/invalid file.
 - **Switching source**: To use an API or another backend, implement `DataProviderInterface` and register it in `config/services.php` (e.g. via `DATA_SOURCE` or a new binding). PageRenderer and the rest of the app depend only on the interface.
 
 ## How pages get their data
@@ -15,7 +15,7 @@ How content is sourced, bound to pages, and how much you can change without touc
 
 ## Content flexibility
 
-- **Changing content (same shape)**: Edit JSON in `fixtures/`. As long as structure and keys stay compatible with templates, no code changes.
+- **Changing content (same shape)**: Edit JSON under `fixtures/en/` (or the active locale folder). As long as structure and keys stay compatible with templates, no code changes.
 - **Changing theme / layout**: Edit `templates/` (layout and page templates) and static assets. No change in `src/` required.
 - **Adding/removing pages or routes**: Edit `config/pages.php` (and add a template if needed). Routes and warmup both follow `pages_config`.
 - **Changing data shape**: If you rename or restructure fixture keys (e.g. `hero` → `banner`), templates must be updated to use the new keys. The app does not enforce a schema; it only passes through arrays. So “change types of data” is flexible at the config/template level as long as templates and page config stay in sync with the actual structure.

@@ -10,26 +10,15 @@
           <span class="mk-hero-prompt-cursor" aria-hidden="true"></span>
         </p>
 
-        <div class="mk-hero-evidence" aria-label="Key facts">
-          <span class="mk-hero-evidence-item">
-            <span class="mk-hero-evidence-value">30+</span>
-            <span>yrs</span>
-          </span>
-          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
-          <span class="mk-hero-evidence-item">
-            <span class="mk-hero-evidence-value">7</span>
-            <span>products</span>
-          </span>
-          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
-          <span class="mk-hero-evidence-item">
-            <span class="mk-hero-evidence-value">3</span>
-            <span>books</span>
-          </span>
-          <span class="mk-hero-evidence-sep" aria-hidden="true"></span>
-          <span class="mk-hero-evidence-item">
-            <span class="mk-hero-evidence-value">20M+</span>
-            <span>parsed</span>
-          </span>
+        {var $heroEvidenceItems = is_array($landing['hero_evidence']['items'] ?? null) ? $landing['hero_evidence']['items'] : []}
+        <div class="mk-hero-evidence" aria-label="{$landing['hero_evidence']['aria_label'] ?? ''}">
+          {foreach $heroEvidenceItems as $evIdx => $evItem}
+            {if $evIdx > 0}<span class="mk-hero-evidence-sep" aria-hidden="true"></span>{/if}
+            <span class="mk-hero-evidence-item">
+              <span class="mk-hero-evidence-value">{$evItem['value'] ?? ''}</span>
+              <span>{$evItem['unit'] ?? ''}</span>
+            </span>
+          {/foreach}
         </div>
 
         <blockquote class="mk-hero-quote">
@@ -41,8 +30,8 @@
           <a href="/projects/" class="mk-btn mk-btn-outline">{$landing['hero']['cta_secondary']['label']}</a>
         </div>
       </div>
-      <div class="mk-portrait" style="height:340px;width:280px;" aria-label="Maksim Kulgin portrait">
-        <img src="{$site['images']['portrait_home'] ?? '/static/img/mkulgin-1.png'}" alt="{$site['name'] ?? 'Maksim Kulgin'}" width="280" height="340" loading="eager">
+      <div class="mk-portrait" style="height:340px;width:280px;" aria-label="{$landing['hero_portrait']['aria_label'] ?? ''}">
+        <img src="{$site['images']['portrait_home'] ?? ''}" alt="{$site['ui']['portrait_home_alt'] ?? ''}" width="280" height="340" loading="eager">
       </div>
     </div>
   </div>
@@ -50,8 +39,8 @@
 
 <section class="mk-section" style="background-color:hsl(var(--surface-subtle));">
   <div class="mk-shell">
-    <p class="mk-eyebrow" style="margin-bottom:1rem;">Career Path</p>
-    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 2.5rem;">From Networks to Ecosystem</h2>
+    <p class="mk-eyebrow" style="margin-bottom:1rem;">{$landing['sections']['career_path']['eyebrow'] ?? ''}</p>
+    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 2.5rem;">{$landing['sections']['career_path']['title'] ?? ''}</h2>
     <div class="mk-timeline-grid">
       <div class="mk-timeline-line" aria-hidden="true"></div>
       {foreach $landing['path'] as $step}
@@ -74,7 +63,7 @@
   </div>
 </section>
 
-<section class="mk-section" aria-label="Proof metrics">
+<section class="mk-section" aria-label="{$landing['sections']['metrics']['aria_label'] ?? ''}">
   <div class="mk-shell">
     <div class="mk-grid-4">
       {foreach $landing['metrics'] as $metric}
@@ -90,8 +79,8 @@
 <section class="mk-section" style="background-color:hsl(var(--paper-warm));">
   <div class="mk-shell">
     <div style="margin-bottom:2.5rem;">
-      <p class="mk-eyebrow" style="margin-bottom:0.75rem;">Areas of Practice</p>
-      <h2 style="font-size:1.75rem;font-weight:700;margin:0;">What This Journal Covers</h2>
+      <p class="mk-eyebrow" style="margin-bottom:0.75rem;">{$landing['sections']['pillars']['eyebrow'] ?? ''}</p>
+      <h2 style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['pillars']['title'] ?? ''}</h2>
     </div>
     <div class="mk-grid-4">
       {foreach $landing['pillars'] as $pillar}
@@ -111,12 +100,12 @@
   </div>
 </section>
 
-<section class="mk-section" aria-label="Latest notes">
+<section class="mk-section" aria-label="{$landing['sections']['blog_preview']['aria_label'] ?? ''}">
   <div class="mk-content">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
       <div>
         <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$blog['hero']['eyebrow']}</p>
-        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">Recent notes</h2>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['blog_preview']['title'] ?? ''}</h2>
       </div>
       <a href="/blog/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">{$blog['hero']['title']}</a>
     </div>
@@ -139,14 +128,15 @@
   </div>
 </section>
 
-<section class="mk-section" aria-label="Projects preview">
+{var $statusActiveLabel = $projects['ui']['status_active_label'] ?? ''}
+<section class="mk-section" aria-label="{$landing['sections']['projects_preview']['aria_label'] ?? ''}">
   <div class="mk-content">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
       <div>
-        <p class="mk-eyebrow" style="margin-bottom:0.5rem;">Ecosystem</p>
-        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">Active products</h2>
+        <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$landing['sections']['projects_preview']['eyebrow'] ?? ''}</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['projects_preview']['title'] ?? ''}</h2>
       </div>
-      <a href="/projects/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">All projects</a>
+      <a href="/projects/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">{$landing['sections']['projects_preview']['link_all'] ?? ''}</a>
     </div>
     <div class="mk-project-list">
       {foreach array_slice($projects['projects'], 0, 2) as $project}
@@ -164,7 +154,11 @@
             <div class="mk-project-header">
               <h3 class="mk-project-title">{$project['name']}</h3>
               <span class="mk-tag mk-tag-primary">{$project['category'] ?? ''}</span>
-              <span class="mk-status" style="color:hsl(var(--success));">{$project['status'] ?? 'Active'}</span>
+              {if ($project['status'] ?? '') === $statusActiveLabel}
+              <span class="mk-status" style="color:hsl(var(--success));">{$project['status'] ?? ''}</span>
+              {else}
+              <span class="mk-status" style="color:hsl(var(--muted-foreground));">{$project['status'] ?? ''}</span>
+              {/if}
             </div>
             <p style="font-size:1rem;font-weight:600;color:hsl(var(--foreground));margin:0 0 0.5rem;">{$project['tagline']}</p>
             <p style="font-size:0.9375rem;color:hsl(var(--muted-foreground));line-height:1.65;margin:0 0 1rem;">{$project['description']}</p>
@@ -174,8 +168,8 @@
               {/foreach}
             </div>
           </div>
-          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="Visit {$project['name']}">
-            Visit ↗
+          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$project['name']}">
+            {$projects['ui']['visit_external_label'] ?? ''}
           </a>
         </article>
       {/foreach}
@@ -187,7 +181,7 @@
   <div class="mk-prose">
     <blockquote class="mk-quote">
       <p>{$landing['quote']['text']}</p>
-      <cite>— {$landing['quote']['source'] ?? 'bezsmuzi'}</cite>
+      <cite>— {$landing['quote']['source'] ?? ''}</cite>
     </blockquote>
   </div>
 </section>

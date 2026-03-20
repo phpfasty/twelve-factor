@@ -3,7 +3,7 @@
     "eyebrow": "IT Entrepreneur · Saint Petersburg",
     "title": "Maksim Kulgin",
     "subtitle": "Systems. Data. Defense.",
-    "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of three engineering books on network infrastructure. Building real technology products without hype.",
+    "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of engineering books on network infrastructure. Building real technology products without hype.",
     "cta_primary": { "label": "Read the Journal", "url": "/blog/" },
     "cta_secondary": { "label": "Projects & Cases", "url": "/projects/" }
   },
@@ -29,5 +29,29 @@
   "quote": {
     "text": "No success theater. No marketing fluff. Real revenue, real mistakes, real outcomes.",
     "source": "bezsmuzi channel principle"
+  },
+  "hero_evidence": {
+    "aria_label": "Key facts",
+    "items": [
+      { "value": "30+", "unit": "yrs" },
+      { "value": "7", "unit": "products" },
+      { "value": "3", "unit": "books" },
+      { "value": "20M+", "unit": "parsed" }
+    ]
+  },
+  "hero_portrait": {
+    "aria_label": "Maksim Kulgin portrait"
+  },
+  "sections": {
+    "career_path": { "eyebrow": "Career Path", "title": "From Networks to Ecosystem" },
+    "metrics": { "aria_label": "Proof metrics" },
+    "pillars": { "eyebrow": "Areas of Practice", "title": "What This Journal Covers" },
+    "blog_preview": { "title": "Recent notes", "aria_label": "Latest notes" },
+    "projects_preview": {
+      "eyebrow": "Ecosystem",
+      "title": "Active products",
+      "link_all": "All projects",
+      "aria_label": "Projects preview"
+    }
   }
 }

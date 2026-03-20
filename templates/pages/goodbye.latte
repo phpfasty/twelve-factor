@@ -1,11 +1,13 @@
-<section class="bot-limit-screen" aria-label="{$site['ui']['goodbye_page_label'] ?? 'Request limit page'}">
+<section class="bot-limit-screen" aria-label="{$site['ui']['goodbye_page_label'] ?? ''}">
+  {if $show_language_switch ?? false}
   <div class="bot-limit-lang-bar">
-    <a href="{$lang_switch_url ?? '#'}" class="mk-lang-toggle" id="lang-toggle" aria-label="{$site['ui']['switch_language_label'] ?? 'Switch language'}" aria-pressed="false" role="button">{$lang_toggle_label ?? ($site['ui']['language_toggle_fallback'] ?? 'Lang')}</a>
+    {include ../elements/lang-toggle.latte}
   </div>
+  {/if}
   <div class="bot-limit-exceeded {if $show_video ?? false}bot-limit-show-video{/if}" role="status" aria-live="polite">
     {if $show_video ?? false}
-      <video class="bot-limit-video" autoplay muted loop playsinline preload="auto" aria-label="{$site['ui']['goodbye_video_label'] ?? 'Goodbye video'}">
-        <source src="/static/video/goodbye.mp4" type="video/mp4">
+      <video class="bot-limit-video" autoplay muted loop playsinline preload="auto" aria-label="{$site['ui']['goodbye_video_label'] ?? ''}">
+        <source src="{$site['media']['goodbye_video'] ?? ''}" type="video/mp4">
       </video>
     {/if}
 

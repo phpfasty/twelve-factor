@@ -19,7 +19,7 @@ High-level structure, request flow, and main components.
 | `src/` | Application PHP: Core (App, Container), Cache, Data, Middleware, Service, View |
 | `config/` | `services.php` (container wiring), `pages.php` (page map), `routes.php` (Flight routes) |
 | `templates/` | Latte layout and page templates |
-| `fixtures/` | JSON content source (keys match `data` in `config/pages.php`) |
+| `fixtures/<locale>/` | JSON content per locale (default: `en/`; keys match `data` in `config/pages.php`) |
 | `cache/` | Generated page cache (PHP files); path from `CACHE_DIR` |
 | `scripts/` | CLI scripts (e.g. `build-static.php` for cache warmup) |
 
@@ -27,7 +27,7 @@ High-level structure, request flow, and main components.
 
 - **Application** (`src/Core/Application.php`): Singleton (or factory) that creates the container, loads `config/services.php`, and runs `bootServices()`.
 - **Container** (`src/Core/Container.php`): Registers bindings and singletons; resolves services on `get()`; holds singleton instances in memory for the request (or CLI run).
-- **DataProviderInterface** (`src/Data/`): Abstraction for content; `FixtureDataProvider` reads JSON from `fixtures/`.
+- **DataProviderInterface** (`vendor/phpfasty/core`): Abstraction for content; `FixtureDataProvider` reads JSON from `fixtures/<locale>/` with fallback to `fixtures/<key>.json` if missing.
 - **PageRenderer** (`src/Service/PageRenderer.php`): Orchestrates data loading, Latte rendering, and cache get/set; supports dynamic routes via `config/pages.php` `dynamic` section.
 - **CacheStore** (`src/Cache/CacheStore.php`): File-based key-value store for HTML; key → `md5(key).php` in `CACHE_DIR`.
 - **LatteRenderer** (`src/View/LatteRenderer.php`): Wraps Latte Engine; renders template names under `templates/` with given params.

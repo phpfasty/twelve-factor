@@ -118,7 +118,8 @@ twelve-factor/
 ├── src/              ← Application PHP (Core, Cache, Data, Service, View, …)
 ├── config/           ← services.php, pages.php, routes.php
 ├── templates/        ← Latte layout and page templates
-├── fixtures/         ← JSON content (site, landing, blog, …)
+├── fixtures/en/      ← Default locale JSON (site, landing, blog, …)
+├── fixtures/ru/      ← Optional other locales
 ├── cache/            ← Generated page cache (created at runtime or by warmup)
 ├── scripts/          ← CLI scripts (e.g. build-static.php)
 ├── nginx/            ← Nginx config for Docker
@@ -128,7 +129,7 @@ twelve-factor/
 └── docker-compose.yml
 ```
 
-- **Request flow**: Browser → `public/index.php` (or router.php) → Flight routes → PageRenderer → Latte templates + data from `fixtures/` → HTML (or from cache).
+- **Request flow**: Browser → `public/index.php` (or router.php) → Flight routes → PageRenderer → Latte templates + data from `fixtures/<locale>/` → HTML (or from cache).
 - **Config**: `config/services.php` wires the container; `config/pages.php` defines which pages exist and which data they use.
 
 ---
@@ -142,7 +143,7 @@ twelve-factor/
 | `config/services.php` | Registers all services and bindings in the DI container. |
 | `config/pages.php` | Page map: URL path → template, data keys, optional dynamic config. |
 | `config/routes.php` | Registers HTTP routes (API + one route per page from pages.php). |
-| `fixtures/*.json` | Content: site, navigation, landing, blog, etc. Keys match `data` in pages.php. |
+| `fixtures/en/*.json` | Content for default locale: site, navigation, landing, blog, etc. Keys match `data` in pages.php. |
 | `templates/layout.latte` | Global layout (header, footer). |
 | `templates/pages/*.latte` | Page-specific markup. |
 | `scripts/build-static.php` | Warms the page cache for all configured pages. |
@@ -152,7 +153,7 @@ twelve-factor/
 ## 10. Change something
 
 **Change content (text):**  
-Edit a JSON file in `fixtures/` (e.g. `landing.json`). Reload the page. If the cache was already warm, run the warmup again or wait for TTL to see changes:
+Edit a JSON file in `fixtures/en/` (e.g. `landing.json`). Reload the page. If the cache was already warm, run the warmup again or wait for TTL to see changes:
 
 ```bash
 php scripts/build-static.php

@@ -1,7 +1,7 @@
 <section class="mk-section" style="background-color:hsl(var(--surface-subtle));">
   <div class="mk-shell">
     <a href="/blog/" style="display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:1.25rem;color:hsl(var(--muted-foreground));text-decoration:none;">
-      ← Back to all posts
+      {$blog['ui']['back_to_blog'] ?? ''}
     </a>
     <p class="mk-tag mk-tag-primary" style="margin:0 0 0.75rem;">{$post['tag']}</p>
     <h1 style="font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.08;margin:0 0 0.85rem;font-family:var(--font-display);">{$post['title']}</h1>
@@ -13,18 +13,25 @@
     </div>
 
     <div class="mk-prose">
-      <p>{$post['excerpt']}</p>
-      <p>
-        This article is rendered from fixture-based content and follows the same structure as the prototype.
-        Additional sections, callouts, and references can be added into fixtures if needed.
-      </p>
-      <blockquote>
-        <p>Ideas in distributed teams scale better when systems are explicit, measurable, and observable.</p>
-      </blockquote>
-      <p>
-        The core principle remains the same: design reliable architecture, keep interfaces simple, and preserve
-        communication loops between people and systems.
-      </p>
+      <p class="mk-blog-post-lead">{$post['excerpt']}</p>
     </div>
   </div>
 </section>
+
+{if !empty($post['evidence_html'])}
+<div class="mk-content" style="padding-top:2rem;">
+  {$post['evidence_html']|noescape}
+</div>
+{/if}
+
+<article class="mk-section" aria-label="{$blog['ui']['article_content_aria'] ?? ''}">
+  <div class="mk-prose">
+    <div class="mk-prose-body">
+      {if !empty($post['body_html'])}
+        {$post['body_html']|noescape}
+      {else}
+        <p>{$post['excerpt']}</p>
+      {/if}
+    </div>
+  </div>
+</article>

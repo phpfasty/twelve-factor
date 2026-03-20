@@ -145,8 +145,8 @@ Example:
 
 ### 2. Data provider and fixtures
 
-- **Data keys** in `data` are resolved by `DataProviderInterface`. With `FixtureDataProvider`, key `about` → `fixtures/about.json`. The file must exist and be valid JSON; its structure is what the template sees.
-- So: **fixture structure = template contract**. If `about.latte` uses `$about['hero']['title']`, then `fixtures/about.json` must have `hero.title`. Add or change keys in the fixture and use them in the template; no extra “preparation” layer besides the page config.
+- **Data keys** in `data` are resolved by `DataProviderInterface`. With `FixtureDataProvider`, key `about` → `fixtures/<locale>/about.json` for the active locale (e.g. `fixtures/en/about.json`), falling back to `fixtures/about.json` only if the localized file is missing.
+- So: **fixture structure = template contract**. If `about.latte` uses `$about['hero']['title']`, then `fixtures/en/about.json` (for English) must have `hero.title`. Add or change keys in the fixture and use them in the template; no extra “preparation” layer besides the page config.
 
 ### 3. How the array is built (`PageRenderer`)
 
@@ -166,7 +166,7 @@ The result is passed to the page template and then to the layout (with `content`
 ### 4. Checklist for adding or changing a page
 
 - **New page**: Add an entry in `config/pages.php` (path, `template`, `title`, `data`). Create the Latte file in `templates/pages/`. Add or reuse fixtures for each key in `data`; structure the JSON so the template can read it (e.g. `$about['hero']['title']`).
-- **New data key**: Add the key to `data` for the route and add a fixture (e.g. `fixtures/newkey.json`). Use the key in the template as `$newkey`.
+- **New data key**: Add the key to `data` for the route and add a fixture under the locale directory (e.g. `fixtures/en/newkey.json`). Use the key in the template as `$newkey`.
 - **Dynamic page**: Add a route with `@param` in the path and a `dynamic` block (param, dataset, collection, lookup, item). Ensure the fixture has a collection (e.g. `posts`) and each item has the lookup field (e.g. `slug`). In the template use the `item` key (e.g. `$post`).
 - **Title**: Use placeholders like `{site.name}` or `{post.title}` in `config/pages.php`; they are resolved from the same page data array.
 

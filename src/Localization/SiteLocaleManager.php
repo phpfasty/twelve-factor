@@ -77,6 +77,11 @@ final class SiteLocaleManager implements LocaleResolverInterface
         return array_keys($this->supportedLocales);
     }
 
+    public function hasMultipleLocales(): bool
+    {
+        return count($this->supportedLocales) > 1;
+    }
+
     public function resolveRequestLocale(?string $requestedLocale, ?string $cookieLocale, ?string $acceptLanguage): string
     {
         foreach ([$requestedLocale, $cookieLocale] as $candidate) {

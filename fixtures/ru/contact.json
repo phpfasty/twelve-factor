@@ -1,4 +1,8 @@
 {
+  "sections": {
+    "channels_title": "Каналы связи",
+    "availability_title": "Доступность"
+  },
   "hero": {
     "eyebrow": "Контакты",
     "title": "Связаться",

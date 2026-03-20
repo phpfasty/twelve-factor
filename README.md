@@ -18,7 +18,7 @@ This repository is a lightweight FlightPHP application built as a live PHP site 
 - `src/` — Application PHP source code
 - `config/` — Container, page map, and route configuration
 - `templates/` — Latte layout and page templates
-- `fixtures/` — Current JSON-backed content source
+- `fixtures/en/` — Default locale (English) JSON content; `fixtures/<locale>/` for other languages (e.g. `ru/`)
 - `cache/` — Generated PHP page cache
 - `scripts/` — Utility scripts such as cache warmup
 - `docker-compose.yml` — PHP + Nginx local container stack

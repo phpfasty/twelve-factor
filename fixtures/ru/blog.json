@@ -4,6 +4,16 @@
     "title": "Заметки практика",
     "description": "Эссе, кейсы и полевые заметки о работе с продуктовыми данными и интернет-бизнесами в России более 30 лет."
   },
+  "ui": {
+    "filter_tablist_aria": "Фильтр записей по теме",
+    "filter_all": "Все",
+    "filter_all_aria": "Показать все записи",
+    "filter_category_aria_prefix": "Показать записи в категории",
+    "no_results": "Нет записей для выбранной темы.",
+    "read_post_aria_prefix": "Читать",
+    "article_content_aria": "Текст статьи",
+    "back_to_blog": "← Ко всем записям"
+  },
   "categories": [
     { "id": "data", "label": "Данные и парсинг" },
     { "id": "defense", "label": "Защита трафика" },

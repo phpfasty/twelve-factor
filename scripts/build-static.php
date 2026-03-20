@@ -45,6 +45,7 @@ foreach ($localeManager->getSupportedLocales() as $locale) {
                 'lang_toggle_label' => $localeManager->getLabel($nextLocale),
                 'html_lang' => $localeManager->getHtmlLang($locale),
                 'og_locale' => $localeManager->getOpenGraphLocale($locale),
+                'show_language_switch' => $localeManager->hasMultipleLocales(),
             ];
             if (($pageConfig['hide_layout'] ?? false) && str_contains($path, 'goodbye')) {
                 $extraData['show_video'] = false;

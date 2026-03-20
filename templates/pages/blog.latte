@@ -4,17 +4,17 @@
     <h1 style="font-size:clamp(2rem,4vw,3rem);font-weight:700;margin:0 0 0.75rem;">{$blog['hero']['title']}</h1>
     <p style="font-size:1.05rem;max-width:52ch;color:hsl(var(--muted-foreground));line-height:1.65;margin:0 0 2.25rem;">{$blog['hero']['description']}</p>
 
-    <div class="mk-filter-row" role="tablist" aria-label="Filter posts by topic" style="margin-bottom:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+    <div class="mk-filter-row" role="tablist" aria-label="{$blog['ui']['filter_tablist_aria'] ?? ''}" style="margin-bottom:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
         <button
         type="button"
         class="mk-filter-btn mk-filter-btn--active"
         data-filter="all"
         role="tab"
-          aria-label="Show all posts"
+          aria-label="{$blog['ui']['filter_all_aria'] ?? ''}"
         aria-pressed="true"
         aria-selected="true"
       >
-        All
+        {$blog['ui']['filter_all'] ?? ''}
       </button>
       {foreach $blog['categories'] as $category}
         {if strtolower($category['id'] ?? '') !== 'all'}
@@ -23,7 +23,7 @@
           class="mk-filter-btn"
           data-filter="{$category['id']}"
           role="tab"
-          aria-label="Show posts in category {$category['label']}"
+          aria-label="{$blog['ui']['filter_category_aria_prefix'] ?? ''} {$category['label']}"
           aria-pressed="false"
           aria-selected="false"
         >
@@ -36,7 +36,7 @@
     <div id="blog-list">
       {foreach $blog['posts'] as $post}
         <article class="mk-post-row" data-category="{$post['category'] ?? 'news'}">
-          <a href="/blog/{$post['slug']}/" class="mk-post-item" style="text-decoration:none;color:inherit;" aria-label="Read {$post['title']}">
+          <a href="/blog/{$post['slug']}/" class="mk-post-item" style="text-decoration:none;color:inherit;" aria-label="{$blog['ui']['read_post_aria_prefix'] ?? ''} {$post['title']}">
             <div class="mk-post-meta">
               <span class="mk-tag mk-tag-primary">{$post['tag'] ?? ''}</span>
               <time class="mk-post-date" datetime="{$post['date'] ?? ''}">{$post['date']}</time>
@@ -49,7 +49,7 @@
       {/foreach}
     </div>
 
-    <p id="blog-no-results" class="mk-no-results" role="status" aria-live="polite" style="display:none;">No posts for selected topic.</p>
+    <p id="blog-no-results" class="mk-no-results" role="status" aria-live="polite" style="display:none;">{$blog['ui']['no_results'] ?? ''}</p>
   </div>
 </section>
 

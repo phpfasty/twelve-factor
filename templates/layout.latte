@@ -9,11 +9,11 @@
   <meta property="og:title" content="{$title}">
   <meta property="og:description" content="{$description ?? ($site['description'] ?? '')}">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="{$site['name'] ?? 'Maksim Kulgin'}">
+  <meta property="og:site_name" content="{$site['name'] ?? ''}">
   <meta property="og:locale" content="{$og_locale ?? str_replace('-', '_', ($html_lang ?? ($lang ?? 'en')))}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="{$site['images']['og'] ?? '/static/img/mkulgin-2.png'}">
-  <meta property="og:image:alt" content="{$site['name'] ?? 'Maksim Kulgin'} portrait">
+  <meta property="og:image" content="{$site['images']['og'] ?? ''}">
+  <meta property="og:image:alt" content="{$site['ui']['og_image_alt'] ?? ''}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -53,10 +53,10 @@
   {if !($hide_layout ?? false)}
     <header class="mk-nav" role="banner">
       <div class="mk-shell">
-        <nav class="mk-nav-inner" aria-label="Main navigation">
-          <a href="/" class="mk-logo" aria-label="Maksim Kulgin — Home">
+        <nav class="mk-nav-inner" aria-label="{$site['ui']['nav_main_aria'] ?? ''}">
+          <a href="/" class="mk-logo" aria-label="{$site['ui']['aria_logo_home'] ?? ''}">
             <span class="mk-logo-dot" aria-hidden="true"></span>
-            <span>{$site['name'] ?? 'Maksim Kulgin'}</span>
+            <span>{$site['name'] ?? ''}</span>
           </a>
           <ul class="mk-nav-links" role="list">
             {foreach $mainNavigation as $item}
@@ -70,15 +70,8 @@
             {/foreach}
           </ul>
           <div style="display:flex;align-items:center;gap:0.5rem;">
-            <a
-              href="{$lang_switch_url ?? '#'}"
-              class="mk-lang-toggle"
-              id="lang-toggle"
-              aria-label="{$site['ui']['switch_language_label'] ?? 'Switch language'}"
-              aria-pressed="false"
-              role="button"
-            >{$lang_toggle_label ?? ($site['ui']['language_toggle_fallback'] ?? 'Lang')}</a>
-            <button class="mk-theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+            {include elements/lang-toggle.latte}
+            <button class="mk-theme-toggle" id="theme-toggle" aria-label="{$site['ui']['theme_toggle_aria'] ?? ''}">
               <svg class="mk-icon" id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
               </svg>
@@ -86,14 +79,14 @@
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </button>
-            <button class="mk-mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <button class="mk-mobile-menu-btn" id="mobile-menu-btn" aria-label="{$site['ui']['mobile_menu_open_aria'] ?? ''}" aria-expanded="false" aria-controls="mobile-nav">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
               </svg>
             </button>
           </div>
         </nav>
-        <nav id="mobile-nav" class="mk-mobile-nav" aria-label="Mobile navigation">
+        <nav id="mobile-nav" class="mk-mobile-nav" aria-label="{$site['ui']['nav_mobile_aria'] ?? ''}">
           {foreach $mainNavigation as $item}
             <a href="{$item['url']}" class="mk-mobile-nav-link" data-nav-id="{$item['id']}">{$item['label']}</a>
           {/foreach}
@@ -108,9 +101,9 @@
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
           <div style="display:flex;align-items:center;gap:0.625rem;">
             <span class="mk-logo-dot" aria-hidden="true"></span>
-            <p class="mk-footer-copy">{$site['copyright'] ?? '© 2025 Maksim Kulgin'}</p>
+            <p class="mk-footer-copy">{$site['copyright'] ?? ''}</p>
           </div>
-          <nav aria-label="Footer navigation">
+          <nav aria-label="{$site['ui']['nav_footer_aria'] ?? ''}">
             <ul style="list-style:none;margin:0;padding:0;display:flex;gap:1.25rem;flex-wrap:wrap;">
               {foreach $mainNavigation as $item}
                 {if $item['id'] !== 'home'}

@@ -25,11 +25,23 @@
     "telegram": "https://t.me/bezsmuzi",
     "dzen": "https://dzen.ru/mkulgin"
   },
+  "media": {
+    "goodbye_video": "/static/video/goodbye.mp4"
+  },
   "ui": {
     "switch_language_label": "Switch language",
     "language_toggle_fallback": "Lang",
     "goodbye_page_label": "Request limit page",
-    "goodbye_video_label": "Goodbye video"
+    "goodbye_video_label": "Goodbye video",
+    "nav_main_aria": "Main navigation",
+    "aria_logo_home": "Maksim Kulgin — Home",
+    "theme_toggle_aria": "Toggle dark mode",
+    "mobile_menu_open_aria": "Open menu",
+    "nav_mobile_aria": "Mobile navigation",
+    "nav_footer_aria": "Footer navigation",
+    "og_image_alt": "Maksim Kulgin portrait",
+    "portrait_home_alt": "Maksim Kulgin",
+    "portrait_about_alt": "Maksim Kulgin"
   },
   "socials_display": {
     "vk": { "label": "VK", "url": "https://vk.com/mkulgin" },

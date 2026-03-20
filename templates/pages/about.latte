@@ -17,22 +17,21 @@
         </div>
       </div>
       <div>
-        <div class="mk-portrait" style="height:280px;" aria-label="Maksim Kulgin portrait">
+        <div class="mk-portrait" style="height:280px;" aria-label="{$about['hero_portrait']['aria_label'] ?? ''}">
           <img
-            src="{$site['images']['portrait_about'] ?? '/static/img/mkulgin-2.png'}"
-            alt="{$site['name'] ?? 'Maksim Kulgin'}"
+            src="{$site['images']['portrait_about'] ?? ''}"
+            alt="{$site['ui']['portrait_about_alt'] ?? ''}"
             width="260"
             height="280"
             loading="lazy"
           >
         </div>
         <div class="mk-about-meta">
+          {foreach ($about['sidebar_meta'] ?? []) as $metaLine}
           <div class="mk-about-meta-row">
-            <span style="font-size:0.875rem;color:hsl(var(--muted-foreground));">Saint Petersburg, Russia</span>
+            <span style="font-size:0.875rem;color:hsl(var(--muted-foreground));">{$metaLine}</span>
           </div>
-          <div class="mk-about-meta-row">
-            <span style="font-size:0.875rem;color:hsl(var(--muted-foreground));">IT since early 1990s</span>
-          </div>
+          {/foreach}
         </div>
       </div>
     </div>
@@ -41,7 +40,7 @@
 
 <section class="mk-section">
   <div class="mk-content">
-    <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">Working Principles</h2>
+    <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">{$about['sections']['principles_title'] ?? ''}</h2>
     <div class="mk-grid-2">
       {foreach $about['values'] as $value}
         <article class="mk-card">
@@ -80,7 +79,7 @@
 
 <section class="mk-section">
   <div class="mk-content">
-    <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 2rem;font-family:var(--font-display);">Career Timeline</h2>
+    <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 2rem;font-family:var(--font-display);">{$about['sections']['timeline_title'] ?? ''}</h2>
     <div style="max-width:600px;">
       <div class="mk-timeline">
         {foreach $about['timeline'] as $event}

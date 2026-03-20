@@ -11,7 +11,7 @@
 
 <section class="mk-section">
   <div class="mk-content">
-    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 1.25rem;font-family:var(--font-display);">Contact channels</h2>
+    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 1.25rem;font-family:var(--font-display);">{$contact['sections']['channels_title'] ?? ''}</h2>
     <div style="display:grid;gap:0.85rem;">
       {foreach $contact['channels'] as $channel}
         <article class="mk-card">
@@ -30,7 +30,7 @@
 
 <section class="mk-section" style="background-color:hsl(var(--paper-warm));">
   <div class="mk-content">
-    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 1.25rem;font-family:var(--font-display);">Availability</h2>
+    <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 1.25rem;font-family:var(--font-display);">{$contact['sections']['availability_title'] ?? ''}</h2>
     <div class="mk-grid-3">
       {foreach $contact['availability'] as $item}
         <article class="mk-card" style="display:flex;align-items:center;justify-content:center;min-height:6rem;text-align:center;">

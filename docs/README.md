@@ -78,7 +78,7 @@ Content and presentation are intended to be changeable via **config**, **templat
 - **Page map**: `config/pages.php`.  
 - **Route registration**: `config/routes.php`.  
 - **API**: `GET /api/health`, `GET /api/landing` (see [API](api/README.md)).  
-- **Content source**: `fixtures/` (JSON) via `DataProviderInterface`.  
+- **Content source**: `fixtures/<locale>/` (JSON), default `fixtures/en/`, via `DataProviderInterface`.  
 - **Page cache**: `cache/` (path from `CACHE_DIR`).  
 - **Warmup**: `php scripts/build-static.php`.  
 - **Docker**: `docker compose up --build`; PHP config: `php.ini`, `apcu.ini` (see [Docker](docker/README.md)).  

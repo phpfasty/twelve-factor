@@ -76,5 +76,20 @@
     { "value": "618K", "label": "Max RUB / month", "note": "Single SaaS product" },
     { "value": "8M", "label": "State grant", "note": "Foundation for Innovation" },
     { "value": "20+", "label": "Years operating", "note": "Bootstrapped" }
-  ]
+  ],
+  "intro": {
+    "prompt": "Systems and products, intentionally built.",
+    "description": "Open-source software and commercial tooling from practical engineering constraints: reliable, observable, and maintainable."
+  },
+  "sections": {
+    "portfolio_eyebrow": "Ecosystem",
+    "portfolio_title": "Product portfolio"
+  },
+  "ui": {
+    "status_active_label": "Active",
+    "open_project_label": "Open project",
+    "open_project_aria_prefix": "Open",
+    "visit_external_label": "Visit ↗",
+    "visit_external_aria_prefix": "Visit"
+  }
 }
