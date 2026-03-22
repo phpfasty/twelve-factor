@@ -4,15 +4,17 @@ services:
     command:
       - sh
       - -lc
-      - mkdir -p /cache && chown -R 1000:1000 /cache && chmod -R ug+rwX /cache
+      - mkdir -p /cache /template-cache && chown -R 1000:1000 /cache /template-cache && chmod -R ug+rwX /cache /template-cache
     volumes:
       - defense-cache:/cache
+      - template-cache:/template-cache
 
   php:
     image: webdevops/php:8.4-alpine
     volumes:
       - .:/var/www/html
       - defense-cache:/var/www/html/cache
+      - template-cache:/var/www/html/templates/cache
       - ./${PHP_INI_FILE:-php.ini}:/opt/docker/etc/php/php.ini
       - ./${APCU_INI_FILE:-apcu.ini}:/opt/docker/etc/php/conf.d/apcu.ini
     depends_on:
@@ -39,3 +41,4 @@ services:
 
 volumes:
   defense-cache:
+  template-cache:
