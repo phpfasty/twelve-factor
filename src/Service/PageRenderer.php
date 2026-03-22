@@ -45,10 +45,6 @@ final class PageRenderer
         $templateData = array_replace($this->dataProvider->getMany($dataKeys), $extra);
         $pageHtml = $this->renderer->render('pages/' . $template, $templateData);
 
-        $publicDir = dirname(__DIR__, 2) . '/public/static';
-        $inlineFontsCss = self::readFileOnce($publicDir . '/fonts/fonts.css');
-        $inlineCriticalCss = self::readFileOnce($publicDir . '/css/critical.css');
-
         return $this->renderer->render('layout.latte', array_merge($templateData, [
             'content' => $pageHtml,
             'title' => is_string($templateData['title'] ?? null) ? $templateData['title'] : 'Landing page',
@@ -57,8 +53,6 @@ final class PageRenderer
             'robots' => is_string($templateData['robots'] ?? null) ? $templateData['robots'] : null,
             'canonical_url' => is_string($templateData['canonical_url'] ?? null) ? $templateData['canonical_url'] : null,
             'lang' => $this->locale,
-            'inline_fonts_css' => $inlineFontsCss,
-            'inline_critical_css' => $inlineCriticalCss,
         ]));
     }
 
@@ -106,7 +100,7 @@ final class PageRenderer
             $this->cacheStore->invalidate($cacheKey);
         }
 
-        $pageData = $this->buildPageData($routePath, $pageConfig, $routeParameters, $extraData);
+        $pageData = $this->buildPageData($pageConfig, $routeParameters, $extraData);
 
         return $this->renderAndCache(
             $cacheKey,
@@ -182,7 +176,7 @@ final class PageRenderer
      * @param array<string, mixed> $extraData
      * @return array<string, mixed>
      */
-    private function buildPageData(string $routePath, array $pageConfig, array $routeParameters, array $extraData): array
+    private function buildPageData(array $pageConfig, array $routeParameters, array $extraData): array
     {
         $dataKeys = (array) ($pageConfig['data'] ?? []);
         $datasets = $this->dataProvider->getMany($dataKeys);
@@ -327,17 +321,5 @@ final class PageRenderer
         }
 
         return $value;
-    }
-
-    /** @var array<string, string> */
-    private static array $fileCache = [];
-
-    private static function readFileOnce(string $path): string
-    {
-        if (!isset(self::$fileCache[$path])) {
-            self::$fileCache[$path] = is_file($path) ? (string) file_get_contents($path) : '';
-        }
-
-        return self::$fileCache[$path];
     }
 }

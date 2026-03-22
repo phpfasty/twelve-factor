@@ -32,10 +32,7 @@
       </div>
       <div class="mk-portrait-wrap">
         <div class="mk-portrait" style="height:280px;" aria-label="{$landing['hero_portrait']['aria_label'] ?? ''}">
-          <picture>
-            <source srcset="{($site['images']['portrait_home'] ?? '')|replace:'.png','.webp'}" type="image/webp">
-            <img src="{$site['images']['portrait_home'] ?? ''}" alt="{$site['ui']['portrait_home_alt'] ?? ''}" width="260" height="280" loading="eager" fetchpriority="high">
-          </picture>
+          <img src="{$site['images']['portrait_home'] ?? ''}" alt="{$site['ui']['portrait_home_alt'] ?? ''}" width="260" height="280" loading="eager">
         </div>
       </div>
     </div>

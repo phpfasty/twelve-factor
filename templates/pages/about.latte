@@ -18,10 +18,13 @@
       </div>
       <div>
         <div class="mk-portrait" style="height:280px;" aria-label="{$about['hero_portrait']['aria_label'] ?? ''}">
-          <picture>
-            <source srcset="{($site['images']['portrait_about'] ?? '')|replace:'.png','.webp'}" type="image/webp">
-            <img src="{$site['images']['portrait_about'] ?? ''}" alt="{$site['ui']['portrait_about_alt'] ?? ''}" width="260" height="280" loading="lazy">
-          </picture>
+          <img
+            src="{$site['images']['portrait_about'] ?? ''}"
+            alt="{$site['ui']['portrait_about_alt'] ?? ''}"
+            width="260"
+            height="280"
+            loading="lazy"
+          >
         </div>
         <div class="mk-about-meta">
           {foreach ($about['sidebar_meta'] ?? []) as $metaLine}
