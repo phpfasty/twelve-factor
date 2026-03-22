@@ -10,9 +10,9 @@
   "path": [
     { "year": "1990s", "icon": "server", "icon_color": "primary", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
     { "year": "1998–2003", "icon": "book", "icon_color": "accent", "label": "Author", "note": "3 engineering books on network infrastructure published" },
-    { "year": "2000s", "icon": "shopping-cart", "icon_color": "primary", "label": "Manager", "note": "Built and managed large online retail operations" },
+    { "year": "2000s", "icon": "shopping-cart", "icon_color": "primary", "label": "Director", "note": "Built and managed large online retail operations" },
     { "year": "2010s", "icon": "monitor", "icon_color": "accent", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
-    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Ecosystem Builder", "note": "40M+ RUB/year revenue, state grants, data & defense products" }
+    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Product Portfolio", "note": "40M+ RUB/year revenue, FSI state grant, data & defense products" }
   ],
   "pillars": [
     { "id": "data", "icon": "database", "icon_color": "accent", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
@@ -27,8 +27,8 @@
     { "value": "5", "label": "Active products" }
   ],
   "quote": {
-    "text": "No success theater. No marketing fluff. Real revenue, real mistakes, real outcomes.",
-    "source": "bezsmuzi channel principle"
+    "text": "No success theater. No marketing fluff. Real revenue numbers, real mistakes, real operating decisions.",
+    "source": "bezsmuzi channel — guiding principle"
   },
   "hero_evidence": {
     "aria_label": "Key facts",

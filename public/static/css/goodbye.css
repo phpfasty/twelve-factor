@@ -20,22 +20,30 @@
   width: 2rem;
   height: 2rem;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: transparent;
+  border: none;
+  background: #f1f5f9;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: ui-monospace, monospace;
   font-size: 0.6875rem;
   font-weight: 600;
-  color: #6b7280;
+  color: #64748b;
   text-decoration: none;
-  transition: all 150ms ease;
+  line-height: 1;
+  transition: background-color 150ms ease, color 150ms ease;
+  box-sizing: border-box;
+}
+
+.bot-limit-lang-bar .mk-lang-toggle:link,
+.bot-limit-lang-bar .mk-lang-toggle:visited {
+  color: #64748b;
+  background: #f1f5f9;
 }
 
 .bot-limit-lang-bar .mk-lang-toggle:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
 .bot-limit-exceeded a {

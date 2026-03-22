@@ -1,12 +1,12 @@
 {
   "sections": {
     "channels_title": "Contact channels",
-    "availability_title": "Availability"
+    "availability_title": "What I can help with"
   },
   "hero": {
     "eyebrow": "Contact",
     "title": "Get in Touch",
-    "description": "Available for expert consultation on web data infrastructure, click fraud defense, and IT entrepreneurship in Russia. Business inquiries and media requests welcome."
+    "description": "I consult on web data infrastructure, click fraud defense, and IT entrepreneurship in Russia. Business inquiries and media requests welcome."
   },
   "channels": [
     {
@@ -35,9 +35,9 @@
     }
   ],
   "availability": [
-    "Expert consultation on web scraping and data infrastructure",
+    "Consulting on web scraping and data infrastructure",
     "Click fraud protection and ad traffic analysis",
-    "IT business development in Russia",
+    "IT business development in Russia — without venture capital",
     "Speaking at industry events",
     "Media interviews and editorial contributions"
   ],

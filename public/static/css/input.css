@@ -309,39 +309,71 @@
     background-color: hsl(var(--secondary));
   }
 
-  /* Dark mode toggle */
-  .mk-theme-toggle {
+  /*
+   * Header controls — subtle fill vs nav bar (nav uses --background/0.95).
+   * No border; --surface-subtle reads as a soft chip in light and dark.
+   */
+  .mk-lang-toggle,
+  .mk-theme-toggle,
+  .mk-mobile-menu-btn {
     width: 2rem;
     height: 2rem;
     border-radius: var(--radius-md);
-    border: 1px solid hsl(var(--border));
-    background: transparent;
+    border: none;
+    background-color: hsl(var(--surface-subtle));
     cursor: pointer;
-    display: flex;
     align-items: center;
     justify-content: center;
     color: hsl(var(--muted-foreground));
-    transition: all 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease;
     flex-shrink: 0;
+    box-sizing: border-box;
   }
 
-  .mk-theme-toggle:hover {
+  .mk-lang-toggle {
+    display: inline-flex;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* <a> in nav: override global @layer base `a` / `:visited` link colors */
+  a.mk-lang-toggle:link,
+  a.mk-lang-toggle:visited {
+    color: hsl(var(--muted-foreground));
+    background-color: hsl(var(--surface-subtle));
+  }
+
+  a.mk-lang-toggle:hover {
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--secondary));
+  }
+
+  .mk-theme-toggle {
+    display: flex;
+  }
+
+  .mk-lang-toggle:hover,
+  .mk-theme-toggle:hover,
+  .mk-mobile-menu-btn:hover {
     background-color: hsl(var(--secondary));
     color: hsl(var(--foreground));
+  }
+
+  .mk-lang-toggle:focus-visible,
+  .mk-theme-toggle:focus-visible,
+  .mk-mobile-menu-btn:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 
   /* Mobile menu */
   .mk-mobile-menu-btn {
     display: none;
-    width: 2rem;
-    height: 2rem;
-    border-radius: var(--radius-md);
-    border: 1px solid hsl(var(--border));
-    background: transparent;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    color: hsl(var(--muted-foreground));
   }
 
   .mk-mobile-nav {
@@ -562,6 +594,16 @@
 
   .mk-project-card__icon-wrap {
     flex-shrink: 0;
+  }
+
+  /* Standalone icon badge (e.g. legacy markup); preview / project-card shells add layout */
+  .mk-project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
   }
 
   .mk-project-card .mk-project-icon {
@@ -966,15 +1008,80 @@
     position: relative;
   }
 
-  .mk-timeline-line {
-    position: absolute;
-    top: 1.25rem;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--accent)));
-    opacity: 0.35;
-    pointer-events: none;
+  /* Career path cards: icon + title (left), year (top-right), note below */
+  .mk-career-card {
+    margin: 0;
+    padding: 1rem 1.125rem;
+    text-align: left;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border-subtle));
+    border-radius: var(--radius-lg);
+  }
+
+  .mk-career-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mk-career-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid hsl(var(--border-subtle));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mk-career-card__icon-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: hsl(var(--background));
+    border-radius: 50%;
+    display: block;
+  }
+
+  .mk-career-card__title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding-right: 0.375rem;
+    padding-top: 0.2rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    color: hsl(var(--foreground));
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .mk-career-card__year {
+    flex-shrink: 0;
+    margin: 0;
+    margin-left: auto;
+    padding-top: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: hsl(var(--accent));
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-align: right;
+  }
+
+  .mk-career-card__note {
+    margin: 0;
+    font-size: 0.8rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .mk-timeline-grid.mk-career-cards {
+    gap: 1.25rem;
   }
 
   /* Timeline (vertical, used on About page) */
@@ -1077,9 +1184,10 @@
   }
 
   /* ── Hero grid layout ── */
+  /* Portrait column matches .mk-about-hero (260px) */
   .mk-hero-grid {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 260px;
     gap: 3rem;
     align-items: start;
   }
@@ -1280,7 +1388,7 @@
   /* Responsive: tablet */
   @media (min-width: 769px) and (max-width: 1024px) {
     .mk-hero-grid {
-      grid-template-columns: 1fr 220px;
+      grid-template-columns: 1fr 260px;
       gap: 2rem;
     }
     .mk-grid-3 {
@@ -1319,9 +1427,6 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
-    .mk-timeline-line {
-      display: none;
-    }
     .mk-mobile-menu-btn {
       display: flex;
     }
@@ -1351,14 +1456,27 @@
       grid-template-columns: 1fr;
       gap: 1.75rem;
     }
+    /* Full-width row so flex can center the portrait */
     .mk-hero-grid .mk-portrait-wrap {
       order: -1;
       display: flex;
       justify-content: center;
+      width: 100%;
+      max-width: 100%;
     }
     .mk-hero-grid .mk-portrait-wrap .mk-portrait {
-      width: 200px !important;
-      height: 240px !important;
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
+    }
+    /* Direct .mk-portrait (stale cache / no wrap): center in grid track */
+    .mk-hero-grid > .mk-portrait {
+      order: -1;
+      justify-self: center;
+      margin-inline: auto;
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
     }
     .mk-hero-prompt {
       font-size: 1rem;
@@ -1403,9 +1521,11 @@
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
-    .mk-hero-grid .mk-portrait-wrap .mk-portrait {
-      width: 160px !important;
-      height: 200px !important;
+    .mk-hero-grid .mk-portrait-wrap .mk-portrait,
+    .mk-hero-grid > .mk-portrait {
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
     }
     .mk-hero-prompt {
       font-size: 0.875rem;

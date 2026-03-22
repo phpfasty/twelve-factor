@@ -30,8 +30,10 @@
           <a href="/projects/" class="mk-btn mk-btn-outline">{$landing['hero']['cta_secondary']['label']}</a>
         </div>
       </div>
-      <div class="mk-portrait" style="height:340px;width:280px;" aria-label="{$landing['hero_portrait']['aria_label'] ?? ''}">
-        <img src="{$site['images']['portrait_home'] ?? ''}" alt="{$site['ui']['portrait_home_alt'] ?? ''}" width="280" height="340" loading="eager">
+      <div class="mk-portrait-wrap">
+        <div class="mk-portrait" style="height:280px;" aria-label="{$landing['hero_portrait']['aria_label'] ?? ''}">
+          <img src="{$site['images']['portrait_home'] ?? ''}" alt="{$site['ui']['portrait_home_alt'] ?? ''}" width="260" height="280" loading="eager">
+        </div>
       </div>
     </div>
   </div>
@@ -41,23 +43,24 @@
   <div class="mk-shell">
     <p class="mk-eyebrow" style="margin-bottom:1rem;">{$landing['sections']['career_path']['eyebrow'] ?? ''}</p>
     <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 2.5rem;">{$landing['sections']['career_path']['title'] ?? ''}</h2>
-    <div class="mk-timeline-grid">
-      <div class="mk-timeline-line" aria-hidden="true"></div>
+    <div class="mk-timeline-grid mk-career-cards">
       {foreach $landing['path'] as $step}
         {var $stepIcon = $step['icon'] ?? null}
         {var $stepColor = $step['icon_color'] ?? 'primary'}
-        <div style="text-align:center;position:relative;">
-          <div style="width:2.5rem;height:2.5rem;border-radius:50%;background:hsl(var(--{$stepColor}));border:3px solid hsl(var(--background));margin:0 auto 0.875rem;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
-            {if $stepIcon}
-            {include '../partials/lucide-icon.latte', icon: $stepIcon, color: $stepColor, size: 14, stroke: 'white'}
-            {else}
-            <span style="width:0.5rem;height:0.5rem;background:hsl(var(--background));border-radius:50%;display:block;"></span>
-            {/if}
+        <article class="mk-career-card">
+          <div class="mk-career-card__header">
+            <div class="mk-career-card__icon" style="background:hsl(var(--{$stepColor}));" aria-hidden="true">
+              {if $stepIcon}
+              {include '../partials/lucide-icon.latte', icon: $stepIcon, color: $stepColor, size: 14, stroke: 'white'}
+              {else}
+              <span class="mk-career-card__icon-dot"></span>
+              {/if}
+            </div>
+            <h3 class="mk-career-card__title">{$step['label']}</h3>
+            <p class="mk-career-card__year">{$step['year']}</p>
           </div>
-          <p style="font-family:var(--font-mono);font-size:0.6875rem;color:hsl(var(--accent));font-weight:700;letter-spacing:0.06em;margin:0 0 0.25rem;">{$step['year']}</p>
-          <p style="font-weight:700;font-size:0.875rem;font-family:var(--font-display);margin:0 0 0.25rem;color:hsl(var(--foreground));">{$step['label']}</p>
-          <p style="font-size:0.8rem;color:hsl(var(--muted-foreground));line-height:1.4;margin:0;">{$step['note']}</p>
-        </div>
+          <p class="mk-career-card__note">{$step['note']}</p>
+        </article>
       {/foreach}
     </div>
   </div>
@@ -88,8 +91,9 @@
           {var $pillarIcon = $pillar['icon'] ?? null}
           {var $pillarIconColor = $pillar['icon_color'] ?? 'primary'}
           {if $pillarIcon}
-          <div class="mk-project-icon" style="background:hsl(var(--{$pillarIconColor})/0.1);width:2.5rem;height:2.5rem;margin-bottom:0.75rem;" aria-hidden="true">
-            {include '../partials/lucide-icon.latte', icon: $pillarIcon, color: $pillarIconColor, size: 20}
+          {* Same badge shell as project-preview-card — flex-centers the Lucide SVG *}
+          <div class="mk-project-preview-icon" style="background:hsl(var(--{$pillarIconColor})/0.1);margin-bottom:0.75rem;" aria-hidden="true">
+            {include '../partials/lucide-icon.latte', icon: $pillarIcon, color: $pillarIconColor, size: 18}
           </div>
           {/if}
           <h3 style="font-size:1rem;font-weight:700;margin:0 0 0.5rem;font-family:var(--font-display);">{$pillar['label']}</h3>

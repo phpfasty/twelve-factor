@@ -9,7 +9,7 @@
     "books": {
       "eyebrow": "Engineering Library",
       "title": "Published Books",
-      "intro": "Three engineering books published in the late 1990s and early 2000s."
+      "intro": "Three engineering books published in the late 1990s and early 2000s. Written for practitioners, not marketers."
     },
     "timeline_title": "Career Timeline"
   },
@@ -62,12 +62,12 @@
   "timeline": [
     { "period": "1990–1998", "label": "Network Engineering", "detail": "Corporate networks, IP/IPX, sysadmin" },
     { "period": "1998–2003", "label": "Author", "detail": "3 books on network infrastructure (KomputerPress, Piter)" },
-    { "period": "2000s", "label": "Manager", "detail": "Large-scale online retail" },
+    { "period": "2000s", "label": "Director, Online Retail", "detail": "Built and managed large-scale online retail operations" },
     { "period": "2010", "label": "Founded clickfraud.ru", "detail": "Click fraud protection for advertisers" },
     { "period": "2012", "label": "Founded xmldatafeed.com", "detail": "Price monitoring and web scraping" },
     { "period": "2014", "label": "Founded offlinecrm.ru", "detail": "Free CRM for small businesses" },
-    { "period": "2019", "label": "State grant", "detail": "8M RUB from Foundation for Innovation Assistance" },
-    { "period": "2021", "label": "Revenue milestone", "detail": "40M+ RUB combined annual revenue" },
+    { "period": "2019", "label": "State grant (FSI)", "detail": "8M RUB from Foundation for Innovation Assistance" },
+    { "period": "2021", "label": "Revenue peak: 40M+", "detail": "40M+ RUB combined annual revenue" },
     { "period": "2023+", "label": "Community & Media", "detail": "bezsmuzi channel, journal, ecosystem" }
   ]
 }
