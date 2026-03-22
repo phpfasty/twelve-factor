@@ -48,6 +48,25 @@
     "telegram": { "label": "Telegram", "url": "https://t.me/bezsmuzi" },
     "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
   },
+  "seo": {
+    "canonical_base": "https://maximkulgin.ru",
+    "robots": "index, follow",
+    "json_ld_person": {
+      "@type": "Person",
+      "name": "Максим Кульгин",
+      "url": "https://maximkulgin.ru",
+      "jobTitle": "ИТ-предприниматель",
+      "address": { "@type": "PostalAddress", "addressLocality": "Санкт-Петербург", "addressCountry": "RU" },
+      "sameAs": [
+        "https://habr.com/ru/users/makasin4ik/",
+        "https://vc.ru/id20452",
+        "https://t.me/bezsmuzi",
+        "https://vk.com/mkulgin",
+        "https://www.youtube.com/@MaximKulgin",
+        "https://dzen.ru/mkulgin"
+      ]
+    }
+  },
   "platforms": [
     { "id": "habr", "label": "Хабр", "url": "https://habr.com/ru/users/makasin4ik/", "aria_label": "Читать на Хабре" },
     { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452", "aria_label": "Читать на vc.ru" },

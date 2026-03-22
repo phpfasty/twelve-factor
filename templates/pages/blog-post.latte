@@ -41,7 +41,10 @@
     <hr class="mk-divider" style="margin-bottom:2rem;">
     <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;">
       <div class="mk-portrait-avatar" style="width:3rem;height:3rem;">
-        <img src="{$site['images']['portrait_about'] ?? ''}" alt="{$site['ui']['portrait_about_alt'] ?? ''}">
+        <picture>
+          <source srcset="{($site['images']['portrait_about'] ?? '')|replace:'.png','.webp'}" type="image/webp">
+          <img src="{$site['images']['portrait_about'] ?? ''}" alt="{$site['ui']['portrait_about_alt'] ?? ''}">
+        </picture>
       </div>
       <div>
         <p style="font-weight:700;font-size:0.9375rem;margin:0 0 0.125rem;font-family:var(--font-display);">{$site['name'] ?? ''}</p>

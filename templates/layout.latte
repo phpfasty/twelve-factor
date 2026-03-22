@@ -6,21 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{$title}</title>
   <meta name="description" content="{$description ?? ($site['description'] ?? '')}">
+  {if !empty($keywords)}<meta name="keywords" content="{$keywords}">{/if}
+  <meta name="robots" content="{$robots ?? ($site['seo']['robots'] ?? 'index, follow')}">
+  {if !empty($canonical_url)}<link rel="canonical" href="{$canonical_url}">{/if}
+  {var $seoBase = $site['seo']['canonical_base'] ?? ''}
+  {if $seoBase}
+  {var $currentPath = $canonical_url ? str_replace($seoBase, '', $canonical_url) : '/'}
+  <link rel="alternate" hreflang="ru" href="{$seoBase}{$currentPath}?lang=ru">
+  <link rel="alternate" hreflang="en" href="{$seoBase}{$currentPath}?lang=en">
+  <link rel="alternate" hreflang="x-default" href="{$seoBase}{$currentPath}">
+  {/if}
   <meta property="og:title" content="{$title}">
   <meta property="og:description" content="{$description ?? ($site['description'] ?? '')}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{$og_type ?? 'website'}">
   <meta property="og:site_name" content="{$site['name'] ?? ''}">
   <meta property="og:locale" content="{$og_locale ?? str_replace('-', '_', ($html_lang ?? ($lang ?? 'en')))}">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="{$site['images']['og'] ?? ''}">
   <meta property="og:image:alt" content="{$site['ui']['og_image_alt'] ?? ''}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/styles.css">
+  {if !empty($canonical_url)}<meta property="og:url" content="{$canonical_url}">{/if}
+  {var $personLd = $site['seo']['json_ld_person'] ?? null}
+  {if $personLd}
+  {var $personLdJson = json_encode(['@context' => 'https://schema.org'] + $personLd, \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES)}
+  <script type="application/ld+json">{$personLdJson|noescape}</script>
+  {/if}
+  {if isset($post) && is_array($post)}
+  {var $articleLd = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Article',
+    'headline' => $post['title'] ?? '',
+    'description' => $post['excerpt'] ?? '',
+    'datePublished' => $post['date'] ?? '',
+    'author' => ['@type' => 'Person', 'name' => $site['name'] ?? ''],
+    'publisher' => ['@type' => 'Person', 'name' => $site['name'] ?? '']
+  ]}
+  {var $articleLdJson = json_encode($articleLd, \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES)}
+  <script type="application/ld+json">{$articleLdJson|noescape}</script>
+  {/if}
+  <link rel="preload" href="/static/fonts/nwpStKy2OAdR1K-IwhWudF-R3w8aZQ.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/u-4e0qyriQwlOrhSvowK_l5UcA6zuSYEqOzpPe3HOZJ5eX1WtLaQwmYiSeqqJ-k.woff2" as="font" type="font/woff2" crossorigin>
+  {if ($lang ?? 'en') === 'ru'}
+  <link rel="preload" href="/static/fonts/nwpStKy2OAdR1K-IwhWudF-R3wsaZfrc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/u-4e0qyriQwlOrhSvowK_l5UcA6zuSYEqOzpPe3HOZJ5eX1WtLaQwmYiSequJ-mFqA.woff2" as="font" type="font/woff2" crossorigin>
+  {/if}
+  <style>{$inline_fonts_css|noescape}{$inline_critical_css|noescape}</style>
+  <link rel="preload" href="/static/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/static/css/styles.css"></noscript>
   {if isset($extra_stylesheets) && is_array($extra_stylesheets)}
     {foreach $extra_stylesheets as $extraStylesheet}
-      <link rel="stylesheet" href="{$extraStylesheet}">
+      <link rel="preload" href="{$extraStylesheet}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="{$extraStylesheet}"></noscript>
     {/foreach}
   {/if}
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1Yzg1YTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZSBoYW5kc2hha2UgaWNvbiBsdWNpZGUtaGFuZHNoYWtlIj48cGF0aCBkPSJtMTEgMTcgMiAyYTEgMSAwIDEgMCAzLTMiLz48cGF0aCBkPSJtMTQgMTQgMi41IDIuNWExIDEgMCAxIDAgMy0zbC0zLjg4LTMuODhhMyAzIDAgMCAwLTQuMjQgMGwtLjg4Ljg4YTEgMSAwIDEgMS0zLTNsMi44MS0yLjgxYTUuNzkgNS43OSAwIDAgMSA3LjA2LS44N2wuNDcuMjhhMiAyIDAgMCAwIDEuNDIuMjVMMjEgNCIvPjxwYXRoIGQ9Im0yMSAzIDEgMTFoLTIiLz48cGF0aCBkPSJNMyAzIDIgMTRsNi41IDYuNWExIDEgMCAxIDAgMy0zIi8+PHBhdGggZD0iTTMgNGg4Ii8+PC9zdmc+" type="image/svg+xml">

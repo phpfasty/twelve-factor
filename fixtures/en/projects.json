@@ -1,4 +1,9 @@
 {
+  "seo": {
+    "title": "Products & Projects — Maxim Kulgin | Bootstrapped Internet Product Portfolio",
+    "description": "Five internet products built over 20 years without investors: clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com, notissimus.com. Peak revenue 40M+ RUB/year.",
+    "keywords": "clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com, notissimus.com, click fraud protection service, web scraping service, price monitoring competitors, free CRM small business, product search engine Elasticsearch, internet product portfolio, bootstrapped SaaS Russia, Skolkovo resident, FSI grant, mobile app development studio"
+  },
   "hero": {
     "eyebrow": "Ecosystem",
     "title": "Products & Projects",
