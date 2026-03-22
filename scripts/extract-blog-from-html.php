@@ -32,7 +32,7 @@ function extractFromHtml(string $html): array
 
     $xpath = new DOMXPath($dom);
 
-    $contentNodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " mk-content ")][.//div[contains(concat(" ", normalize-space(@class), " "), " mk-evidence ")]]');
+    $contentNodes = $xpath->query('//div[contains(concat(" ", normalize-space(@class), " "), " mk-content ")][.//*[contains(concat(" ", normalize-space(@class), " "), " mk-evidence ")]]');
     if ($contentNodes !== false && $contentNodes->length > 0) {
         $evidenceHtml = trim(innerHtml($dom, $contentNodes->item(0)));
     }

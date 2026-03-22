@@ -217,10 +217,12 @@
   .mk-shell {
     width: 100%;
     max-width: 1120px;
+    min-width: 0;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    box-sizing: border-box;
   }
 
   .mk-content {
@@ -232,6 +234,65 @@
     padding-right: 1.5rem;
   }
 
+  /*
+   * Blog “key figures” strip: semantic list, one line per item (value — label).
+   * Preflight removes list styles — restore as a vertical stack, not stacked <p> blocks.
+   */
+  .mk-evidence {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mk-evidence-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0;
+    row-gap: 0.125rem;
+    line-height: 1.45;
+  }
+
+  .mk-evidence-num,
+  .mk-evidence-lbl {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+
+  .mk-evidence-num {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+  }
+
+  /* Em dash between figure and caption (visual only; keep spans for styling) */
+  .mk-evidence-num::after {
+    content: "\00a0—\00a0";
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-evidence-lbl {
+    font-size: 1rem;
+    font-weight: 400;
+    color: hsl(var(--foreground));
+  }
+
+  /* Legacy: div.mk-evidence-item with two <p> (inline flow + same dash) */
+  .mk-evidence-item > p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
   .mk-prose {
     width: 100%;
     max-width: 720px;
@@ -239,6 +300,133 @@
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  /* Key figures strip: same column as .mk-prose-body (not .mk-content 980px) */
+  .mk-prose--post-evidence {
+    padding-top: 2rem;
+  }
+
+  /*
+   * Long-form article HTML (blog post body from fixtures).
+   * Tailwind preflight zeros margins and removes list markers — restore readable rhythm.
+   */
+  .mk-prose-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.28;
+    color: hsl(var(--foreground));
+    margin-top: 2.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .mk-prose-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .mk-prose-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: hsl(var(--foreground));
+    margin-top: 1.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .mk-prose-body h3:first-child {
+    margin-top: 0;
+  }
+
+  .mk-prose-body h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body p {
+    margin: 0 0 1.125rem;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mk-prose-body ul,
+  .mk-prose-body ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.375rem;
+  }
+
+  .mk-prose-body ul {
+    list-style-type: disc;
+  }
+
+  .mk-prose-body ol {
+    list-style-type: decimal;
+  }
+
+  .mk-prose-body li {
+    margin: 0.45rem 0;
+    padding-left: 0.35rem;
+  }
+
+  .mk-prose-body li::marker {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-prose-body ul ul,
+  .mk-prose-body ol ol,
+  .mk-prose-body ul ol,
+  .mk-prose-body ol ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mk-prose-body strong {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .mk-prose-body a:hover {
+    color: hsl(var(--accent));
+  }
+
+  .mk-prose-body code {
+    font-size: 0.9em;
+    padding: 0.1rem 0.35rem;
+    background-color: hsl(var(--surface-subtle));
+    border: 1px solid hsl(var(--border-subtle));
+    border-radius: var(--radius-sm);
+  }
+
+  .mk-prose-body .mk-quote {
+    margin: 1.75rem 0;
+  }
+
+  .mk-prose-body hr {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid hsl(var(--border-subtle));
   }
 
   /* Navigation */
@@ -618,16 +806,12 @@
 
   .mk-project-icon.mk-project-icon--framed {
     border: 1px solid hsl(var(--foreground) / 0.1);
-    box-shadow:
-      inset 0 1px 0 hsl(0 0% 100% / 0.05),
-      0 4px 16px hsl(var(--foreground) / 0.05);
+    box-shadow: none;
   }
 
   .dark .mk-project-icon.mk-project-icon--framed {
     border-color: hsl(var(--border));
-    box-shadow:
-      inset 0 1px 0 hsl(0 0% 100% / 0.04),
-      0 6px 22px hsl(0 0% 0% / 0.28);
+    box-shadow: none;
   }
 
   .mk-project-header {
@@ -969,6 +1153,11 @@
     flex-wrap: wrap;
   }
 
+  /* Space between meta row and title (grid gap can collapse visually on link cards) */
+  .mk-post-meta + .mk-post-title {
+    margin-top: 0.5rem;
+  }
+
   .mk-post-date {
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -1000,12 +1189,14 @@
     margin: 0;
   }
 
-  /* Path timeline grid (5-column career steps on homepage) */
+  /* Path timeline grid (career cards on homepage — 3 columns on large screens) */
   .mk-timeline-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
     position: relative;
+    width: 100%;
+    min-width: 0;
   }
 
   /* Career path cards: icon + title (left), year (top-right), note below */
@@ -1016,6 +1207,9 @@
     background-color: hsl(var(--card));
     border: 1px solid hsl(var(--border-subtle));
     border-radius: var(--radius-lg);
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .mk-career-card__header {
@@ -1059,10 +1253,12 @@
   }
 
   .mk-career-card__year {
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
     margin: 0;
     margin-left: auto;
     padding-top: 0.25rem;
+    padding-left: 0.25rem;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     color: hsl(var(--accent));
@@ -1070,6 +1266,7 @@
     letter-spacing: 0.06em;
     line-height: 1.2;
     text-align: right;
+    white-space: normal;
   }
 
   .mk-career-card__note {
@@ -1280,14 +1477,29 @@
     border: 1px solid hsl(var(--border));
     overflow: hidden;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Grid stretches <picture> to fill; flex + center kept picture at intrinsic img size */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .mk-portrait > picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   .mk-portrait img {
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -1306,11 +1518,28 @@
     border-radius: 50%;
     flex-shrink: 0;
     border: 2px solid hsl(var(--border));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .mk-portrait-avatar > picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   .mk-portrait-avatar img {
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -1397,6 +1626,10 @@
     .mk-grid-4 {
       grid-template-columns: repeat(2, 1fr);
     }
+    /* 5×1fr career row is too tight here — causes overflow (min-width: auto on items) */
+    .mk-timeline-grid.mk-career-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   /* Responsive: mobile (≤768px) */
@@ -1424,7 +1657,7 @@
       justify-content: center;
     }
     .mk-timeline-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
     }
     .mk-mobile-menu-btn {
@@ -1510,7 +1743,7 @@
       font-size: 0.9375rem;
     }
     .mk-timeline-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
     }
     .mk-shell {

@@ -27,7 +27,8 @@
   {if !empty($canonical_url)}<meta property="og:url" content="{$canonical_url}">{/if}
   {var $personLd = $site['seo']['json_ld_person'] ?? null}
   {if $personLd}
-  <script type="application/ld+json">{latte:raw json_encode(['@context' => 'https://schema.org'] + $personLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)}</script>
+  {var $personLdHtml = '<script type="application/ld+json">' . json_encode(['@context' => 'https://schema.org'] + $personLd, \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES) . '</script>'}
+  {$personLdHtml|noescape}
   {/if}
   {if isset($post) && is_array($post)}
   {var $articleLd = [
@@ -39,16 +40,16 @@
     'author' => ['@type' => 'Person', 'name' => $site['name'] ?? ''],
     'publisher' => ['@type' => 'Person', 'name' => $site['name'] ?? '']
   ]}
-  <script type="application/ld+json">{latte:raw json_encode($articleLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)}</script>
+  {var $articleLdHtml = '<script type="application/ld+json">' . json_encode($articleLd, \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES) . '</script>'}
+  {$articleLdHtml|noescape}
   {/if}
-  {* Self-hosted fonts (same families/weights as former Google Fonts bundle). Preload critical subsets for LCP / body text. *}
   <link rel="preload" href="/static/fonts/nwpStKy2OAdR1K-IwhWudF-R3w8aZQ.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/u-4e0qyriQwlOrhSvowK_l5UcA6zuSYEqOzpPe3HOZJ5eX1WtLaQwmYiSeqqJ-k.woff2" as="font" type="font/woff2" crossorigin>
   {if ($lang ?? 'en') === 'ru'}
   <link rel="preload" href="/static/fonts/nwpStKy2OAdR1K-IwhWudF-R3wsaZfrc.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/u-4e0qyriQwlOrhSvowK_l5UcA6zuSYEqOzpPe3HOZJ5eX1WtLaQwmYiSequJ-mFqA.woff2" as="font" type="font/woff2" crossorigin>
   {/if}
-  <link rel="stylesheet" href="/static/fonts/fonts.css">
+  <style>{$inline_fonts_css|noescape}</style>
   <link rel="stylesheet" href="/static/css/styles.css">
   {if isset($extra_stylesheets) && is_array($extra_stylesheets)}
     {foreach $extra_stylesheets as $extraStylesheet}

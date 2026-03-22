@@ -45,6 +45,9 @@ final class PageRenderer
         $templateData = array_replace($this->dataProvider->getMany($dataKeys), $extra);
         $pageHtml = $this->renderer->render('pages/' . $template, $templateData);
 
+        $fontsCssPath = dirname(__DIR__, 2) . '/public/static/fonts/fonts.css';
+        $inlineFontsCss = is_file($fontsCssPath) ? (string) file_get_contents($fontsCssPath) : '';
+
         return $this->renderer->render('layout.latte', array_merge($templateData, [
             'content' => $pageHtml,
             'title' => is_string($templateData['title'] ?? null) ? $templateData['title'] : 'Landing page',
@@ -53,6 +56,7 @@ final class PageRenderer
             'robots' => is_string($templateData['robots'] ?? null) ? $templateData['robots'] : null,
             'canonical_url' => is_string($templateData['canonical_url'] ?? null) ? $templateData['canonical_url'] : null,
             'lang' => $this->locale,
+            'inline_fonts_css' => $inlineFontsCss,
         ]));
     }
 
@@ -100,7 +104,7 @@ final class PageRenderer
             $this->cacheStore->invalidate($cacheKey);
         }
 
-        $pageData = $this->buildPageData($pageConfig, $routeParameters, $extraData);
+        $pageData = $this->buildPageData($routePath, $pageConfig, $routeParameters, $extraData);
 
         return $this->renderAndCache(
             $cacheKey,
@@ -176,7 +180,7 @@ final class PageRenderer
      * @param array<string, mixed> $extraData
      * @return array<string, mixed>
      */
-    private function buildPageData(array $pageConfig, array $routeParameters, array $extraData): array
+    private function buildPageData(string $routePath, array $pageConfig, array $routeParameters, array $extraData): array
     {
         $dataKeys = (array) ($pageConfig['data'] ?? []);
         $datasets = $this->dataProvider->getMany($dataKeys);
