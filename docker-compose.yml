@@ -1,4 +1,13 @@
 services:
+  cache-init:
+    image: busybox:1.36
+    command:
+      - sh
+      - -lc
+      - mkdir -p /cache && chown -R 1000:1000 /cache && chmod -R ug+rwX /cache
+    volumes:
+      - defense-cache:/cache
+
   php:
     image: webdevops/php:8.4-alpine
     volumes:
@@ -6,6 +15,9 @@ services:
       - defense-cache:/var/www/html/cache
       - ./${PHP_INI_FILE:-php.ini}:/opt/docker/etc/php/php.ini
       - ./${APCU_INI_FILE:-apcu.ini}:/opt/docker/etc/php/conf.d/apcu.ini
+    depends_on:
+      cache-init:
+        condition: service_completed_successfully
     healthcheck:
       test: ["CMD", "sh", "-lc", "php -m | grep -q apcu"]
       interval: 15s
