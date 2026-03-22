@@ -54,6 +54,11 @@
       "heading_id": "projects-preview-title",
       "aria_label": "Превью проектов",
       "preview_count": 3
+    },
+    "platforms": {
+      "eyebrow": "Где следить",
+      "title": "Публичные платформы",
+      "heading_id": "platforms-title"
     }
   }
 }

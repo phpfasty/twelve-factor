@@ -155,3 +155,17 @@
     </blockquote>
   </div>
 </section>
+
+<section class="mk-section" style="background-color:hsl(var(--paper-warm));" aria-labelledby="{$landing['sections']['platforms']['heading_id'] ?? 'platforms-title'}">
+  <div class="mk-shell">
+    <div style="margin-bottom:2rem;">
+      <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$landing['sections']['platforms']['eyebrow'] ?? ''}</p>
+      <h2 id="{$landing['sections']['platforms']['heading_id'] ?? 'platforms-title'}" style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['platforms']['title'] ?? ''}</h2>
+    </div>
+    <div class="mk-grid-4">
+      {foreach ($site['platforms'] ?? []) as $platform}
+        {include '../partials/platform-link.latte', platform: $platform}
+      {/foreach}
+    </div>
+  </div>
+</section>

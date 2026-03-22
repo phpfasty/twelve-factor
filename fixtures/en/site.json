@@ -9,7 +9,7 @@
   },
   "goodbye_description": "Requests from this IP are temporarily blocked because of too many refreshes.",
   "goodbye_message": "Too many requests from this IP. Please wait a moment and refresh again.",
-  "name": "Maksim Kulgin",
+  "name": "Maxim Kulgin",
   "tagline": "Systems. Data. Defense.",
   "images": {
     "portrait_home": "/static/img/mkulgin-1.png",
@@ -18,7 +18,7 @@
   },
   "description": "A systematic journal on internet products, data infrastructure, traffic defense, and mature technology entrepreneurship.",
   "slogan": "No hype. Real practice.",
-  "copyright": "© 2025 Maksim Kulgin",
+  "copyright": "© 2025 Maxim Kulgin",
   "channels": {
     "youtube": "https://www.youtube.com/@MaximKulgin",
     "vk": "https://vk.com/mkulgin",
@@ -34,14 +34,14 @@
     "goodbye_page_label": "Request limit page",
     "goodbye_video_label": "Goodbye video",
     "nav_main_aria": "Main navigation",
-    "aria_logo_home": "Maksim Kulgin — Home",
+    "aria_logo_home": "Maxim Kulgin — Home",
     "theme_toggle_aria": "Toggle dark mode",
     "mobile_menu_open_aria": "Open menu",
     "nav_mobile_aria": "Mobile navigation",
     "nav_footer_aria": "Footer navigation",
-    "og_image_alt": "Maksim Kulgin portrait",
-    "portrait_home_alt": "Maksim Kulgin",
-    "portrait_about_alt": "Maksim Kulgin"
+    "og_image_alt": "Maxim Kulgin portrait",
+    "portrait_home_alt": "Maxim Kulgin",
+    "portrait_about_alt": "Maxim Kulgin"
   },
   "socials_display": {
     "vk": { "label": "VK", "url": "https://vk.com/mkulgin" },
@@ -49,9 +49,9 @@
     "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
   },
   "platforms": [
-    { "id": "habr", "label": "Habr", "url": "https://habr.com/ru/users/makasin4ik/" },
-    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452" },
-    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin" },
-    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi" }
+    { "id": "habr", "label": "Habr", "url": "https://habr.com/ru/users/makasin4ik/", "aria_label": "Read on Habr" },
+    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452", "aria_label": "Read on vc.ru" },
+    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin", "aria_label": "Watch on YouTube" },
+    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi", "aria_label": "Follow on Telegram" }
   ]
 }

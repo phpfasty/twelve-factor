@@ -75,13 +75,13 @@ return [
         'template' => 'contact.latte',
         'title' => '{site.name} — {site.titles.contact}',
         'description' => '{contact.hero.description}',
-        'data' => ['site', 'navigation', 'contact'],
+        'data' => ['site', 'navigation', 'contact', 'about'],
     ],
     '/contact/' => [
         'template' => 'contact.latte',
         'title' => '{site.name} — {site.titles.contact}',
         'description' => '{contact.hero.description}',
-        'data' => ['site', 'navigation', 'contact'],
+        'data' => ['site', 'navigation', 'contact', 'about'],
     ],
     '/goodbye' => [
         'template' => 'goodbye.latte',

@@ -1,7 +1,7 @@
 {
   "hero": {
     "eyebrow": "IT Entrepreneur · Saint Petersburg",
-    "title": "Maksim Kulgin",
+    "title": "Maxim Kulgin",
     "subtitle": "Systems. Data. Defense.",
     "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of engineering books on network infrastructure. Building real technology products without hype.",
     "cta_primary": { "label": "Read the Journal", "url": "/blog/" },
@@ -40,7 +40,7 @@
     ]
   },
   "hero_portrait": {
-    "aria_label": "Maksim Kulgin portrait"
+    "aria_label": "Maxim Kulgin portrait"
   },
   "sections": {
     "career_path": { "eyebrow": "Career Path", "title": "From Networks to Ecosystem" },
@@ -54,6 +54,11 @@
       "heading_id": "projects-preview-title",
       "aria_label": "Projects preview",
       "preview_count": 3
+    },
+    "platforms": {
+      "eyebrow": "Where to Follow",
+      "title": "Public Platforms",
+      "heading_id": "platforms-title"
     }
   }
 }

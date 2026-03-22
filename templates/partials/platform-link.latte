@@ -1,0 +1,8 @@
+{*
+  Public platform tile for the home page grid.
+  Expects: $platform with keys id, url, label, aria_label
+*}
+<a href="{$platform['url'] ?? '#'}" class="mk-platform" target="_blank" rel="noopener noreferrer" aria-label="{$platform['aria_label'] ?? ''}">
+  {include platform-icon.latte, platform_id: ($platform['id'] ?? '')}
+  {$platform['label'] ?? ''}
+</a>

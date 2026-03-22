@@ -49,9 +49,9 @@
     "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
   },
   "platforms": [
-    { "id": "habr", "label": "Хабр", "url": "https://habr.com/ru/users/makasin4ik/" },
-    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452" },
-    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin" },
-    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi" }
+    { "id": "habr", "label": "Хабр", "url": "https://habr.com/ru/users/makasin4ik/", "aria_label": "Читать на Хабре" },
+    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452", "aria_label": "Читать на vc.ru" },
+    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin", "aria_label": "Смотреть на YouTube" },
+    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi", "aria_label": "Подписаться в Telegram" }
   ]
 }

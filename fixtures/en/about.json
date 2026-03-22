@@ -1,7 +1,7 @@
 {
   "hero": {
     "eyebrow": "About",
-    "title": "Maksim Kulgin",
+    "title": "Maxim Kulgin",
     "subtitle": "Systems engineer, entrepreneur, author."
   },
   "sections": {
@@ -18,7 +18,7 @@
     "IT since early 1990s"
   ],
   "hero_portrait": {
-    "aria_label": "Maksim Kulgin portrait"
+    "aria_label": "Maxim Kulgin portrait"
   },
   "bio": {
     "short": "I've been in IT since the early 1990s — starting with network engineering, IP/IPX protocols, and corporate infrastructure. Over the following decades I built e-commerce operations, wrote three engineering books on network architecture, and launched a portfolio of bootstrapped internet products.",

@@ -12,7 +12,11 @@
     "no_results": "Нет записей для выбранной темы.",
     "read_post_aria_prefix": "Читать",
     "article_content_aria": "Текст статьи",
-    "back_to_blog": "← Ко всем записям"
+    "back_to_blog": "← Ко всем записям",
+    "author_section_aria": "Автор",
+    "author_tagline": "Санкт-Петербург · канал bezsmuzi",
+    "author_about_label": "Об авторе",
+    "related_title": "Читать дальше"
   },
   "categories": [
     { "id": "data", "label": "Данные и парсинг" },
@@ -86,7 +90,11 @@
       "excerpt": "Полная история того, как мы построили портфель интернет-продуктов — от ранних дней админа до компании с 40+ млн руб. годовой выручки. Все реальные цифры включены.",
       "date": "2022-01-28",
       "reading_time": "22 мин",
-      "url": "#"
+      "url": "#",
+      "related": [
+        { "slug": "parsing-20m-per-year", "tag_tone": "primary" },
+        { "slug": "saas-from-zero-to-430k", "tag_tone": "accent" }
+      ]
     }
   ]
 }
