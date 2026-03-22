@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Defense\RequestDefenseService;
 use App\Localization\SiteLocaleManager;
 use PhpFasty\Core\ContainerInterface;
 use PhpFasty\Core\Data\DataProviderInterface;
@@ -20,8 +19,6 @@ $securityHeaders = $container->get(SecurityHeaders::class);
 $dataProvider = $container->get(DataProviderInterface::class);
 /** @var PageRenderer $pageRenderer */
 $pageRenderer = $container->get(PageRenderer::class);
-/** @var RequestDefenseService $defenseService */
-$defenseService = $container->get(RequestDefenseService::class);
 /** @var SiteLocaleManager $localeManager */
 $localeManager = $container->get(SiteLocaleManager::class);
 /** @var array<string, array<string, mixed>> $pages */
@@ -46,11 +43,11 @@ $extractRouteParameters = static function (string $routePath, array $arguments):
 $resolveLocale = static function () use ($localeManager): string {
     $resolvedLocale = $localeManager->resolveRequestLocale(
         (string) ($_GET['lang'] ?? ''),
-        (string) ($_COOKIE['mk-lang'] ?? ''),
+        (string) ($_COOKIE['site-lang'] ?? ''),
         (string) ($_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '')
     );
 
-    setcookie('mk-lang', $resolvedLocale, [
+    setcookie('site-lang', $resolvedLocale, [
         'expires' => time() + 60 * 60 * 24 * 365,
         'path' => '/',
         'samesite' => 'Lax',
@@ -73,26 +70,6 @@ $buildLanguageSwitchUrl = static function (string $locale): string {
     return $path . '?' . http_build_query($query);
 };
 
-$resolveRequestPath = static function (): string {
-    $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
-    $path = (string) (parse_url($requestUri, PHP_URL_PATH) ?: '/');
-
-    if ($path === '') {
-        return '/';
-    }
-
-    if ($path !== '/' && str_ends_with($path, '/')) {
-        return rtrim($path, '/');
-    }
-
-    return $path;
-};
-
-$resolveRequestMethod = static function (): string {
-    $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
-    return $method === '' ? 'GET' : $method;
-};
-
 Flight::route('GET /api/health', static function () use ($securityHeaders): void {
     $securityHeaders->applyApiHeaders();
 
@@ -113,24 +90,11 @@ foreach ($pages as $routePath => $pageConfig) {
         $pageRenderer,
         $routePath,
         $securityHeaders,
-        $defenseService,
         $localeManager,
         $resolveLocale,
-        $buildLanguageSwitchUrl,
-        $resolveRequestPath,
-        $resolveRequestMethod
+        $buildLanguageSwitchUrl
     ): void {
         $routeParameters = $extractRouteParameters($routePath, $arguments);
-        $requestPath = $resolveRequestPath();
-        $requestMethod = $resolveRequestMethod();
-        if ($requestPath !== '/goodbye') {
-            $clientIp = $defenseService->getClientIp($_SERVER);
-            if ($defenseService->isLimitExceeded($clientIp, $requestPath, $requestMethod, $_SERVER)) {
-                Flight::redirect('/goodbye');
-
-                return;
-            }
-        }
         $locale = $resolveLocale();
         $nextLocale = $localeManager->getNextLocale($locale);
         $pageRenderer->setLocale($locale);
@@ -145,13 +109,6 @@ foreach ($pages as $routePath => $pageConfig) {
             'extra_stylesheets' => $extraStylesheets,
             'hide_layout' => $pageConfig['hide_layout'] ?? false,
         ];
-
-        if ($requestPath === '/goodbye') {
-            $clientIp = $defenseService->getClientIp($_SERVER);
-            $goodbyeVisitCount = $defenseService->recordGoodbyeVisit($clientIp);
-            $extraData['show_video'] = $goodbyeVisitCount > 2;
-            $extraData['cache_key_suffix'] = ':video=' . ($extraData['show_video'] ? '1' : '0');
-        }
 
         try {
             $html = $pageRenderer->renderPage(

@@ -47,10 +47,6 @@ foreach ($localeManager->getSupportedLocales() as $locale) {
                 'og_locale' => $localeManager->getOpenGraphLocale($locale),
                 'show_language_switch' => $localeManager->hasMultipleLocales(),
             ];
-            if (($pageConfig['hide_layout'] ?? false) && str_contains($path, 'goodbye')) {
-                $extraData['show_video'] = false;
-                $extraData['cache_key_suffix'] = ':video=0';
-            }
             $pageRenderer->renderPage($routePath, $pageConfig, $routeParameters, true, $locale, $extraData);
             $warmedPaths[] = $path . ' [' . $locale . ']';
         }

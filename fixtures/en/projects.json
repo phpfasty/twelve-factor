@@ -1,117 +1,117 @@
 {
   "seo": {
-    "title": "Products & Projects — Maxim Kulgin | Bootstrapped Internet Product Portfolio",
-    "description": "Five internet products built over 20 years without investors: clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com, notissimus.com. Peak revenue 40M+ RUB/year.",
-    "keywords": "clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com, notissimus.com, click fraud protection service, web scraping service, price monitoring competitors, free CRM small business, product search engine Elasticsearch, internet product portfolio, bootstrapped SaaS Russia, Skolkovo resident, FSI grant, mobile app development studio"
+    "title": "Products & Projects — John Doe | Bootstrapped B2B studio",
+    "description": "Five long-horizon products: PixelDocket design intelligence feeds, PromptHarbor LLM edge, VantageFence traffic integrity, Alto CRM, and StratusSearch catalog search.",
+    "keywords": "PixelDocket, PromptHarbor, VantageFence, Alto CRM, StratusSearch, design data feeds, LLM API gateway, cloud SaaS, traffic integrity, Elasticsearch, bootstrapped studio"
   },
   "hero": {
-    "eyebrow": "Ecosystem",
-    "title": "Products & Projects",
-    "description": "Five bootstrapped internet products built over 20 years. Each is a working business, not a startup pitch."
+    "eyebrow": "Studio",
+    "title": "Products & projects",
+    "description": "Each line item is a live product with paying customers — not a pitch deck placeholder."
   },
   "projects": [
     {
-      "id": "clickfraud",
+      "id": "vantagefence",
       "icon": "shield",
       "icon_color": "primary",
-      "name": "clickfraud.ru",
-      "url": "https://clickfraud.ru",
-      "category": "Traffic Defense",
+      "name": "VantageFence",
+      "url": "/projects/#project-vantagefence",
+      "category": "Security & integrity",
       "status": "Active",
       "status_tone": "success",
       "tag_tone": "primary",
-      "summary": "Click fraud protection for Russian advertisers. Machine learning + behavioral analysis.",
-      "tagline": "Click fraud protection for Russian advertisers",
-      "description": "Detects and blocks invalid clicks on contextual advertising. Protects budgets from competitor bots, click farms, and automated fraud using machine learning and behavioral signals. Received an 8M RUB state grant from the Foundation for Innovation Assistance.",
-      "metrics": ["8M RUB state grant", "Neural network detection"],
-      "tech": ["Machine Learning", "Behavioral Analysis", "API"]
+      "summary": "Invalid click and bot-pattern analysis for paid acquisition teams.",
+      "tagline": "Traffic integrity for performance marketers",
+      "description": "Combines session signals, ASN reputation, and lightweight ML scoring to flag suspicious traffic before it burns budget. Funded in part by an $800K non-dilutive R&D award focused on cloud-native detection pipelines.",
+      "metrics": ["$800K R&D award", "Hybrid rules + ML stack"],
+      "tech": ["Machine learning", "Behavioral signals", "API"]
     },
     {
-      "id": "xmldatafeed",
+      "id": "pixeldocket",
       "icon": "database",
       "icon_color": "accent",
-      "name": "xmldatafeed.com",
-      "url": "https://xmldatafeed.com",
-      "category": "Data & Parsing",
+      "name": "PixelDocket",
+      "url": "/projects/#project-pixeldocket",
+      "category": "Design & data",
       "status": "Active",
       "status_tone": "success",
       "tag_tone": "accent",
-      "summary": "Web scraping and price monitoring at scale. 20M+ RUB/year revenue.",
-      "tagline": "Web scraping and price monitoring at scale",
-      "description": "Automated collection of pricing data, product catalogs, and competitor information. Built for e-commerce operators who need clean, structured data without building their own infrastructure. Revenue reached 20M+ RUB/year. Only public data is collected.",
-      "metrics": ["20M+ RUB/year revenue", "Multiple enterprise clients"],
-      "tech": ["Web Scraping", "Data Pipelines", "XML/JSON APIs"]
+      "summary": "Structured feeds of public catalog and component benchmarks for agencies.",
+      "tagline": "Design intelligence as a data product",
+      "description": "Collects and normalizes publicly listed UI patterns, component pricing, and commerce catalog snapshots for digital agencies and in-house brand teams. Peak segment ARR around $240K with diversified SMB accounts.",
+      "metrics": ["$240K segment ARR", "Elasticsearch core"],
+      "tech": ["Data pipelines", "Search", "JSON APIs"]
     },
     {
-      "id": "offlinecrm",
+      "id": "altocrm",
       "icon": "users",
       "icon_color": "primary",
-      "name": "offlinecrm.ru",
-      "url": "https://offlinecrm.ru",
-      "category": "Business Tools",
+      "name": "Alto CRM",
+      "url": "/projects/#project-altocrm",
+      "category": "Business tools",
       "status": "Development",
       "status_tone": "warning",
       "tag_tone": "default",
-      "summary": "Simple free CRM for small businesses. No enterprise complexity required.",
-      "tagline": "Simple free CRM for small teams",
-      "description": "A no-frills CRM designed for small businesses that don't need enterprise complexity. Free to use. Focused on contact management, deals, and basic workflow tracking. Bootstrapped growth through organic and content marketing.",
-      "metrics": ["Free product", "Bootstrapped growth"],
-      "tech": ["SaaS", "CRM", "Free"]
+      "summary": "Opinionated CRM for studios juggling retainers and sprints.",
+      "tagline": "Lightweight CRM for small teams",
+      "description": "Contacts, lightweight pipelines, and time tracking tuned for services businesses. Offered free for early community members while core billing ships.",
+      "metrics": ["Waitlist growth", "Self-serve onboarding"],
+      "tech": ["SaaS", "CRM", "API hooks"]
     },
     {
-      "id": "tapki",
+      "id": "stratussearch",
       "icon": "search",
       "icon_color": "accent",
-      "name": "tapki.com",
-      "url": "https://tapki.com",
-      "category": "Search & Catalogs",
+      "name": "StratusSearch",
+      "url": "/projects/#project-stratussearch",
+      "category": "Search & catalogs",
       "status": "Active",
       "status_tone": "success",
       "tag_tone": "accent",
-      "summary": "Product search engine with Elasticsearch.",
-      "tagline": "Product search engine powered by Elasticsearch",
-      "description": "A search and discovery engine for products and catalogs. Built on Elasticsearch, optimized for large-scale product databases with fast full-text search and filtering. Engineering thinking applied to catalog infrastructure.",
-      "metrics": ["Elasticsearch-powered", "Large catalog support"],
-      "tech": ["Elasticsearch", "Search", "Catalog"]
+      "summary": "Elasticsearch-backed search for large merchandise catalogs.",
+      "tagline": "Fast catalog discovery",
+      "description": "Full-text and faceted search microservice used by mid-market retailers and PixelDocket customers who need shopper-grade discovery without running their own search SRE bench.",
+      "metrics": ["Multi-tenant ES", "Sub-100ms p95"],
+      "tech": ["Elasticsearch", "Search", "Kubernetes"]
     },
     {
-      "id": "notissimus",
-      "icon": "smartphone",
+      "id": "promptharbor",
+      "icon": "monitor",
       "icon_color": "primary",
-      "name": "notissimus.com",
-      "url": "https://notissimus.com",
-      "category": "Development",
+      "name": "PromptHarbor",
+      "url": "/projects/#project-promptharbor",
+      "category": "LLM infrastructure",
       "status": "Active",
       "status_tone": "success",
       "tag_tone": "default",
-      "summary": "Mobile app development studio.",
-      "tagline": "Mobile app development studio",
-      "description": "A small development studio focused on mobile applications. Builds and maintains apps for B2B clients. Part of the broader ecosystem, providing development capacity for product experiments.",
-      "metrics": ["Client projects", "iOS + Android"],
-      "tech": ["Mobile", "iOS", "Android"]
+      "summary": "Managed LLM routing, quotas, and offline evaluation hooks.",
+      "tagline": "Gateway for customer-facing model features",
+      "description": "Provides org-level keys, per-workspace budgets, red-team prompts, and exportable eval sets so product teams can ship assistants without wiring every provider by hand.",
+      "metrics": ["Peak $95K MRR", "Multi-provider routing"],
+      "tech": ["LLM APIs", "Observability", "Policy engine"]
     }
   ],
   "metrics": [
-    { "value": "37–40M", "label": "Peak RUB revenue / year" },
-    { "value": "618K", "label": "Max RUB / month (single SaaS)" },
-    { "value": "8M", "label": "State grant (Foundation for Innovation)" },
-    { "value": "20+", "label": "Years operating, bootstrapped" }
+    { "value": "$2.1M", "label": "Peak portfolio ARR" },
+    { "value": "$95K", "label": "Peak single-product MRR" },
+    { "value": "$800K", "label": "Non-dilutive R&D award" },
+    { "value": "20+", "label": "Years operating bootstrapped" }
   ],
   "intro": {
-    "prompt": "Systems and products, intentionally built.",
-    "description": "Open-source software and commercial tooling from practical engineering constraints: reliable, observable, and maintainable."
+    "prompt": "Systems and products, intentionally maintained.",
+    "description": "Open tooling and commercial software shaped by on-call reality: observable, documented, and boring where possible."
   },
   "sections": {
     "metrics_aria_label": "Portfolio metrics",
-    "portfolio_eyebrow": "Ecosystem",
-    "portfolio_title": "Active Products",
+    "portfolio_eyebrow": "Studio",
+    "portfolio_title": "Active products",
     "products_heading_id": "products-title"
   },
   "ui": {
     "status_active_label": "Active",
     "open_project_label": "Open project",
     "open_project_aria_prefix": "Open",
-    "visit_external_label": "Visit ↗",
-    "visit_external_aria_prefix": "Visit"
+    "visit_external_label": "In portfolio",
+    "visit_external_aria_prefix": "View in portfolio"
   }
 }

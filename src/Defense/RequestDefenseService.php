@@ -8,8 +8,6 @@ final class RequestDefenseService
 {
     private const DATA_FILE = 'request-defenses.json';
 
-    private const GOODBYE_VISITS_FILE = 'goodbye-visits.json';
-
     private const DEFAULT_LIMIT_RULE = [
         'max_requests' => 3,
         'time_window_seconds' => 10,
@@ -58,78 +56,12 @@ final class RequestDefenseService
         return 'unknown';
     }
 
-    /**
-     * Records a visit to the goodbye page for the given IP and returns the total visit count
-     * within the configured time window. Use this to decide whether to show video (count > 2)
-     * or image.
-     */
-    public function recordGoodbyeVisit(string $ip): int
-    {
-        $this->ensureDirectory();
-
-        $stateFile = rtrim($this->basePath, DIRECTORY_SEPARATOR)
-            . DIRECTORY_SEPARATOR
-            . self::GOODBYE_VISITS_FILE
-            . '.'
-            . hash('sha256', 'goodbye|' . trim($ip));
-
-        $handle = fopen($stateFile, 'c+');
-        if ($handle === false) {
-            return 1;
-        }
-
-        try {
-            if (!flock($handle, LOCK_EX)) {
-                return 1;
-            }
-
-            $content = stream_get_contents($handle);
-            $visits = $this->decodeGoodbyeVisits($content);
-
-            $now = time();
-            $windowSeconds = (int) ($this->config['goodbye']['visits_window_seconds'] ?? 86400);
-            $visits = $this->normalizeHistory($visits, $now, $windowSeconds);
-            $visits[] = $now;
-
-            $this->writeState($handle, ['history' => $visits]);
-
-            return count($visits);
-        } finally {
-            fclose($handle);
-        }
-    }
-
-    /**
-     * @return array<int, int>
-     */
-    private function decodeGoodbyeVisits(?string $payload): array
-    {
-        if ($payload === null || $payload === '') {
-            return [];
-        }
-
-        $decoded = json_decode($payload, true);
-        if (!is_array($decoded)) {
-            return [];
-        }
-
-        $history = $decoded['history'] ?? [];
-        if (!is_array($history)) {
-            return [];
-        }
-
-        $result = [];
-        foreach ($history as $entry) {
-            if (is_numeric($entry)) {
-                $result[] = (int) $entry;
-            }
-        }
-
-        return $result;
-    }
-
     public function isLimitExceeded(string $ip, string $routePath, string $method = 'GET', array $server = []): bool
     {
+        if (!($this->config['enabled'] ?? false)) {
+            return false;
+        }
+
         $this->ensureDirectory();
 
         $normalizedRoute = $this->normalizeRoutePath($routePath);
@@ -454,6 +386,7 @@ final class RequestDefenseService
     private function normalizeConfig(array $config): array
     {
         $normalized = [];
+        $normalized['enabled'] = (bool) ($config['enabled'] ?? false);
         $normalized['default'] = $this->normalizePolicy($config['default'] ?? []);
         $normalized['suspicious'] = $this->normalizePolicy($config['suspicious'] ?? []);
         $normalized['scan'] = is_array($config['scan'] ?? []) ? $config['scan'] : [];
@@ -492,10 +425,6 @@ final class RequestDefenseService
                 $normalized['methods'][strtoupper($method)] = $this->normalizePolicy($methodConfig);
             }
         }
-
-        $normalized['goodbye'] = [
-            'visits_window_seconds' => max(1, (int) ($config['goodbye']['visits_window_seconds'] ?? 86400)),
-        ];
 
         $normalized['routes'] = [
             'exact' => [],

@@ -10,10 +10,5 @@ return [
             'html_lang' => 'en',
             'og_locale' => 'en_US',
         ],
-        'ru' => [
-            'label' => 'Ru',
-            'html_lang' => 'ru',
-            'og_locale' => 'ru_RU',
-        ],
     ],
 ];

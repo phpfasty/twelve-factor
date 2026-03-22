@@ -4,73 +4,56 @@
     "blog": "Blog",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact",
-    "goodbye": "Bot limit exceeded"
+    "contact": "Contact"
   },
-  "goodbye_description": "Requests from this IP are temporarily blocked because of too many refreshes.",
-  "goodbye_message": "Too many requests from this IP. Please wait a moment and refresh again.",
-  "name": "Maxim Kulgin",
-  "tagline": "Systems. Data. Defense.",
+  "name": "John Doe",
+  "tagline": "Systems. Cloud. LLM ops. Defense.",
   "images": {
-    "portrait_home": "/static/img/mkulgin-1.png",
-    "portrait_about": "/static/img/mkulgin-2.png",
-    "og": "/static/img/mkulgin-2.png"
+    "portrait_home": "/static/img/professional.png",
+    "portrait_about": "/static/img/professional.png",
+    "og": "/static/img/professional.png"
   },
-  "description": "A systematic journal on internet products, data infrastructure, traffic defense, and mature technology entrepreneurship.",
+  "description": "Field notes on bootstrapped products across web experience design, LLM infrastructure, cloud platforms, and application security.",
   "slogan": "No hype. Real practice.",
-  "copyright": "© 2025 Maxim Kulgin",
+  "copyright": "© 2025 John Doe",
   "channels": {
-    "youtube": "https://www.youtube.com/@MaximKulgin",
-    "vk": "https://vk.com/mkulgin",
-    "telegram": "https://t.me/bezsmuzi",
-    "dzen": "https://dzen.ru/mkulgin"
-  },
-  "media": {
-    "goodbye_video": "/static/video/goodbye.mp4"
+    "youtube": "/projects/",
+    "linkedin": "/projects/",
+    "telegram": "/projects/",
+    "github": "/projects/"
   },
   "ui": {
     "switch_language_label": "Switch language",
     "language_toggle_fallback": "Lang",
-    "goodbye_page_label": "Request limit page",
-    "goodbye_video_label": "Goodbye video",
     "nav_main_aria": "Main navigation",
-    "aria_logo_home": "Maxim Kulgin — Home",
+    "aria_logo_home": "John Doe — Home",
     "theme_toggle_aria": "Toggle dark mode",
     "mobile_menu_open_aria": "Open menu",
     "nav_mobile_aria": "Mobile navigation",
     "nav_footer_aria": "Footer navigation",
-    "og_image_alt": "Maxim Kulgin portrait",
-    "portrait_home_alt": "Maxim Kulgin",
-    "portrait_about_alt": "Maxim Kulgin"
+    "og_image_alt": "John Doe portrait",
+    "portrait_home_alt": "John Doe",
+    "portrait_about_alt": "John Doe"
   },
   "socials_display": {
-    "vk": { "label": "VK", "url": "https://vk.com/mkulgin" },
-    "telegram": { "label": "Telegram", "url": "https://t.me/bezsmuzi" },
-    "dzen": { "label": "Дзен", "url": "https://dzen.ru/mkulgin" }
+    "linkedin": { "label": "LinkedIn", "url": "/projects/" },
+    "telegram": { "label": "Telegram", "url": "/projects/" },
+    "github": { "label": "GitHub", "url": "/projects/" }
   },
   "seo": {
-    "canonical_base": "https://maximkulgin.ru",
+    "canonical_base": "",
     "robots": "index, follow",
     "json_ld_person": {
       "@type": "Person",
-      "name": "Maxim Kulgin",
-      "url": "https://maximkulgin.ru",
-      "jobTitle": "IT Entrepreneur",
-      "address": { "@type": "PostalAddress", "addressLocality": "Saint Petersburg", "addressCountry": "RU" },
-      "sameAs": [
-        "https://habr.com/ru/users/makasin4ik/",
-        "https://vc.ru/id20452",
-        "https://t.me/bezsmuzi",
-        "https://vk.com/mkulgin",
-        "https://www.youtube.com/@MaximKulgin",
-        "https://dzen.ru/mkulgin"
-      ]
+      "name": "John Doe",
+      "jobTitle": "Software engineer and product builder",
+      "address": { "@type": "PostalAddress", "addressLocality": "San Francisco", "addressCountry": "US" }
     }
   },
   "platforms": [
-    { "id": "habr", "label": "Habr", "url": "https://habr.com/ru/users/makasin4ik/", "aria_label": "Read on Habr" },
-    { "id": "vcru", "label": "vc.ru", "url": "https://vc.ru/id20452", "aria_label": "Read on vc.ru" },
-    { "id": "youtube", "label": "YouTube", "url": "https://www.youtube.com/@MaximKulgin", "aria_label": "Watch on YouTube" },
-    { "id": "telegram", "label": "Telegram", "url": "https://t.me/bezsmuzi", "aria_label": "Follow on Telegram" }
+    { "id": "linkedin", "label": "LinkedIn", "url": "/projects/#project-pixeldocket", "aria_label": "PixelDocket — projects" },
+    { "id": "github", "label": "GitHub", "url": "/projects/#project-promptharbor", "aria_label": "PromptHarbor — projects" },
+    { "id": "reddit", "label": "Reddit", "url": "/blog/", "aria_label": "Reddit — journal" },
+    { "id": "telegram", "label": "Telegram", "url": "/projects/#project-vantagefence", "aria_label": "VantageFence — projects" }
   ]
 }

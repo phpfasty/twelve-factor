@@ -6,7 +6,7 @@
 {var $iconId = $p['icon'] ?? null}
 {var $iconColor = $p['icon_color'] ?? 'primary'}
 {var $cardTone = ($iconColor === 'accent') ? 'accent' : 'primary'}
-<article class="mk-card mk-project-card mk-project-card--{$cardTone}" aria-label="{$p['name'] ?? ''}">
+<article id="project-{$p['id'] ?? ''}" class="mk-card mk-project-card mk-project-card--{$cardTone}" aria-label="{$p['name'] ?? ''}">
   <div class="mk-project-card__icon-wrap">
     <div class="mk-project-icon mk-project-icon--framed" style="background:hsl(var(--{$iconColor})/0.12);" aria-hidden="true">
       {if $iconId}
@@ -43,7 +43,16 @@
       {/foreach}
     </div>
   </div>
-  <a href="{$p['url'] ?? '#'}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$p['name'] ?? ''}">
+  {var $projectUrl = $p['url'] ?? '#'}
+  {var $projectUrlStr = is_string($projectUrl) ? $projectUrl : '#'}
+  {var $projectOpenExternal = str_starts_with($projectUrlStr, 'http://') || str_starts_with($projectUrlStr, 'https://')}
+  {if $projectOpenExternal}
+  <a href="{$projectUrlStr}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$p['name'] ?? ''}">
     {$projects['ui']['visit_external_label'] ?? ''}
   </a>
+  {else}
+  <a href="{$projectUrlStr}" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$p['name'] ?? ''}">
+    {$projects['ui']['visit_external_label'] ?? ''}
+  </a>
+  {/if}
 </article>

@@ -3,6 +3,7 @@
 ## Where cache lives
 
 - **Directory**: Configured by `CACHE_DIR` (default `./cache`), resolved from project root in `config/services.php` and passed to `CacheStore`.
+- **Docker Compose**: The `php` service mounts a **named volume** at `/var/www/html/cache`, which overrides the bind-mounted project’s `./cache` for that container. Page cache written inside the container (including `docker compose exec php php scripts/build-static.php`) lives in that volume, not necessarily in your host `./cache` folder. Latte compile output similarly uses the **`template-cache`** volume at `/var/www/html/templates/cache`.
 - **Format**: One PHP file per key: `md5('page:' . requestPath) . '.php'`. File contains a `return '<html>...';` statement plus metadata comments (timestamp, key, TTL).
 - **Shared**: Both the web app and the CLI warmup script use the same container and thus the same `CacheStore` and same directory. No separate “static” vs “runtime” cache.
 

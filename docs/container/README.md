@@ -1,6 +1,6 @@
 # Service container
 
-The application uses a custom DI container in `src/Core` (no Symfony DependencyInjection).
+The application uses the **DI container from `phpfasty/core`** (`PhpFasty\Core\Container`), wired in `config/services.php`. There is no Symfony DependencyInjection bundle in this project.
 
 ## Capabilities
 
@@ -23,7 +23,7 @@ The application uses a custom DI container in `src/Core` (no Symfony DependencyI
 
 ## Relation to FlightPHP
 
-Flight is given the container via `Flight::set('appContainer', $container)` in `public/index.php`. Routes in `config/routes.php` obtain the container with `Flight::get('appContainer')` and resolve services (e.g. `PageRenderer`, `CacheStore`, `pages_config`) from it. The app does not use Flight’s built-in container for application services; it uses this custom container.
+Flight is given the container via `Flight::set('appContainer', $container)` in `public/index.php`. Routes in `config/routes.php` obtain the container with `Flight::get('appContainer')` and resolve services (e.g. `PageRenderer`, `CacheStore`, `pages_config`) from it. The app does not use Flight’s built-in container for application services; it uses the PhpFasty container.
 
 ## When to consider Symfony DI
 

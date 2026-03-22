@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 return [
+    // Master switch: when false, RequestDefenseService does not enforce limits (class stays registered).
+    'enabled' => false,
+
     'default' => [
         'max_requests' => 3,
         'time_window_seconds' => 10,
@@ -39,11 +42,6 @@ return [
             'java/',
             'libwww',
         ],
-    ],
-
-    // Goodbye page: time window for counting visits per IP (image vs video).
-    'goodbye' => [
-        'visits_window_seconds' => 3600, // 1 hour, 86400 (24 hours)
     ],
 
     'methods' => [

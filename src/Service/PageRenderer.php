@@ -202,13 +202,15 @@ final class PageRenderer
         $pageData['robots'] = (string) ($pageConfig['robots'] ?? '');
 
         $canonicalBase = $this->extractValue($pageData, 'site.seo.canonical_base');
-        $canonicalBase = is_scalar($canonicalBase) ? (string) $canonicalBase : '';
+        $canonicalBase = is_scalar($canonicalBase) ? trim((string) $canonicalBase) : '';
+        $requestPath = $this->buildRequestPath($routePath, $routeParameters);
+        $normalizedPath = ($requestPath !== '/' && str_ends_with($requestPath, '/'))
+            ? rtrim($requestPath, '/')
+            : $requestPath;
         if ($canonicalBase !== '') {
-            $requestPath = $this->buildRequestPath($routePath, $routeParameters);
-            $normalizedPath = ($requestPath !== '/' && str_ends_with($requestPath, '/'))
-                ? rtrim($requestPath, '/')
-                : $requestPath;
             $pageData['canonical_url'] = rtrim($canonicalBase, '/') . $normalizedPath;
+        } else {
+            $pageData['canonical_url'] = $normalizedPath;
         }
 
         return $pageData;

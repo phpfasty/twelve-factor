@@ -6,8 +6,8 @@ A step-by-step guide from zero to a running app. No prior knowledge of the codeb
 
 ## 1. Prerequisites
 
-- **PHP 8.4+** (or use the project’s local runtime; see below).
-- **Composer** (local or the project’s `.php/composer.phar`).
+- **PHP 8.4+** on your `PATH` as `php`.
+- **Composer** on your `PATH` as `composer` ([getcomposer.org](https://getcomposer.org/)).
 - **Git** (to clone the repo).
 - **Docker & Docker Compose** (optional; only if you want to run with Docker).
 
@@ -30,13 +30,9 @@ From the project root:
 composer install
 ```
 
-If you use a project-local PHP (e.g. `.php/php/php.exe`):
-
-```bash
-.php/php/php.exe .php/composer.phar install
-```
-
 This creates the `vendor/` directory. The app will not run without it.
+
+Optional (Windows): if you keep a PHP build under `.php\php`, run `setphp.bat` or `.\setphp.ps1` first so `php` resolves to that copy for the current shell.
 
 ---
 
@@ -71,12 +67,6 @@ From the project root:
 php -S localhost:8080 -t public public/router.php
 ```
 
-Or with the project’s PHP:
-
-```bash
-.php/php/php.exe -S localhost:8080 -t public public/router.php
-```
-
 You should see something like: `Development Server (http://localhost:8080) started`.
 
 ---
@@ -106,7 +96,7 @@ If you prefer Docker:
 docker compose up --build
 ```
 
-Then open **http://localhost:8080** (port is defined in `docker-compose.yml`). The app runs behind Nginx and PHP-FPM. For details see [Docker](docker/README.md).
+Then open **http://localhost:8080** (Nginx publishes `8080:80` in `docker-compose.yml`). The app runs behind Nginx and PHP-FPM; a one-shot **cache-init** job and **named volumes** for page and template cache are part of the stack — see [Docker](docker/README.md). To pre-fill cache **inside** Docker, run: `docker compose exec php php scripts/build-static.php`.
 
 ---
 
@@ -115,11 +105,10 @@ Then open **http://localhost:8080** (port is defined in `docker-compose.yml`). T
 ```
 twelve-factor/
 ├── public/           ← Web root (entry: index.php, router.php)
-├── src/              ← Application PHP (Core, Cache, Data, Service, View, …)
+├── src/              ← Application PHP (Service, View, Defense, Localization, …); DI from phpfasty/core
 ├── config/           ← services.php, pages.php, routes.php
 ├── templates/        ← Latte layout and page templates
 ├── fixtures/en/      ← Default locale JSON (site, landing, blog, …)
-├── fixtures/ru/      ← Optional other locales
 ├── cache/            ← Generated page cache (created at runtime or by warmup)
 ├── scripts/          ← CLI scripts (e.g. build-static.php)
 ├── nginx/            ← Nginx config for Docker

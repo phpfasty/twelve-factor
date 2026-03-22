@@ -24,7 +24,7 @@ The project is oriented toward Twelve-Factor but **does not fully satisfy** ever
 
 ## 3. Config (Store config in the environment)
 
-- **OK**: `.env` and `.env.example` exist; Docker Compose uses `env_file: .env`. Main app vars (e.g. `APP_ENV`, `APP_DEBUG`, `CACHE_TTL`, `CACHE_DIR`, `FIXTURES_PATH`, `PHP_INI_FILE`, `APCU_INI_FILE`) are documented and loaded in `public/index.php` via Dotenv when the file is readable.
+- **OK**: `.env` and `.env.example` exist. Docker Compose can read `.env` at the project root for **compose-file interpolation** (e.g. `PHP_INI_FILE`, `APCU_INI_FILE` in volume paths). Application vars (`APP_ENV`, `APP_DEBUG`, `CACHE_TTL`, `CACHE_DIR`, `FIXTURES_PATH`, and the rest) are loaded in `public/index.php` (and CLI scripts) via **Dotenv** from the mounted project tree; services do not need `env_file:` for that.
 - **Partial**: `scripts/build-static.php` loads `.env` the same way but does not share a single validated config layer with the web app (no unified env loader or schema). No formal validation or default types for required vars.
 
 ---
@@ -39,7 +39,7 @@ The project is oriented toward Twelve-Factor but **does not fully satisfy** ever
 ## 5. Build, release, run (Strict separation of stages)
 
 - **Partial**: There is a build-time step (`scripts/build-static.php` warms the page cache into `cache/`), but no formal **release** stage (versioned artifact, checks, migrations, or pre-deploy verification). No single pipeline that does “build → release artifact → run.”
-- **Note**: `build-static.php` writes to `cache/` (via `CacheStore`), not to `public/`; the app serves pages from that cache at runtime.
+- **Note**: `build-static.php` writes to `cache/` (via `CacheStore`), not to `public/`; the app serves pages from that cache at runtime. With **Docker Compose**, that directory is often the **`defense-cache` volume** inside the PHP container, not the host’s `./cache` — see [Docker](../docker/README.md).
 
 ---
 
@@ -58,7 +58,7 @@ The project is oriented toward Twelve-Factor but **does not fully satisfy** ever
 ## 8. Concurrency (Scale out via the process model)
 
 - **OK**: Architecture allows scaling (e.g. more Nginx or PHP-FPM workers/containers). No in-memory state that would prevent horizontal scaling.
-- **Partial**: There is no example or doc of running multiple instances and sharing/avoiding state (e.g. shared `cache/` or no shared state); consider documenting or demonstrating this for full compliance.
+- **Partial**: There is no example of running multiple PHP replicas with a **shared** file cache. In Docker Compose, page cache and Latte compile cache live on **named volumes** attached to the PHP container; scaling out would require a shared filesystem or switching cache storage — document your chosen approach for full compliance.
 
 ---
 

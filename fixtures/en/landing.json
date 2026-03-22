@@ -1,68 +1,68 @@
 {
   "seo": {
-    "title": "Maxim Kulgin — IT Entrepreneur & Author | Systems, Data, Traffic Defense",
-    "description": "30+ years in IT: from network engineering to a portfolio of bootstrapped internet products generating 40M+ RUB/year. Click fraud protection, web scraping, SaaS without venture capital.",
-    "keywords": "Maxim Kulgin, IT entrepreneur Saint Petersburg, web scraping business, click fraud protection, bootstrapped SaaS Russia, data infrastructure, price monitoring, internet products, anti-fraud technology, clickfraud.ru, xmldatafeed, network engineering author, bootstrapped growth, Skolkovo resident"
+    "title": "John Doe — Engineer, Founder | Web UX, LLM Platforms, Cloud, Security",
+    "description": "Two decades shipping internet systems: design-led product studios, LLM routing and evaluation, cloud cost and reliability, and traffic-integrity tooling — mostly bootstrapped.",
+    "keywords": "John Doe, software engineer, web design systems, LLM API gateway, cloud infrastructure, application security, bootstrapped SaaS, product studio, traffic integrity, bot defense"
   },
   "hero": {
-    "eyebrow": "IT Entrepreneur · Saint Petersburg",
-    "title": "Maxim Kulgin",
-    "subtitle": "Systems. Data. Defense.",
-    "description": "Over 30 years in IT — from network engineering and e-commerce to a portfolio of bootstrapped SaaS products. Author of engineering books on network infrastructure. Building real technology products without hype.",
+    "eyebrow": "Engineer · Product studio",
+    "title": "John Doe",
+    "subtitle": "Systems. Cloud. LLM ops. Defense.",
+    "description": "I build and operate a small portfolio of B2B products: structured design-intelligence feeds, an LLM gateway with guardrails, cloud observability utilities, and defenses for invalid ad traffic. No venture narrative — shipping, support, and iteration.",
     "cta_primary": { "label": "Read the Journal", "url": "/blog/" },
     "cta_secondary": { "label": "Projects & Cases", "url": "/projects/" }
   },
   "path": [
-    { "year": "1990s", "icon": "server", "icon_color": "primary", "label": "Network Engineer", "note": "IP/IPX protocols, sysadmin, corporate infrastructure" },
-    { "year": "1998–2003", "icon": "book", "icon_color": "accent", "label": "Author", "note": "3 engineering books on network infrastructure published" },
-    { "year": "2000s", "icon": "shopping-cart", "icon_color": "primary", "label": "Director", "note": "Built and managed large online retail operations" },
-    { "year": "2010s", "icon": "monitor", "icon_color": "accent", "label": "SaaS Founder", "note": "Launched clickfraud.ru, xmldatafeed.com, offlinecrm.ru" },
-    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Product Portfolio", "note": "40M+ RUB/year revenue, FSI state grant, data & defense products" }
+    { "year": "2000s", "icon": "server", "icon_color": "primary", "label": "Network & backend", "note": "Corporate networks, APIs, and early e-commerce platforms" },
+    { "year": "2008–2014", "icon": "book", "icon_color": "accent", "label": "Design systems era", "note": "Led UX engineering for large content and commerce surfaces" },
+    { "year": "2010s", "icon": "shopping-cart", "icon_color": "primary", "label": "Product operator", "note": "Ran delivery for multi-brand web programs and data-heavy catalogs" },
+    { "year": "2018+", "icon": "monitor", "icon_color": "accent", "label": "Founder", "note": "PixelDocket feeds, PromptHarbor LLM edge, VantageFence integrity" },
+    { "year": "2020s", "icon": "layers", "icon_color": "primary", "label": "Portfolio", "note": "Cross-product platform work: cloud, LLM, security, and CRM adjacent tools" }
   ],
   "pillars": [
-    { "id": "data", "icon": "database", "icon_color": "accent", "label": "Data & Parsing", "desc": "Web scraping, price monitoring, data feeds — built at scale" },
-    { "id": "defense", "icon": "shield", "icon_color": "primary", "label": "Traffic Defense", "desc": "Click fraud protection and anti-bot systems for advertisers" },
-    { "id": "systems", "icon": "network", "icon_color": "primary", "label": "Internet Systems", "desc": "Infrastructure thinking applied to modern products" },
-    { "id": "business", "icon": "trending-up", "icon_color": "accent", "label": "Bootstrapped Growth", "desc": "From 0 to 40M+ revenue/year without venture capital" }
+    { "id": "data", "icon": "database", "icon_color": "accent", "label": "Design & data", "desc": "Public catalog and component signals packaged for agencies and commerce teams" },
+    { "id": "defense", "icon": "shield", "icon_color": "primary", "label": "Traffic integrity", "desc": "Behavioral and ML-assisted checks for suspicious acquisition traffic" },
+    { "id": "systems", "icon": "network", "icon_color": "primary", "label": "Cloud delivery", "desc": "Reliability, cost, and observability patterns for multi-tenant SaaS" },
+    { "id": "business", "icon": "trending-up", "icon_color": "accent", "label": "Bootstrapped GTM", "desc": "Content, integrations, and narrow verticals instead of paid blitzes" }
   ],
   "metrics": [
-    { "value": "30+", "label": "Years in IT" },
-    { "value": "3", "label": "Engineering books" },
-    { "value": "40M+", "label": "RUB revenue / year" },
-    { "value": "4", "label": "Active products" }
+    { "value": "20+", "label": "Years building" },
+    { "value": "5", "label": "Active products" },
+    { "value": "$2.1M", "label": "Peak portfolio ARR" },
+    { "value": "0", "label": "Venture rounds" }
   ],
   "quote": {
-    "text": "No success theater. No marketing fluff. Real revenue numbers, real mistakes, real operating decisions.",
-    "source": "bezsmuzi channel — guiding principle"
+    "text": "Replace slide decks with logs, receipts, and support tickets. The story is in the operations.",
+    "source": "Studio operating principle"
   },
   "hero_evidence": {
     "aria_label": "Key facts",
     "items": [
-      { "value": "30+", "unit": "yrs" },
-      { "value": "7", "unit": "products" },
-      { "value": "3", "unit": "books" },
-      { "value": "20M+", "unit": "parsed" }
+      { "value": "20+", "unit": "yrs" },
+      { "value": "5", "unit": "products" },
+      { "value": "$800K", "unit": "R&D grant" },
+      { "value": "$240K", "unit": "data ARR" }
     ]
   },
   "hero_portrait": {
-    "aria_label": "Maxim Kulgin portrait"
+    "aria_label": "John Doe portrait"
   },
   "sections": {
-    "career_path": { "eyebrow": "Career Path", "title": "From Networks to Ecosystem" },
+    "career_path": { "eyebrow": "Career path", "title": "From infrastructure to product studio" },
     "metrics": { "aria_label": "Proof metrics" },
-    "pillars": { "eyebrow": "Areas of Practice", "title": "What This Journal Covers" },
+    "pillars": { "eyebrow": "Practice areas", "title": "What this site covers" },
     "blog_preview": { "title": "Recent notes", "aria_label": "Latest notes" },
     "projects_preview": {
-      "eyebrow": "Ecosystem",
-      "title": "Active Products",
+      "eyebrow": "Studio",
+      "title": "Active products",
       "link_all": "All projects →",
       "heading_id": "projects-preview-title",
       "aria_label": "Projects preview",
       "preview_count": 4
     },
     "platforms": {
-      "eyebrow": "Where to Follow",
-      "title": "Public Platforms",
+      "eyebrow": "Elsewhere",
+      "title": "Public profiles",
       "heading_id": "platforms-title"
     }
   }

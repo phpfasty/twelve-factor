@@ -16,6 +16,7 @@ All runtime configuration is driven by environment variables. No secrets in repo
 | `FIXTURES_PATH` | Base path for JSON fixtures (relative or absolute) | `./fixtures` |
 | `PHP_INI_FILE` | Optional PHP ini file | `php.ini` |
 | `APCU_INI_FILE` | Optional APCu ini file | `apcu.ini` |
+| `DEFENSE_CONFIG_PATH` | Path to request-defense PHP config (relative or absolute) | `./config/defense.php` |
 
 Path resolution in `config/services.php`: paths starting with `/` or `C:\` (or similar) are used as-is; relative paths are resolved from the project root (`dirname(__DIR__)` when loading from `config/`).
 
@@ -36,6 +37,14 @@ No separate “dev” vs “prod” config file; behavior is controlled by env (
 ## config/routes.php
 
 - **Role**: Registers Flight routes. Depends on the container being set on Flight (`appContainer`). Registers API routes and then a loop over `pages_config` for page routes. Does not define the page list itself; that stays in `config/pages.php`.
+
+## config/localization.php
+
+- **Role**: Declares which site locales exist and related options (e.g. default locale, URL prefix behavior). The fixture layout uses `fixtures/<locale>/`; this project is set up for a **single** default locale (`en`) unless you extend the config and add more folders under `fixtures/`.
+
+## config/defense.php
+
+- **Role**: Toggles and options for `RequestDefenseService` (`src/Defense/RequestDefenseService.php`). In the default repo settings, defense is **disabled**; adjust here if you enable filtering.
 
 ## Key settings summary
 

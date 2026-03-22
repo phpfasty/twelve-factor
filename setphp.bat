@@ -2,21 +2,17 @@
 setlocal
 
 set "PROJECT_DIR=%~dp0"
-set "PHP_BIN=%PROJECT_DIR%.php\php\php.exe"
+set "PHP_DIR=%PROJECT_DIR%.php\php"
+set "PHP_BIN=%PHP_DIR%\php.exe"
 
 if not exist "%PHP_BIN%" (
-    echo [setphp] PHP binary not found: %PHP_BIN%
-    echo [setphp] Install or restore PHP in .php\php first.
-    exit /b 1
+    echo [setphp] No bundled PHP at .php\php — use `php` from your PATH (install PHP 8.4+).
+    exit /b 0
 )
 
-set "PATH=%PROJECT_DIR%.php\php;%PATH%"
-set "PHP_INI_SCAN_DIR=%PROJECT_DIR%.php\php\;"
+set "PATH=%PHP_DIR%;%PATH%"
+set "PHP_INI_SCAN_DIR=%PHP_DIR%\"
 
-set "COMPOSER=%PROJECT_DIR%.php\composer.phar"
-
-echo [setphp] Local PHP active: %PHP_BIN%
-echo [setphp] Add .php\php to PATH for this shell session.
-echo [setphp] Run: php -v
+echo [setphp] Prepended bundled PHP to PATH for this session. Run: php -v
 
 goto :EOF

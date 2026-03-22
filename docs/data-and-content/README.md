@@ -15,7 +15,7 @@ How content is sourced, bound to pages, and how much you can change without touc
 
 ## Content flexibility
 
-- **Changing content (same shape)**: Edit JSON under `fixtures/en/` (or the active locale folder). As long as structure and keys stay compatible with templates, no code changes.
+- **Changing content (same shape)**: Edit JSON under `fixtures/en/` (or whatever locales you define in `config/localization.php`). The stock project uses **one** locale folder (`en`); adding more locales requires updating localization config and adding matching `fixtures/<locale>/` trees. As long as structure and keys stay compatible with templates, no code changes.
 - **Changing theme / layout**: Edit `templates/` (layout and page templates) and static assets. No change in `src/` required.
 - **Adding/removing pages or routes**: Edit `config/pages.php` (and add a template if needed). Routes and warmup both follow `pages_config`.
 - **Changing data shape**: If you rename or restructure fixture keys (e.g. `hero` → `banner`), templates must be updated to use the new keys. The app does not enforce a schema; it only passes through arrays. So “change types of data” is flexible at the config/template level as long as templates and page config stay in sync with the actual structure.
