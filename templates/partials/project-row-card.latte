@@ -1,0 +1,46 @@
+{*
+  Full-width project row (matches .project/html-site/projects/index.html).
+  Expects: $project, $projects, $statusActiveLabel
+*}
+{var $p = $project}
+{var $iconId = $p['icon'] ?? null}
+{var $iconColor = $p['icon_color'] ?? 'primary'}
+<article class="mk-card mk-project-card" aria-label="{$p['name'] ?? ''}">
+  <div class="mk-project-icon" style="background:hsl(var(--{$iconColor})/0.1);" aria-hidden="true">
+    {if $iconId}
+      {include lucide-icon.latte, icon: $iconId, color: $iconColor, size: 22}
+    {else}
+      <span class="mk-project-icon-fallback" aria-hidden="true"></span>
+    {/if}
+  </div>
+  <div>
+    <div class="mk-project-header">
+      <h3 class="mk-project-title">{$p['name'] ?? ''}</h3>
+      {var $tagTone = $p['tag_tone'] ?? 'default'}
+      {if $tagTone === 'primary'}
+        <span class="mk-tag mk-tag-primary">{$p['category'] ?? ''}</span>
+      {elseif $tagTone === 'accent'}
+        <span class="mk-tag mk-tag-accent">{$p['category'] ?? ''}</span>
+      {else}
+        <span class="mk-tag">{$p['category'] ?? ''}</span>
+      {/if}
+      {if ($p['status_tone'] ?? 'success') === 'warning'}
+        <span class="mk-status-warning">{$p['status'] ?? ''}</span>
+      {elseif ($p['status'] ?? '') === $statusActiveLabel}
+        <span class="mk-status" style="color:hsl(var(--success));">{$p['status'] ?? ''}</span>
+      {else}
+        <span class="mk-status" style="color:hsl(var(--muted-foreground));">{$p['status'] ?? ''}</span>
+      {/if}
+    </div>
+    <p class="mk-project-tagline">{$p['tagline'] ?? ''}</p>
+    <p class="mk-project-body">{$p['description'] ?? ''}</p>
+    <div class="mk-project-tech">
+      {foreach ($p['tech'] ?? []) as $tech}
+        <span class="mk-chip">{$tech}</span>
+      {/foreach}
+    </div>
+  </div>
+  <a href="{$p['url'] ?? '#'}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$p['name'] ?? ''}">
+    {$projects['ui']['visit_external_label'] ?? ''}
+  </a>
+</article>

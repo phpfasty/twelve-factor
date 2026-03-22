@@ -128,50 +128,20 @@
   </div>
 </section>
 
-{var $statusActiveLabel = $projects['ui']['status_active_label'] ?? ''}
-<section class="mk-section" aria-label="{$landing['sections']['projects_preview']['aria_label'] ?? ''}">
-  <div class="mk-content">
+{var $previewCount = (int) ($landing['sections']['projects_preview']['preview_count'] ?? 3)}
+{var $previewProjects = array_slice($projects['projects'], 0, $previewCount)}
+<section class="mk-section" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="{$landing['sections']['projects_preview']['heading_id'] ?? 'projects-preview-title'}">
+  <div class="mk-shell">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
       <div>
         <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$landing['sections']['projects_preview']['eyebrow'] ?? ''}</p>
-        <h2 style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['projects_preview']['title'] ?? ''}</h2>
+        <h2 id="{$landing['sections']['projects_preview']['heading_id'] ?? 'projects-preview-title'}" style="font-size:1.75rem;font-weight:700;margin:0;">{$landing['sections']['projects_preview']['title'] ?? ''}</h2>
       </div>
-      <a href="/projects/" style="font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;text-transform:uppercase;">{$landing['sections']['projects_preview']['link_all'] ?? ''}</a>
+      <a href="/projects/" class="mk-btn mk-btn-ghost" style="font-size:0.875rem;">{$landing['sections']['projects_preview']['link_all'] ?? ''}</a>
     </div>
-    <div class="mk-project-list">
-      {foreach array_slice($projects['projects'], 0, 2) as $project}
-        <article class="mk-card mk-project-card" aria-label="{$project['name']}">
-          {var $iconId = $project['icon'] ?? null}
-          {var $iconColor = $project['icon_color'] ?? 'primary'}
-          <div class="mk-project-icon" style="background:hsl(var(--{$iconColor})/0.1);" aria-hidden="true">
-            {if $iconId}
-            {include '../partials/lucide-icon.latte', icon: $iconId, color: $iconColor, size: 22}
-            {else}
-            <span style="display:block;width:1rem;height:1rem;border-radius:50%;background:hsl(var(--accent));"></span>
-            {/if}
-          </div>
-          <div>
-            <div class="mk-project-header">
-              <h3 class="mk-project-title">{$project['name']}</h3>
-              <span class="mk-tag mk-tag-primary">{$project['category'] ?? ''}</span>
-              {if ($project['status'] ?? '') === $statusActiveLabel}
-              <span class="mk-status" style="color:hsl(var(--success));">{$project['status'] ?? ''}</span>
-              {else}
-              <span class="mk-status" style="color:hsl(var(--muted-foreground));">{$project['status'] ?? ''}</span>
-              {/if}
-            </div>
-            <p style="font-size:1rem;font-weight:600;color:hsl(var(--foreground));margin:0 0 0.5rem;">{$project['tagline']}</p>
-            <p style="font-size:0.9375rem;color:hsl(var(--muted-foreground));line-height:1.65;margin:0 0 1rem;">{$project['description']}</p>
-            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-              {foreach $project['tech'] as $tech}
-                <span class="mk-chip">{$tech}</span>
-              {/foreach}
-            </div>
-          </div>
-          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['visit_external_aria_prefix'] ?? ''} {$project['name']}">
-            {$projects['ui']['visit_external_label'] ?? ''}
-          </a>
-        </article>
+    <div class="mk-grid-3">
+      {foreach $previewProjects as $project}
+        {include '../partials/project-preview-card.latte', project: $project, projects: $projects}
       {/foreach}
     </div>
   </div>

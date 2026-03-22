@@ -50,8 +50,10 @@
     "projects_preview": {
       "eyebrow": "Экосистема",
       "title": "Активные продукты",
-      "link_all": "Все проекты",
-      "aria_label": "Превью проектов"
+      "link_all": "Все проекты →",
+      "heading_id": "projects-preview-title",
+      "aria_label": "Превью проектов",
+      "preview_count": 3
     }
   }
 }

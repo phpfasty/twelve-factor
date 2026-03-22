@@ -49,9 +49,11 @@
     "blog_preview": { "title": "Recent notes", "aria_label": "Latest notes" },
     "projects_preview": {
       "eyebrow": "Ecosystem",
-      "title": "Active products",
-      "link_all": "All projects",
-      "aria_label": "Projects preview"
+      "title": "Active Products",
+      "link_all": "All projects →",
+      "heading_id": "projects-preview-title",
+      "aria_label": "Projects preview",
+      "preview_count": 3
     }
   }
 }

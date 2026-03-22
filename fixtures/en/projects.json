@@ -13,8 +13,11 @@
       "url": "https://clickfraud.ru",
       "category": "Traffic Defense",
       "status": "Active",
+      "status_tone": "success",
+      "tag_tone": "primary",
+      "summary": "Click fraud protection for Russian advertisers. Machine learning + behavioral analysis.",
       "tagline": "Click fraud protection for Russian advertisers",
-      "description": "Detects and blocks invalid clicks on contextual ads. Protects advertising budgets from competitor bots, click farms, and automated fraud. Uses machine learning + behavioral signals.",
+      "description": "Detects and blocks invalid clicks on contextual advertising. Protects budgets from competitor bots, click farms, and automated fraud using machine learning and behavioral signals. Received an 8M RUB state grant from the Foundation for Innovation Assistance.",
       "metrics": ["8M RUB state grant", "Neural network detection"],
       "tech": ["Machine Learning", "Behavioral Analysis", "API"]
     },
@@ -26,8 +29,11 @@
       "url": "https://xmldatafeed.com",
       "category": "Data & Parsing",
       "status": "Active",
+      "status_tone": "success",
+      "tag_tone": "accent",
+      "summary": "Web scraping and price monitoring at scale. 20M+ RUB/year revenue.",
       "tagline": "Web scraping and price monitoring at scale",
-      "description": "Automated collection of pricing data, product catalogs, and competitor information. Built for e-commerce operators who need clean, structured data without building their own infrastructure.",
+      "description": "Automated collection of pricing data, product catalogs, and competitor information. Built for e-commerce operators who need clean, structured data without building their own infrastructure. Revenue reached 20M+ RUB/year. Only public data is collected.",
       "metrics": ["20M+ RUB/year revenue", "Multiple enterprise clients"],
       "tech": ["Web Scraping", "Data Pipelines", "XML/JSON APIs"]
     },
@@ -38,11 +44,14 @@
       "name": "offlinecrm.ru",
       "url": "https://offlinecrm.ru",
       "category": "Business Tools",
-      "status": "Active",
+      "status": "Development",
+      "status_tone": "warning",
+      "tag_tone": "default",
+      "summary": "Simple free CRM for small businesses. No enterprise complexity required.",
       "tagline": "Simple free CRM for small teams",
-      "description": "A no-frills CRM designed for small businesses that don't need enterprise complexity. Free to use. Focused on contact management, deals, and basic workflow tracking.",
+      "description": "A no-frills CRM designed for small businesses that don't need enterprise complexity. Free to use. Focused on contact management, deals, and basic workflow tracking. Bootstrapped growth through organic and content marketing.",
       "metrics": ["Free product", "Bootstrapped growth"],
-      "tech": ["SaaS", "CRM", "API"]
+      "tech": ["SaaS", "CRM", "Free"]
     },
     {
       "id": "tapki",
@@ -52,8 +61,11 @@
       "url": "https://tapki.com",
       "category": "Search & Catalogs",
       "status": "Active",
-      "tagline": "Product search engine with Elasticsearch",
-      "description": "A search and discovery engine for products and catalogs. Built on Elasticsearch, optimized for large-scale product databases with fast full-text search and filtering.",
+      "status_tone": "success",
+      "tag_tone": "accent",
+      "summary": "Product search engine with Elasticsearch.",
+      "tagline": "Product search engine powered by Elasticsearch",
+      "description": "A search and discovery engine for products and catalogs. Built on Elasticsearch, optimized for large-scale product databases with fast full-text search and filtering. Engineering thinking applied to catalog infrastructure.",
       "metrics": ["Elasticsearch-powered", "Large catalog support"],
       "tech": ["Elasticsearch", "Search", "Catalog"]
     },
@@ -65,25 +77,30 @@
       "url": "https://notissimus.com",
       "category": "Development",
       "status": "Active",
+      "status_tone": "success",
+      "tag_tone": "default",
+      "summary": "Mobile app development studio.",
       "tagline": "Mobile app development studio",
-      "description": "A small development studio focused on mobile applications. Builds and maintains apps for B2B clients across various industries.",
+      "description": "A small development studio focused on mobile applications. Builds and maintains apps for B2B clients. Part of the broader ecosystem, providing development capacity for product experiments.",
       "metrics": ["Client projects", "iOS + Android"],
       "tech": ["Mobile", "iOS", "Android"]
     }
   ],
   "metrics": [
-    { "value": "37–40M", "label": "Peak RUB revenue / year", "note": "Combined products" },
-    { "value": "618K", "label": "Max RUB / month", "note": "Single SaaS product" },
-    { "value": "8M", "label": "State grant", "note": "Foundation for Innovation" },
-    { "value": "20+", "label": "Years operating", "note": "Bootstrapped" }
+    { "value": "37–40M", "label": "Peak RUB revenue / year" },
+    { "value": "618K", "label": "Max RUB / month (single SaaS)" },
+    { "value": "8M", "label": "State grant (Foundation for Innovation)" },
+    { "value": "20+", "label": "Years operating, bootstrapped" }
   ],
   "intro": {
     "prompt": "Systems and products, intentionally built.",
     "description": "Open-source software and commercial tooling from practical engineering constraints: reliable, observable, and maintainable."
   },
   "sections": {
+    "metrics_aria_label": "Portfolio metrics",
     "portfolio_eyebrow": "Ecosystem",
-    "portfolio_title": "Product portfolio"
+    "portfolio_title": "Active Products",
+    "products_heading_id": "products-title"
   },
   "ui": {
     "status_active_label": "Active",
