@@ -135,8 +135,11 @@
   </div>
 </section>
 
-{var $previewCount = (int) ($landing['sections']['projects_preview']['preview_count'] ?? 3)}
-{var $previewProjects = array_slice($projects['projects'], 0, $previewCount)}
+{var $previewCount = (int) ($landing['sections']['projects_preview']['preview_count'] ?? 4)}
+{var $allPortfolioProjects = is_array($projects['projects'] ?? null) ? $projects['projects'] : []}
+{* Home grid: only active products (excludes e.g. offlinecrm “in development” — status_tone success) *}
+{var $activePortfolioProjects = array_values(array_filter($allPortfolioProjects, fn($p) => ($p['status_tone'] ?? '') === 'success'))}
+{var $previewProjects = array_slice($activePortfolioProjects, 0, $previewCount)}
 <section class="mk-section" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="{$landing['sections']['projects_preview']['heading_id'] ?? 'projects-preview-title'}">
   <div class="mk-shell">
     <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
@@ -146,7 +149,7 @@
       </div>
       <a href="/projects/" class="mk-btn mk-btn-ghost" style="font-size:0.875rem;">{$landing['sections']['projects_preview']['link_all'] ?? ''}</a>
     </div>
-    <div class="mk-grid-3">
+    <div class="mk-grid-2">
       {foreach $previewProjects as $project}
         {include '../partials/project-preview-card.latte', project: $project, projects: $projects}
       {/foreach}
