@@ -18,7 +18,7 @@ This repository is a lightweight FlightPHP application built as a live PHP site 
 - `src/` — Application PHP source code
 - `config/` — Container, page map, and route configuration
 - `templates/` — Latte layout and page templates
-- `fixtures/en/` — Default locale (English) JSON content; `fixtures/<locale>/` for other languages (e.g. `ru/`)
+- `fixtures/en/` — Default locale (English) JSON content; `fixtures/<locale>/` for other languages
 - `cache/` — Generated PHP page cache
 - `scripts/` — Utility scripts such as cache warmup
 - `docker-compose.yml` — PHP + Nginx local container stack
@@ -26,10 +26,10 @@ This repository is a lightweight FlightPHP application built as a live PHP site 
 
 ## Quick setup (local)
 
-1. Install dependencies:
+1. Install dependencies (requires [Composer](https://getcomposer.org/) on your `PATH`):
 
 ```bash
-.php/php/php.exe .php/composer.phar install
+composer install
 ```
 
 2. Copy environment defaults:
@@ -41,7 +41,7 @@ cp .env.example .env
 3. Start the live PHP application:
 
 ```bash
-.php/php/php.exe -S localhost:8080 -t public public/router.php
+php -S localhost:8080 -t public public/router.php
 ```
 
 4. Open `http://localhost:8080`
@@ -51,20 +51,10 @@ cp .env.example .env
 Warm the PHP page cache for all configured routes:
 
 ```bash
-.php/php/php.exe scripts/build-static.php
+php scripts/build-static.php
 ```
 
 This script no longer generates static HTML files in `public/`. It renders all configured pages through the same application services and writes cached PHP responses into `cache/`.
-
-## Composer (alternative with global PHP)
-
-If you use a global PHP binary from PATH:
-
-```bash
-php .php/composer.phar install
-php -S localhost:8080 -t public public/router.php
-php scripts/build-static.php
-```
 
 ## Runtime architecture
 
@@ -93,14 +83,11 @@ docker compose up --build
 
 Then visit the configured host and port for the application.
 
-## PHP runtime helpers
+## PHP and Composer on PATH
 
-To use the local `.php/php` runtime without changing system variables, run:
+Install **PHP 8.4+** and **Composer** and ensure both are available as `php` and `composer` on your `PATH`.
 
-- `setphp.bat` in Command Prompt
-- `.\setphp.ps1` in PowerShell (if execution policy requires, use `-ExecutionPolicy Bypass`)
-
-After running one of them, `php -v` should report the project-local runtime.
+Optional: if you keep a Windows PHP build under `.php\php`, run `setphp.bat` (Command Prompt) or `.\setphp.ps1` (PowerShell) to prepend that folder to `PATH` for the current session so `php` resolves there.
 
 ## APCu configuration
 
@@ -132,9 +119,9 @@ Common values:
 
 - Page content is rendered through the current app-level renderer (default `App\View\LatteRenderer`) on demand and cached as PHP files in `cache/`
 - Current content comes from JSON fixtures through the adapter layer, but the application is prepared for API and blob-backed providers
-- If you upgrade PHP locally (for example to 8.4), run the local runtime checks:
+- After upgrading PHP, verify:
 
 ```bash
-.php/php/php.exe -v
-.php/php/php.exe .php/composer.phar -V
+php -v
+composer -V
 ```

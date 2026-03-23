@@ -1,73 +1,78 @@
 {
+  "seo": {
+    "title": "About — John Doe | Engineer, studio founder",
+    "description": "Background in networks, UX systems, and bootstrapped B2B products spanning design intelligence feeds, LLM infrastructure, cloud tooling, and security adjacent services.",
+    "keywords": "John Doe biography, software engineer, design systems, LLM platform founder, cloud SaaS, traffic integrity, bootstrapped portfolio, technical writing"
+  },
   "hero": {
     "eyebrow": "About",
-    "title": "Maksim Kulgin",
-    "subtitle": "Systems engineer, entrepreneur, author."
+    "title": "John Doe",
+    "subtitle": "Engineer, founder, occasional writer."
   },
   "sections": {
-    "principles_title": "Working Principles",
+    "principles_title": "Working principles",
     "books": {
-      "eyebrow": "Engineering Library",
-      "title": "Published Books",
-      "intro": "Three engineering books published in the late 1990s and early 2000s."
+      "eyebrow": "Published work",
+      "title": "Books & long-form",
+      "intro": "Practical references aimed at builders shipping under real constraints — not trend essays."
     },
-    "timeline_title": "Career Timeline"
+    "timeline_title": "Career timeline"
   },
   "sidebar_meta": [
-    "Saint Petersburg, Russia",
-    "IT since early 1990s"
+    "San Francisco Bay Area",
+    "Building since the early 2000s"
   ],
   "hero_portrait": {
-    "aria_label": "Maksim Kulgin portrait"
+    "aria_label": "John Doe portrait"
   },
   "bio": {
-    "short": "I've been in IT since the early 1990s — starting with network engineering, IP/IPX protocols, and corporate infrastructure. Over the following decades I built e-commerce operations, wrote three engineering books on network architecture, and launched a portfolio of bootstrapped internet products.",
+    "short": "I started in network and backend engineering, then spent years where UX systems meet large content and commerce stacks. Today I split time between PixelDocket (structured design-market data), PromptHarbor (LLM routing and evaluation hooks), VantageFence (traffic integrity), Alto CRM (lightweight ops CRM), and StratusSearch (catalog search infrastructure).",
     "long": [
-      "My work today centers on data collection infrastructure, click fraud defense, and building durable internet businesses without venture capital. The products I've built — clickfraud.ru, xmldatafeed.com, offlinecrm.ru, tapki.com — each solve a specific, unglamorous problem at the intersection of internet operations and data.",
-      "I write and speak in public because I find most conversation about IT entrepreneurship in Russia to be full of marketing noise and success theater. The channel bezsmuzi ('without smoothie') exists to provide a counterpoint: real revenue figures, real mistakes, real operating decisions."
+      "The through-line is boring reliability: observability first, narrow contracts with customers, and documentation that matches production behavior.",
+      "I write publicly to document trade-offs — grants, redesigns, model drift, and the parts of GTM that do not fit a keynote."
     ]
   },
   "values": [
-    { "title": "Evidence over theory", "desc": "Revenue numbers, traffic data, and failure post-mortems are more useful than frameworks and methodology names." },
-    { "title": "Long game", "desc": "Building in Russia since the 1990s means you've seen markets, regulations, and technologies change completely. Durability matters more than growth hacks." },
-    { "title": "Technical clarity", "desc": "Engineering thinking applied to business problems: understand the system, find the bottleneck, fix it. Repeat." },
-    { "title": "No pretense", "desc": "The channel isn't called 'without smoothie' for decoration. Honest reporting on what works and what doesn't is rare, and valuable." }
+    { "title": "Evidence over narrative", "desc": "Share numbers, failure modes, and support load — not aspirational positioning." },
+    { "title": "Long horizons", "desc": "Markets and stacks churn; maintainable systems and patient distribution compound." },
+    { "title": "Narrow scope", "desc": "Prefer a sharp wedge in one vertical over ten half-built experiments." },
+    { "title": "Security aware", "desc": "Treat adversarial traffic and model misuse as product requirements, not afterthoughts." }
   ],
   "books": [
     {
-      "title": "IP/IPX Traffic Switching and Routing",
-      "publisher": "KomputerPress, Moscow",
-      "year": "1998",
-      "pages": 319,
-      "series": "Information Technologies for Engineers",
-      "desc": "Professional engineering reference on routing and switching. Written for network administrators, not marketers."
+      "title": "Reliable Web Delivery",
+      "publisher": "Independent",
+      "year": "2016",
+      "pages": 280,
+      "series": "Engineering notebooks",
+      "desc": "Caching, edge behavior, and release discipline for content-heavy sites."
     },
     {
-      "title": "Corporate Network Technologies",
-      "publisher": "Peter, St. Petersburg",
-      "year": "1999",
-      "pages": 699,
-      "series": "Encyclopedia",
-      "desc": "Comprehensive reference on building and operating corporate networks in Russian infrastructure contexts."
+      "title": "Design Systems in the Wild",
+      "publisher": "Independent",
+      "year": "2019",
+      "pages": 352,
+      "series": "Engineering notebooks",
+      "desc": "Tokens, documentation, and governance when multiple brands share a platform."
     },
     {
-      "title": "Building Computer Networks. For Professionals",
-      "publisher": "Peter, St. Petersburg",
-      "year": "2001 (2nd ed. 2003)",
-      "pages": 461,
-      "series": "For Professionals",
-      "desc": "Practical guide to designing, deploying, and maintaining computer networks. Reviewed by Kompyuterra as an essential resource for Russian network engineers."
+      "title": "LLM Production Patterns",
+      "publisher": "Independent",
+      "year": "2024",
+      "pages": 310,
+      "series": "Engineering notebooks",
+      "desc": "Routing, evaluation hooks, and safety checks for customer-facing model features."
     }
   ],
   "timeline": [
-    { "period": "1990–1998", "label": "Network Engineering", "detail": "Corporate networks, IP/IPX, sysadmin" },
-    { "period": "1998–2003", "label": "Author", "detail": "3 books on network infrastructure (KomputerPress, Piter)" },
-    { "period": "2000s", "label": "Manager", "detail": "Large-scale online retail" },
-    { "period": "2010", "label": "Founded clickfraud.ru", "detail": "Click fraud protection for advertisers" },
-    { "period": "2012", "label": "Founded xmldatafeed.com", "detail": "Price monitoring and web scraping" },
-    { "period": "2014", "label": "Founded offlinecrm.ru", "detail": "Free CRM for small businesses" },
-    { "period": "2019", "label": "State grant", "detail": "8M RUB from Foundation for Innovation Assistance" },
-    { "period": "2021", "label": "Revenue milestone", "detail": "40M+ RUB combined annual revenue" },
-    { "period": "2023+", "label": "Community & Media", "detail": "bezsmuzi channel, journal, ecosystem" }
+    { "period": "2000–2008", "label": "Infrastructure", "detail": "Corporate networks, APIs, early SaaS integrations" },
+    { "period": "2008–2015", "label": "UX engineering", "detail": "Design systems for media and commerce platforms" },
+    { "period": "2015–2018", "label": "Director, delivery", "detail": "Multi-team roadmaps for web and data programs" },
+    { "period": "2018", "label": "Founded VantageFence", "detail": "Traffic integrity for performance marketing teams" },
+    { "period": "2019", "label": "Founded PixelDocket", "detail": "Structured feeds from public design and catalog signals" },
+    { "period": "2021", "label": "Founded PromptHarbor", "detail": "LLM gateway, quotas, and offline evaluation" },
+    { "period": "2022", "label": "R&D award", "detail": "$800K non-dilutive funding for cloud security research" },
+    { "period": "2023", "label": "Portfolio peak", "detail": "$2.1M combined ARR across studio products" },
+    { "period": "2024+", "label": "Writing & talks", "detail": "Case studies on grants, SEO migrations, and model ops" }
   ]
 }

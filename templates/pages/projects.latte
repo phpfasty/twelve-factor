@@ -1,69 +1,33 @@
 {var $statusActiveLabel = $projects['ui']['status_active_label'] ?? ''}
-<section class="mk-section-lg mk-bg-paper" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="projects-title">
-  <div class="mk-shell">
+<section class="mk-section" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="projects-hero-title">
+  <div class="mk-content">
     <p class="mk-eyebrow" style="margin-bottom:1rem;">{$projects['hero']['eyebrow']}</p>
-    <h1 id="projects-title" style="font-size:clamp(2rem,4vw,3rem);font-weight:700;max-width:18ch;line-height:1.1;margin:0 0 0.75rem;">{$projects['hero']['title']}</h1>
-    <p style="font-size:1.04rem;color:hsl(var(--muted-foreground));line-height:1.65;max-width:58ch;margin:0 0 2rem 0;">
+    <h1 id="projects-hero-title" style="font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;margin:0 0 1rem;">{$projects['hero']['title']}</h1>
+    <p style="font-size:1.0625rem;color:hsl(var(--muted-foreground));max-width:600px;line-height:1.7;margin:0;">
       {$projects['hero']['description']}
     </p>
-    <div class="mk-grid-2">
-      <div>
-        <div class="mk-hero-prompt" style="margin:0 0 0.75rem;">{$projects['intro']['prompt'] ?? ''}</div>
-        <p style="margin:0;font-size:0.9rem;line-height:1.65;color:hsl(var(--foreground));">
-          {$projects['intro']['description'] ?? ''}
-        </p>
-      </div>
-      <div>
-        {foreach $projects['metrics'] as $metric}
-          <article class="mk-metric-card" style="margin-bottom:0.75rem;padding:1rem;border:1px solid hsl(var(--border));border-radius:0.875rem;">
-            <p class="mk-metric-value" style="font-size:1.6rem;margin:0 0 0.25rem;">{$metric['value']}</p>
-            <p class="mk-metric-label" style="margin:0 0 0.35rem;">{$metric['label']}</p>
-            <p style="font-size:0.8125rem;color:hsl(var(--muted-foreground));margin:0;line-height:1.5;">{$metric['note']}</p>
-          </article>
-        {/foreach}
-      </div>
+  </div>
+</section>
+
+<section class="mk-section-sm" aria-label="{$projects['sections']['metrics_aria_label'] ?? ''}">
+  <div class="mk-content">
+    <div class="mk-grid-4">
+      {foreach $projects['metrics'] as $mIdx => $metric}
+        <div class="mk-metric mk-metric--strip {if ($mIdx % 2) === 1}mk-metric--strip-primary{/if}">
+          <p class="mk-metric-value">{$metric['value']}</p>
+          <p class="mk-metric-label">{$metric['label']}</p>
+        </div>
+      {/foreach}
     </div>
   </div>
 </section>
 
-<section class="mk-section">
+<section class="mk-section" aria-labelledby="{$projects['sections']['products_heading_id'] ?? 'products-title'}">
   <div class="mk-content">
-    <p class="mk-eyebrow" style="margin-bottom:0.5rem;">{$projects['sections']['portfolio_eyebrow'] ?? ''}</p>
-    <h2 style="font-size:1.8rem;font-weight:700;margin:0 0 1.75rem;font-family:var(--font-display);">{$projects['sections']['portfolio_title'] ?? ''}</h2>
+    <h2 id="{$projects['sections']['products_heading_id'] ?? 'products-title'}" style="font-size:1.375rem;font-weight:700;margin:0 0 2rem;font-family:var(--font-display);">{$projects['sections']['portfolio_title'] ?? ''}</h2>
     <div class="mk-project-list">
       {foreach $projects['projects'] as $project}
-        <article class="mk-card mk-project-card">
-          {var $iconId = $project['icon'] ?? null}
-          {var $iconColor = $project['icon_color'] ?? 'primary'}
-          <div class="mk-project-icon" style="background:hsl(var(--{$iconColor})/0.12);" aria-hidden="true">
-            {if $iconId}
-            {include '../partials/lucide-icon.latte', icon: $iconId, color: $iconColor, size: 22}
-            {else}
-            <span style="display:block;width:1rem;height:1rem;border-radius:50%;background:hsl(var(--accent));"></span>
-            {/if}
-          </div>
-          <div>
-            <div class="mk-project-header">
-              <h3 class="mk-project-title">{$project['name']}</h3>
-              <span class="mk-tag mk-tag-primary">{$project['category']}</span>
-              {if ($project['status'] ?? '') === $statusActiveLabel}
-              <span class="mk-status" style="color:hsl(var(--success));">{$project['status']}</span>
-              {else}
-              <span class="mk-status" style="color:hsl(var(--muted-foreground));">{$project['status']}</span>
-              {/if}
-            </div>
-            <p style="font-weight:600;font-size:1rem;margin:0 0 0.5rem;">{$project['tagline']}</p>
-            <p style="font-size:0.9rem;line-height:1.6;color:hsl(var(--muted-foreground));margin:0 0 1rem;">{$project['description']}</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-              {foreach $project['tech'] as $tech}
-                <span class="mk-chip">{$tech}</span>
-              {/foreach}
-            </div>
-          </div>
-          <a href="{$project['url']}" target="_blank" rel="noopener noreferrer" class="mk-btn mk-btn-outline mk-project-cta" aria-label="{$projects['ui']['open_project_aria_prefix'] ?? ''} {$project['name']}">
-            {$projects['ui']['open_project_label'] ?? ''}
-          </a>
-        </article>
+        {include '../partials/project-row-card.latte', project: $project, projects: $projects, statusActiveLabel: $statusActiveLabel}
       {/foreach}
     </div>
   </div>

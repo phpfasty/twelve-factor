@@ -1,45 +1,50 @@
 {
+  "seo": {
+    "title": "Contact — John Doe | Studio inquiries",
+    "description": "Reach out for collaboration on design intelligence data, LLM infrastructure, cloud reliability, or traffic integrity engagements.",
+    "keywords": "John Doe contact, LLM infrastructure consulting, cloud SaaS advisor, design data feeds, application security traffic, bootstrapped product studio"
+  },
   "sections": {
     "channels_title": "Contact channels",
-    "availability_title": "Availability"
+    "availability_title": "What I can help with"
   },
   "hero": {
     "eyebrow": "Contact",
-    "title": "Get in Touch",
-    "description": "Available for expert consultation on web data infrastructure, click fraud defense, and IT entrepreneurship in Russia. Business inquiries and media requests welcome."
+    "title": "Get in touch",
+    "description": "I take a small number of consulting threads each quarter: data feed design, LLM routing reviews, cloud cost and SRE practice, and integrity assessments for paid acquisition."
   },
   "channels": [
     {
-      "id": "telegram",
-      "label": "Telegram",
-      "handle": "@bezsmuzi",
-      "url": "https://t.me/bezsmuzi",
-      "desc": "Primary channel. Fastest response. Daily notes on IT business.",
-      "type": "russian"
+      "id": "email",
+      "label": "Email",
+      "handle": "See note below",
+      "url": "/contact/#contact-title",
+      "desc": "Best for scoped questions and introductions.",
+      "type": "primary"
     },
     {
-      "id": "vk",
-      "label": "VK",
-      "handle": "mkulgin",
-      "url": "https://vk.com/mkulgin",
-      "desc": "Personal profile. Business and community posts.",
-      "type": "russian"
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "handle": "Studio & products",
+      "url": "/projects/",
+      "desc": "Background maps to the public product portfolio on this site.",
+      "type": "social"
     },
     {
-      "id": "dzen",
-      "label": "Дзен",
-      "handle": "mkulgin",
-      "url": "https://dzen.ru/mkulgin",
-      "desc": "Long-read articles and case studies.",
-      "type": "russian"
+      "id": "github",
+      "label": "GitHub",
+      "handle": "Open source & tools",
+      "url": "/projects/#project-promptharbor",
+      "desc": "Shipping-focused repos are grouped with the LLM gateway work.",
+      "type": "social"
     }
   ],
   "availability": [
-    "Expert consultation on web scraping and data infrastructure",
-    "Click fraud protection and ad traffic analysis",
-    "IT business development in Russia",
-    "Speaking at industry events",
-    "Media interviews and editorial contributions"
+    "Design-intelligence and public-data feed architecture",
+    "LLM gateway hardening, quotas, and evaluation pipelines",
+    "Cloud reliability, FinOps, and incident response playbooks",
+    "Traffic integrity reviews for paid media teams",
+    "Workshops for engineering-led GTM teams"
   ],
-  "note": "Response within 1–2 business days. I don't offer mentorship programs or paid courses — this isn't that kind of channel."
+  "note": "Typical response time is two business days. I do not run cohort courses or paid mentorship programs."
 }

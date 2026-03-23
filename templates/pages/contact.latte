@@ -1,11 +1,27 @@
-<section class="mk-section" style="background-color:hsl(var(--surface-subtle));">
+<section class="mk-section" style="background-color:hsl(var(--surface-subtle));" aria-labelledby="contact-title">
   <div class="mk-shell">
-    <p class="mk-eyebrow" style="margin-bottom:1rem;">{$contact['hero']['eyebrow']}</p>
-    <h1 style="font-size:clamp(1.85rem,4vw,3rem);font-weight:700;line-height:1.1;margin:0 0 0.75rem;">{$contact['hero']['title']}</h1>
-    <p style="font-size:1.05rem;color:hsl(var(--muted-foreground));line-height:1.65;max-width:52ch;margin:0 0 2rem;">
-      {$contact['hero']['description']}
-    </p>
-    <p style="font-size:0.95rem;line-height:1.65;color:hsl(var(--foreground));max-width:52ch;">{$contact['note']}</p>
+    <div class="mk-about-hero">
+      <div>
+        <p class="mk-eyebrow" style="margin-bottom:1rem;">{$contact['hero']['eyebrow']}</p>
+        <h1 id="contact-title" style="font-size:clamp(1.85rem,4vw,3rem);font-weight:700;line-height:1.1;margin:0 0 0.75rem;">{$contact['hero']['title']}</h1>
+        <p style="font-size:1.05rem;color:hsl(var(--muted-foreground));line-height:1.65;max-width:52ch;margin:0 0 2rem;">
+          {$contact['hero']['description']}
+        </p>
+        <p style="font-size:0.95rem;line-height:1.65;color:hsl(var(--foreground));max-width:52ch;margin:0;">{$contact['note']}</p>
+      </div>
+      <div>
+        <div class="mk-portrait" style="height:280px;" aria-label="{$about['hero_portrait']['aria_label'] ?? ''}">
+          <img src="{$site['images']['portrait_about'] ?? ''}" alt="{$site['ui']['portrait_about_alt'] ?? ''}" width="260" height="280" loading="lazy">
+        </div>
+        <div class="mk-about-meta">
+          {foreach ($about['sidebar_meta'] ?? []) as $metaLine}
+          <div class="mk-about-meta-row">
+            <span style="font-size:0.875rem;color:hsl(var(--muted-foreground));">{$metaLine}</span>
+          </div>
+          {/foreach}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

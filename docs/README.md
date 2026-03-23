@@ -13,8 +13,8 @@ This repository is a **lightweight PHP application** built on [FlightPHP](https:
 - **Config-driven page map** (`config/pages.php`) for static and dynamic routes  
 - **Adapter-based data access** via `DataProviderInterface` (fixtures today; API/blob later)  
 - **File-based page cache** (PHP files in `cache/`) with optional CLI warmup  
-- **Custom DI container** in `src/Core` (bindings, singletons, tags, boot) — no Symfony dependency  
-- **Docker** stack (PHP-FPM + Nginx) for dev/prod parity  
+- **DI container** from **`phpfasty/core`** (`PhpFasty\Core\Container`), configured in `config/services.php` — no Symfony dependency
+- **Docker** stack: init job for cache volumes, PHP-FPM + Nginx, named volumes for page cache and Latte compile cache
 
 Content and presentation are intended to be changeable via **config**, **templates**, and **fixtures** without touching core application code.
 
@@ -28,10 +28,10 @@ Content and presentation are intended to be changeable via **config**, **templat
 - **Performance**: Latte compiles to plain PHP; page output is cached as PHP files (include-based). Cache can be warmed by a separate CLI process so the first request is already a hit.
 - **Twelve-Factor alignment**: Config from env, stateless processes, disposable workers, same stack in Docker for dev and prod.
 
-### Why a custom container instead of Symfony DI?
+### Why PhpFasty’s container instead of Symfony DI?
 
 - **Principles**: Zero redundancy and FlightPHP-first mean avoiding a large framework dependency when the app has few services and simple wiring.
-- **Scope**: The app needs bindings, singletons, lazy resolution, and a boot phase (tagged services). The custom container in `src/Core` provides exactly that; no autowiring or compiled container is required.
+- **Scope**: The app needs bindings, singletons, lazy resolution, and a boot phase (tagged services). **`phpfasty/core`** ships a small container that matches that model; no autowiring or compiled Symfony container is required.
 - **Trade-off**: For a small, single-team codebase this is a reasonable and maintainable choice. For a growing, multi-service product, migrating to Symfony (or another mature container) may become worthwhile — see [Container vs Symfony](container/container-vs-symfony.md).
 
 ### Why file-based page cache instead of only APCu?
@@ -67,6 +67,7 @@ Content and presentation are intended to be changeable via **config**, **templat
 | [Configuration](configuration/README.md) | Environment variables, services.php, key settings |
 | [Compliance](compliance/README.md) | Twelve-Factor compliance: current state and gaps |
 | [Docker](docker/README.md) | Project preparation, docker-compose, php.ini, apcu.ini, why webdevops/php:8.4-alpine |
+| [Private GitHub](private-repository/README.md) | This guide explains how to import a private GitHub repository from the terminal |
 | [Nginx](nginx/README.md) | Server block, locations, static/API, security headers |
 
 ---
@@ -81,5 +82,5 @@ Content and presentation are intended to be changeable via **config**, **templat
 - **Content source**: `fixtures/<locale>/` (JSON), default `fixtures/en/`, via `DataProviderInterface`.  
 - **Page cache**: `cache/` (path from `CACHE_DIR`).  
 - **Warmup**: `php scripts/build-static.php`.  
-- **Docker**: `docker compose up --build`; PHP config: `php.ini`, `apcu.ini` (see [Docker](docker/README.md)).  
+- **Docker**: `docker compose up --build`; app at **http://localhost:8080**; PHP config: `php.ini`, `apcu.ini` (see [Docker](docker/README.md)).
 - **Nginx**: `nginx/default.conf` (see [Nginx](nginx/README.md)).

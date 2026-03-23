@@ -3,7 +3,7 @@
 @source "../../*.php";
 
 /* ============================================================
-   MKulgin Brand OS — Design tokens (shadcn/HSL format)
+   Site design tokens (shadcn/HSL format)
    Baltic Tech Editorial + Network Operator Journal + Amber accent
    ============================================================ */
 
@@ -217,10 +217,12 @@
   .mk-shell {
     width: 100%;
     max-width: 1120px;
+    min-width: 0;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    box-sizing: border-box;
   }
 
   .mk-content {
@@ -232,6 +234,65 @@
     padding-right: 1.5rem;
   }
 
+  /*
+   * Blog “key figures” strip: semantic list, one line per item (value — label).
+   * Preflight removes list styles — restore as a vertical stack, not stacked <p> blocks.
+   */
+  .mk-evidence {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mk-evidence-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0;
+    row-gap: 0.125rem;
+    line-height: 1.45;
+  }
+
+  .mk-evidence-num,
+  .mk-evidence-lbl {
+    margin: 0;
+    padding: 0;
+    display: inline;
+  }
+
+  .mk-evidence-num {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+  }
+
+  /* Em dash between figure and caption (visual only; keep spans for styling) */
+  .mk-evidence-num::after {
+    content: "\00a0—\00a0";
+    font-weight: 400;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-evidence-lbl {
+    font-size: 1rem;
+    font-weight: 400;
+    color: hsl(var(--foreground));
+  }
+
+  /* Legacy: div.mk-evidence-item with two <p> (inline flow + same dash) */
+  .mk-evidence-item > p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+
   .mk-prose {
     width: 100%;
     max-width: 720px;
@@ -239,6 +300,133 @@
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  /* Key figures strip: same column as .mk-prose-body (not .mk-content 980px) */
+  .mk-prose--post-evidence {
+    padding-top: 2rem;
+  }
+
+  /*
+   * Long-form article HTML (blog post body from fixtures).
+   * Tailwind preflight zeros margins and removes list markers — restore readable rhythm.
+   */
+  .mk-prose-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.28;
+    color: hsl(var(--foreground));
+    margin-top: 2.25rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .mk-prose-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .mk-prose-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: hsl(var(--foreground));
+    margin-top: 1.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .mk-prose-body h3:first-child {
+    margin-top: 0;
+  }
+
+  .mk-prose-body h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body p {
+    margin: 0 0 1.125rem;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mk-prose-body ul,
+  .mk-prose-body ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.375rem;
+  }
+
+  .mk-prose-body ul {
+    list-style-type: disc;
+  }
+
+  .mk-prose-body ol {
+    list-style-type: decimal;
+  }
+
+  .mk-prose-body li {
+    margin: 0.45rem 0;
+    padding-left: 0.35rem;
+  }
+
+  .mk-prose-body li::marker {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-prose-body ul ul,
+  .mk-prose-body ol ol,
+  .mk-prose-body ul ol,
+  .mk-prose-body ol ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mk-prose-body strong {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-prose-body a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .mk-prose-body a:hover {
+    color: hsl(var(--accent));
+  }
+
+  .mk-prose-body code {
+    font-size: 0.9em;
+    padding: 0.1rem 0.35rem;
+    background-color: hsl(var(--surface-subtle));
+    border: 1px solid hsl(var(--border-subtle));
+    border-radius: var(--radius-sm);
+  }
+
+  .mk-prose-body .mk-quote {
+    margin: 1.75rem 0;
+  }
+
+  .mk-prose-body hr {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 1px solid hsl(var(--border-subtle));
   }
 
   /* Navigation */
@@ -309,39 +497,71 @@
     background-color: hsl(var(--secondary));
   }
 
-  /* Dark mode toggle */
-  .mk-theme-toggle {
+  /*
+   * Header controls — subtle fill vs nav bar (nav uses --background/0.95).
+   * No border; --surface-subtle reads as a soft chip in light and dark.
+   */
+  .mk-lang-toggle,
+  .mk-theme-toggle,
+  .mk-mobile-menu-btn {
     width: 2rem;
     height: 2rem;
     border-radius: var(--radius-md);
-    border: 1px solid hsl(var(--border));
-    background: transparent;
+    border: none;
+    background-color: hsl(var(--surface-subtle));
     cursor: pointer;
-    display: flex;
     align-items: center;
     justify-content: center;
     color: hsl(var(--muted-foreground));
-    transition: all 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease;
     flex-shrink: 0;
+    box-sizing: border-box;
   }
 
-  .mk-theme-toggle:hover {
+  .mk-lang-toggle {
+    display: inline-flex;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* <a> in nav: override global @layer base `a` / `:visited` link colors */
+  a.mk-lang-toggle:link,
+  a.mk-lang-toggle:visited {
+    color: hsl(var(--muted-foreground));
+    background-color: hsl(var(--surface-subtle));
+  }
+
+  a.mk-lang-toggle:hover {
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--secondary));
+  }
+
+  .mk-theme-toggle {
+    display: flex;
+  }
+
+  .mk-lang-toggle:hover,
+  .mk-theme-toggle:hover,
+  .mk-mobile-menu-btn:hover {
     background-color: hsl(var(--secondary));
     color: hsl(var(--foreground));
+  }
+
+  .mk-lang-toggle:focus-visible,
+  .mk-theme-toggle:focus-visible,
+  .mk-mobile-menu-btn:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 
   /* Mobile menu */
   .mk-mobile-menu-btn {
     display: none;
-    width: 2rem;
-    height: 2rem;
-    border-radius: var(--radius-md);
-    border: 1px solid hsl(var(--border));
-    background: transparent;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    color: hsl(var(--muted-foreground));
   }
 
   .mk-mobile-nav {
@@ -461,6 +681,52 @@
     border-color: hsl(var(--border-subtle));
   }
 
+  /* About — book / achievement cards */
+  .mk-book-card__meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mk-book-card__publisher {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: hsl(var(--accent));
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.35;
+  }
+
+  .mk-book-card__year {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: hsl(var(--accent));
+    flex-shrink: 0;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .mk-book-card__title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    line-height: 1.3;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-book-card__desc {
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.55;
+    margin: 0 0 0.875rem;
+  }
+
   /* About page hero */
   .mk-about-hero {
     display: grid;
@@ -482,28 +748,70 @@
     align-items: center;
   }
 
-  /* Project list cards */
+  /* Project list cards (projects page — elevated from html-site prototype) */
   .mk-project-list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
   .mk-project-card {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 1.5rem;
-    align-items: start;
+    gap: 1.5rem 1.75rem;
+    align-items: center;
+    padding: 1.75rem;
+    border-left: 4px solid hsl(var(--primary));
+    transition:
+      transform 200ms ease,
+      box-shadow 240ms ease,
+      border-color 240ms ease;
   }
 
+  .mk-project-card--accent {
+    border-left-color: hsl(var(--accent));
+  }
+
+  .mk-project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .mk-project-card__main {
+    min-width: 0;
+  }
+
+  .mk-project-card__icon-wrap {
+    flex-shrink: 0;
+  }
+
+  /* Standalone icon badge (e.g. legacy markup); preview / project-card shells add layout */
   .mk-project-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+  }
+
+  .mk-project-card .mk-project-icon {
+    width: 3.375rem;
+    height: 3.375rem;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mk-project-icon.mk-project-icon--framed {
+    border: 1px solid hsl(var(--foreground) / 0.1);
+    box-shadow: none;
+  }
+
+  .dark .mk-project-icon.mk-project-icon--framed {
+    border-color: hsl(var(--border));
+    box-shadow: none;
   }
 
   .mk-project-header {
@@ -522,12 +830,114 @@
     color: hsl(var(--foreground));
     min-width: 0;
     overflow-wrap: anywhere;
+    letter-spacing: -0.02em;
   }
 
   .mk-project-cta {
     font-size: 0.8125rem;
     flex-shrink: 0;
-    align-self: start;
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  .mk-project-card .mk-chip.mk-project-chip {
+    border-radius: 9999px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background-color: hsl(var(--secondary));
+    border-color: hsl(var(--border-subtle));
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-project-card__status--ok {
+    color: hsl(var(--success));
+  }
+
+  .mk-project-card__status--muted {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .mk-project-card__status--muted::before {
+    background-color: hsl(var(--muted-foreground));
+  }
+
+  /* Home — product preview grid (.project/html-site/index.html) */
+  .mk-project-preview-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .mk-project-preview-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mk-project-preview-name {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0 0 0.375rem;
+    color: hsl(var(--foreground));
+  }
+
+  .mk-project-preview-desc {
+    font-size: 0.8125rem;
+    color: hsl(var(--muted-foreground));
+    margin: 0 0 1rem;
+    line-height: 1.55;
+  }
+
+  .mk-project-preview-card__status {
+    color: hsl(var(--success));
+  }
+
+  /* Projects page — metric strip row */
+  .mk-metric--strip {
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid hsl(var(--accent));
+    background: hsl(var(--card));
+    border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  }
+
+  .mk-metric--strip-primary {
+    border-left-color: hsl(var(--primary));
+  }
+
+  .mk-project-tagline {
+    font-size: 1rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin: 0 0 0.5rem;
+  }
+
+  .mk-project-body {
+    font-size: 0.9375rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.65;
+    margin: 0 0 1rem;
+  }
+
+  .mk-project-tech {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .mk-project-icon-fallback {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: hsl(var(--accent));
   }
 
   .mk-status-warning {
@@ -670,6 +1080,45 @@
     margin: 0;
   }
 
+  /* Blog post footer: related reading cards */
+  .mk-related {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .mk-related-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 200ms ease, border-color 200ms ease;
+  }
+
+  .mk-related-card:hover {
+    box-shadow: var(--shadow-elevated);
+    border-color: hsl(var(--primary) / 0.4);
+  }
+
+  .mk-related-card .mk-post-title {
+    font-size: 0.9375rem;
+    margin: 0.375rem 0 0;
+  }
+
+  .mk-related-card .mk-related-card__tag {
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+  }
+
+  @media (max-width: 640px) {
+    .mk-related {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* Inline code chip */
   .mk-chip {
     font-family: var(--font-mono);
@@ -704,6 +1153,11 @@
     flex-wrap: wrap;
   }
 
+  /* Space between meta row and title (grid gap can collapse visually on link cards) */
+  .mk-post-meta + .mk-post-title {
+    margin-top: 0.5rem;
+  }
+
   .mk-post-date {
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -735,23 +1189,96 @@
     margin: 0;
   }
 
-  /* Path timeline grid (5-column career steps on homepage) */
+  /* Path timeline grid (career cards on homepage — 3 columns on large screens) */
   .mk-timeline-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.5rem;
     position: relative;
+    width: 100%;
+    min-width: 0;
   }
 
-  .mk-timeline-line {
-    position: absolute;
-    top: 1.25rem;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, hsl(var(--accent)), hsl(var(--primary)), hsl(var(--accent)));
-    opacity: 0.35;
-    pointer-events: none;
+  /* Career path cards: icon + title (left), year (top-right), note below */
+  .mk-career-card {
+    margin: 0;
+    padding: 1rem 1.125rem;
+    text-align: left;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border-subtle));
+    border-radius: var(--radius-lg);
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .mk-career-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mk-career-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid hsl(var(--border-subtle));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mk-career-card__icon-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: hsl(var(--background));
+    border-radius: 50%;
+    display: block;
+  }
+
+  .mk-career-card__title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding-right: 0.375rem;
+    padding-top: 0.2rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    color: hsl(var(--foreground));
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .mk-career-card__year {
+    flex-shrink: 1;
+    min-width: 0;
+    margin: 0;
+    margin-left: auto;
+    padding-top: 0.25rem;
+    padding-left: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: hsl(var(--accent));
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-align: right;
+    white-space: normal;
+  }
+
+  .mk-career-card__note {
+    margin: 0;
+    font-size: 0.8rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .mk-timeline-grid.mk-career-cards {
+    gap: 1.25rem;
   }
 
   /* Timeline (vertical, used on About page) */
@@ -854,9 +1381,10 @@
   }
 
   /* ── Hero grid layout ── */
+  /* Portrait column matches .mk-about-hero (260px) */
   .mk-hero-grid {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 260px;
     gap: 3rem;
     align-items: start;
   }
@@ -949,14 +1477,29 @@
     border: 1px solid hsl(var(--border));
     overflow: hidden;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Grid stretches <picture> to fill; flex + center kept picture at intrinsic img size */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .mk-portrait > picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   .mk-portrait img {
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -975,11 +1518,28 @@
     border-radius: 50%;
     flex-shrink: 0;
     border: 2px solid hsl(var(--border));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    justify-items: stretch;
+  }
+
+  .mk-portrait-avatar > picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   .mk-portrait-avatar img {
     width: 100%;
     height: 100%;
+    max-width: none;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -1057,7 +1617,7 @@
   /* Responsive: tablet */
   @media (min-width: 769px) and (max-width: 1024px) {
     .mk-hero-grid {
-      grid-template-columns: 1fr 220px;
+      grid-template-columns: 1fr 260px;
       gap: 2rem;
     }
     .mk-grid-3 {
@@ -1065,6 +1625,10 @@
     }
     .mk-grid-4 {
       grid-template-columns: repeat(2, 1fr);
+    }
+    /* 5×1fr career row is too tight here — causes overflow (min-width: auto on items) */
+    .mk-timeline-grid.mk-career-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -1084,20 +1648,17 @@
       grid-template-columns: 1fr;
       gap: 1rem;
     }
-    .mk-project-icon {
-      width: 2.75rem;
-      height: 2.75rem;
+    .mk-project-card .mk-project-icon {
+      width: 2.875rem;
+      height: 2.875rem;
     }
     .mk-project-cta {
       width: 100%;
       justify-content: center;
     }
     .mk-timeline-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
-    }
-    .mk-timeline-line {
-      display: none;
     }
     .mk-mobile-menu-btn {
       display: flex;
@@ -1128,14 +1689,27 @@
       grid-template-columns: 1fr;
       gap: 1.75rem;
     }
+    /* Full-width row so flex can center the portrait */
     .mk-hero-grid .mk-portrait-wrap {
       order: -1;
       display: flex;
       justify-content: center;
+      width: 100%;
+      max-width: 100%;
     }
     .mk-hero-grid .mk-portrait-wrap .mk-portrait {
-      width: 200px !important;
-      height: 240px !important;
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
+    }
+    /* Direct .mk-portrait (stale cache / no wrap): center in grid track */
+    .mk-hero-grid > .mk-portrait {
+      order: -1;
+      justify-self: center;
+      margin-inline: auto;
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
     }
     .mk-hero-prompt {
       font-size: 1rem;
@@ -1169,7 +1743,7 @@
       font-size: 0.9375rem;
     }
     .mk-timeline-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
     }
     .mk-shell {
@@ -1180,9 +1754,11 @@
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
-    .mk-hero-grid .mk-portrait-wrap .mk-portrait {
-      width: 160px !important;
-      height: 200px !important;
+    .mk-hero-grid .mk-portrait-wrap .mk-portrait,
+    .mk-hero-grid > .mk-portrait {
+      width: 100% !important;
+      max-width: 260px !important;
+      height: 280px !important;
     }
     .mk-hero-prompt {
       font-size: 0.875rem;
