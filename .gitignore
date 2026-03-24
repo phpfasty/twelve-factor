@@ -1,13 +1,12 @@
 .manual/
-.project/
 .cursor/
-node_modules/
-~cache/
+.cursorignore
 bun.lockb
 bun.lock
 package-lock.json
-.cursorignore
 dist/
+node_modules/
+vendor/
 .env
 .workspaces/
 .phpcs/
@@ -17,7 +16,7 @@ dist/
 /cache/
 templates/cache/
 
-.php/
+.cursorignore
 
 # OS files
 .DS_Store
